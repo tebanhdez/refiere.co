@@ -1,4 +1,4 @@
-package co.refiere;
+package co.refiere.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
