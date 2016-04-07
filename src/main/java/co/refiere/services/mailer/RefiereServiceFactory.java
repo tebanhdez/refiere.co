@@ -1,4 +1,4 @@
-package co.refiere.mailer;
+package co.refiere.services.mailer;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -6,7 +6,7 @@ import java.util.Properties;
 import javax.mail.Session;
 
 
-public class ICanBuyServiceFactory {
+public class RefiereServiceFactory {
 	
 	private static MailService mailService = null;
 	static Properties mailServerProperties;

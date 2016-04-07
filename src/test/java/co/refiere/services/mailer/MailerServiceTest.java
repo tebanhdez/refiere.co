@@ -1,4 +1,4 @@
-package co.refiere.mailer;
+package co.refiere.services.mailer;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,8 @@ import javax.mail.internet.AddressException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
 private final String [] EMAIL_ADDRESS_TEST = {"jehehe1@gmail.com"};
@@ -22,44 +24,44 @@ private final String [] EMAIL_ADDRESS_TEST = {"jehehe1@gmail.com"};
         File temp2 = File.createTempFile("temp-file-name2", ".pdf");
         Assert.assertNotNull("No attachment found", temp1);
         String [] attachments = {temp1.getAbsolutePath(), temp2.getAbsolutePath()};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test 2 Attachments", "<h1>Testing mail</h1>", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test 2 Attachments", "<h1>Testing mail</h1>", attachments);
     }
     @Ignore
     @Test
     public void testGetMailServiceNoAttachments() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test No Attachments", "<h1>Testing mail</h1>", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test No Attachments", "<h1>Testing mail</h1>", attachments);
     }
     @Ignore
     @Test
     public void testGetMailServiceFileNotFound() throws AddressException, MessagingException, IOException {
         String [] attachments = {"thisFileNotExist"};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
     }
     @Ignore
     @Test
     public void testGetMailServiceEmailInvalidEmail() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
         String [] invalidEmail = {"invalidEmail@invalid", "invalidEmail@invalid2"};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(invalidEmail, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(invalidEmail, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
     }
     @Ignore
     @Test(expected = AddressException.class)
     public void testGetMailServiceEmailEmptyEmailAddress() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
         String [] invalidEmail = {"", null};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(invalidEmail, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(invalidEmail, "Email Test No Attachments - FileNotFound", "<h1>Testing mail</h1>", attachments);
     }
     @Ignore
     @Test(expected = NullPointerException.class)
     public void testGetMailServiceEmailEmptyMessage() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Empty Body", null, attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Empty Body", null, attachments);
     }
     @Ignore
     @Test
     public void testGetMailServiceEmailEmptySubject() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
-        ICanBuyServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, null, "No subject", attachments);
+        RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, null, "No subject", attachments);
     }
 }

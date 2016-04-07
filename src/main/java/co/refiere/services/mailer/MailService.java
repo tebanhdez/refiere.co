@@ -1,4 +1,4 @@
-package co.refiere.mailer;
+package co.refiere.services.mailer;
 
 
 import java.io.File;
