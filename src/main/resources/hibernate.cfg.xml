@@ -23,6 +23,7 @@
 
         <!-- Annotated entity classes -->
         <mapping class="co.refiere.entity.RefiereUser"/>
+        <mapping class="co.refiere.entity.RefiereCompany"/>
         
     </session-factory>
 </hibernate-configuration>
