@@ -30,8 +30,7 @@ public class MailerResourceTest extends JerseyTest {
         
     	EmailRequest email = new EmailRequest();
     	List<String> recipients = new LinkedList<String>();
-    	recipients.add("person@mail.com");
-    	recipients.add("person@mail.com");
+    	recipients.add("jehehe1@gmail.com");
     	List<String> attachments = new LinkedList<String>();
     	email.setRecipients(recipients);
     	email.setBody("<h1>EMAIL END-POINT TEST</h1>");
