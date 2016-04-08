@@ -1,22 +1,16 @@
 package co.refiere.resources;
 
-import java.io.StringReader;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
 import javax.mail.MessagingException;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import co.refiere.resources.base.EmailRequest;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 /**
@@ -33,28 +27,13 @@ public class MailerResource {
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response sendEmail(String jsonEmail) {
-
-    	JsonReader jsonReader = Json.createReader(new StringReader(jsonEmail));
-    	JsonObject jsonobject = jsonReader.readObject();
-    	jsonReader.close();
-    	JsonArray recipientsJson = jsonobject.getJsonArray("recipients");
-    	JsonArray attachmentsJson = jsonobject.getJsonArray("attachmentsFilesPath");
-    	
-    	ArrayList<String> recipients = new ArrayList<>();
-    	ArrayList<String> attachments = new ArrayList<>();
-    	for(JsonValue recipient : recipientsJson){
-    		recipients.add(recipient.toString());
-    	}
-    	for(JsonValue attachment : attachmentsJson){
-    		recipients.add(attachment.toString());
-    	}
-    	//String [] recipients = recipientsJson.toArray(new String [recipientsJson.size()]);
-    	//String [] attachments = attachmentsJson.toArray(new String[attachmentsJson.size()]);
+    public Response sendEmail(EmailRequest emailReq) {
     	
     	try {
-			RefiereServiceFactory.getMailService().generateAndSendEmail(recipients.toArray(new String[recipients.size()]), 
-					jsonobject.getString("subject"), jsonobject.getString("body"), attachments.toArray(new String[attachments.size()]));
+    		List<String> recipients = emailReq.getRecipients();
+    		List<String> attachments = emailReq.getAttachments();
+    		RefiereServiceFactory.getMailService().generateAndSendEmail(Arrays.copyOf(recipients.toArray(), recipients.size(), String[].class), emailReq.getSubject(), 
+    				emailReq.getBody(), Arrays.copyOf(attachments.toArray(), attachments.size(), String[].class));
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

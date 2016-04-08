@@ -1,20 +1,19 @@
 package co.refiere.resources;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import static org.junit.Assert.assertEquals;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.StringReader;
+import co.refiere.resources.base.EmailRequest;
 
 public class MailerResourceTest extends JerseyTest {
 
@@ -28,10 +27,17 @@ public class MailerResourceTest extends JerseyTest {
      */
     @Test
     public void testSendEmail() {
-    	JsonReader jsonReader = Json.createReader(new StringReader("{\"recipients\": [\"ehernandez@pernix.cr\"], \"subject\": \"TESTING\",\"body\": \"<h1>MAILER END_POINT</h1>\",\"attachmentsFilesPath\": []}"));
-    	JsonObject jsonobject = jsonReader.readObject();
-    	jsonReader.close();
-        final Response mailerResponse = target().path("v1/mailer").request().post(Entity.json(jsonobject.toString()));
+        
+    	EmailRequest email = new EmailRequest();
+    	List<String> recipients = new LinkedList<String>();
+    	recipients.add("person@mail.com");
+    	recipients.add("person@mail.com");
+    	List<String> attachments = new LinkedList<String>();
+    	email.setRecipients(recipients);
+    	email.setBody("<h1>EMAIL END-POINT TEST</h1>");
+    	email.setSubject("--- TESTING ---");
+    	email.setAttachments(attachments);
+    	final Response mailerResponse = target().path("v1/mailer").request().post(Entity.json(email));
 
         assertEquals(200, mailerResponse.getStatus());
     }
