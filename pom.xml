@@ -26,12 +26,10 @@
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
         </dependency>
-        <!-- uncomment this to get JSON support
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
-        </dependency> -->
-
+        </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
@@ -51,6 +49,12 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
+
+				<dependency>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+					<version>1.4.7</version>
+				</dependency>
         
         <dependency>
            <groupId>org.hibernate</groupId>
@@ -64,7 +68,6 @@
           <artifactId>postgresql</artifactId>
           <version>9.4-1200-jdbc41</version>
         </dependency>
-        
     </dependencies>
 
     <build>

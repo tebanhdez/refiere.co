@@ -11,11 +11,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!--external css-->
-    <link href="styles/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="app/styles/main.css">
     <!-- endbuild -->
   </head>
   <body ng-app="refiereApp">
@@ -24,7 +20,6 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <!-- 
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -51,9 +46,17 @@
         </div>
       </div>
     </div>
-    -->
 
+    <div class="container">
     <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      </div>
+    </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -84,11 +87,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- endbootstrap -->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/login.js"></script>
+        <script src="app/scripts/app.js"></script>
+        <script src="app/scripts/controllers/main.js"></script>
+        <script src="app/scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
