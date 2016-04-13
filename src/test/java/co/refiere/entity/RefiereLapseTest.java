@@ -6,21 +6,19 @@ import org.junit.Test;
 
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserTest {
-
-	@Test
-	public void testCreateRefiereUser() {
-	  
-	  SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+public class RefiereLapseTest {
+  @Test
+  public void testCreateRefiereLapse() {
+    
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    
-    RefiereUser user = new RefiereUser("Steve", "Balmer");
-    session.save(user);
+  
+    RefiereLapse lapse = new RefiereLapse("Semanalmente");
+    session.save(lapse);
      
     session.getTransaction().commit();
     session.close();
-
-	}
-
+  
+  }
 }

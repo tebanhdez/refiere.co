@@ -24,6 +24,8 @@
         <!-- Annotated entity classes -->
         <mapping class="co.refiere.entity.RefiereUser"/>
         <mapping class="co.refiere.entity.RefiereCompany"/>
+        <mapping class="co.refiere.entity.RefiereLapseTest"/>
+        <mapping class="co.refiere.entity.RefierePlanTest"/>
         
     </session-factory>
 </hibernate-configuration>

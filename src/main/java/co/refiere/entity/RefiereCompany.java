@@ -23,10 +23,10 @@ public class RefiereCompany extends RefiereUser{
 	private String telephone;
   
   @Column(name="company_plan")
-  private String plan;
+  private RefierePlan plan;
 
   public RefiereCompany(String login, String password, String name, String address, String email,
-      String telephone, String plan) {
+      String telephone, RefierePlan plan) {
     super(login, password);
     this.name = name;
     this.address = address;
@@ -59,10 +59,10 @@ public class RefiereCompany extends RefiereUser{
   public void setTelephone(String telephone) {
     this.telephone = telephone;
   }
-  public String getPlan() {
+  public RefierePlan getPlan() {
     return plan;
   }
-  public void setPlan(String plan) {
+  public void setPlan(RefierePlan plan) {
     this.plan = plan;
   }
 }

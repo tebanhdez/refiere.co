@@ -6,21 +6,19 @@ import org.junit.Test;
 
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserTest {
-
-	@Test
-	public void testCreateRefiereUser() {
-	  
-	  SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+public class RefierePlanTest {
+  @Test
+  public void testCreateRefierePlan() {
+    
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    
-    RefiereUser user = new RefiereUser("Steve", "Balmer");
-    session.save(user);
+  
+    RefierePlan plan = new RefierePlan("Plan Básico", 34, 2, null, 500, "test@test.com", (byte) 0, null);
+    session.save(plan);
      
     session.getTransaction().commit();
     session.close();
-
-	}
-
+  
+  }
 }

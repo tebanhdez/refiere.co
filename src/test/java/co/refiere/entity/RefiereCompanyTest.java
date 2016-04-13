@@ -2,8 +2,9 @@ package co.refiere.entity;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.tutorial.util.HibernateUtil;
 import org.junit.Test;
+
+import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereCompanyTest {
   
