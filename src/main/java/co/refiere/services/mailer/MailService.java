@@ -63,9 +63,9 @@ public class MailService{
         }
         // Send the complete message parts
         generateMailMessage.setContent(multipart);
-        Transport transport = getMailSession.getTransport(mailServerProperties.getProperty("icanbuy.email.protocol"));
+        Transport transport = getMailSession.getTransport(mailServerProperties.getProperty("refiere.email.protocol"));
          
-        transport.connect(mailServerProperties.getProperty("icanbuy.email.server"), mailServerProperties.getProperty("icanbuy.email.user"), mailServerProperties.getProperty("icanbuy.email.password"));
+        transport.connect(mailServerProperties.getProperty("refiere.email.server"), mailServerProperties.getProperty("refiere.email.user"), mailServerProperties.getProperty("refiere.email.password"));
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
     }
