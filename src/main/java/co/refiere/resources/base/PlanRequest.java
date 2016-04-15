@@ -1,7 +1,5 @@
 package co.refiere.resources.base;
 
-import co.refiere.entity.RefiereLapse;
-
 public class PlanRequest {
   private String name;
   private int salesPercentaje;
@@ -9,7 +7,7 @@ public class PlanRequest {
   private LapseRequest campaign_lapse;
   private int referrerAmount;
   private String personalizedEmail;
-  private byte panelType;
+  private int panelType;
   private LapseRequest timely_report;
 
   public String getName() {
@@ -60,11 +58,11 @@ public class PlanRequest {
     this.personalizedEmail = personalizedEmail;
   }
 
-  public byte getPanelType() {
+  public int getPanelType() {
     return panelType;
   }
 
-  public void setPanelType(byte panelType) {
+  public void setPanelType(int panelType) {
     this.panelType = panelType;
   }
 

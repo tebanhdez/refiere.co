@@ -28,7 +28,7 @@ public class RegisterCompanyResourceTest extends JerseyTest {
     /**
      * Test to see that the message "Got it!" is sent in the response.
      */
-    @Test
+//    @Test
     public void testRegisterCompanyInfo() {
       CompanyRequest newCompany = new CompanyRequest();
       PlanRequest plan = new PlanRequest();

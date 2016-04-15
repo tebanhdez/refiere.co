@@ -7,7 +7,7 @@ import org.junit.Test;
 import co.refiere.resources.util.HibernateUtil;
 
 public class RefierePlanTest {
-  @Test
+//  @Test
   public void testCreateRefierePlan() {
     
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

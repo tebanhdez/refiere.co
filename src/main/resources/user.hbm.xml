@@ -2,19 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
- 
+
 <hibernate-mapping package="co.refiere.entity">
- 
+
   <class name="RefiereUser" table="User" discriminator-value="U">
     <id name="userId" column="user_id">
       <generator class="native" />
     </id>
- 
+
  	<discriminator column="Discriminator" type="string" />
- 
+
     <property name="login" column="logim"/>
     <property name="password" column="password" />
- 
+
     <subclass name="Company" extends="User" discriminator-value="C">
       <property name="name" column="company_name" />
       <property name="address" column="company_address" />

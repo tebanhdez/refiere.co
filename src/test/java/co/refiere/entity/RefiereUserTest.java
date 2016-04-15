@@ -8,7 +8,7 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereUserTest {
 
-	@Test
+//	@Test
 	public void testCreateRefiereUser() {
 	  
 	  SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
