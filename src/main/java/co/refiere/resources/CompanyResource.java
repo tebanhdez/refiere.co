@@ -20,8 +20,14 @@ public class CompanyResource {
 		try {
 			RefiereCompanyDao companyDao = new RefiereCompanyDao();
 			RefiereCompany newCompany = new RefiereCompany();
+			
 			newCompany.setName(company.getName());
 			newCompany.setAddress(company.getAddress());
+			newCompany.setEmail(company.getEmail());
+			newCompany.setPhone(company.getTelephone());
+			//newCompany.setRefiereUserCompaniesForCompanyId(null);
+			//newCompany.setRefiereUserCompaniesForUserId(null);
+			
 			companyDao.save(newCompany);
 		} catch (Exception e) {
 			e.printStackTrace();

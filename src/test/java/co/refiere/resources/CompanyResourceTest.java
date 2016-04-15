@@ -45,7 +45,7 @@ public class CompanyResourceTest extends JerseyTest {
 		plan.setSalesPercentaje(9);
 		newCompany.setName("Testing Company");
 		newCompany.setAddress("Testing Company");
-		newCompany.setEmail("Testing Company");
+		newCompany.setEmail("jehehe1@gmail.com");
 		newCompany.setTelephone("Testing Company");
 		newCompany.setPlan(plan);
 

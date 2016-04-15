@@ -10,12 +10,12 @@ import co.refiere.models.RefiereUser;
 import co.refiere.models.RefiereUserHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserDAO extends RefiereUserHome {
+public class RefiereUserDao extends RefiereUserHome {
 
 	private static final Log log = LogFactory.getLog(RefiereUserHome.class);
 	private final SessionFactory sessionFactory = getSessionFactory();
 
-	public RefiereUserDAO() {
+	public RefiereUserDao() {
 
 	}
 

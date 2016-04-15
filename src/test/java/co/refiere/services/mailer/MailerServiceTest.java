@@ -13,7 +13,7 @@ import org.junit.Test;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
-private final String [] EMAIL_ADDRESS_TEST = {"jpblo.3105@gmail.com"};
+private final String [] EMAIL_ADDRESS_TEST = {"jehehe@gmail.com"};
     
 	@Ignore
     @Test

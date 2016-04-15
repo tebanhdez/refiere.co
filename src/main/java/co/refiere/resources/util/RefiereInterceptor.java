@@ -2,11 +2,17 @@ package co.refiere.resources.util;
 
 import java.io.Serializable;
 
+import javax.mail.MessagingException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.CallbackException;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 
 import co.refiere.models.RefiereCompany;
+import co.refiere.models.RefiereUserHome;
+import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class RefiereInterceptor extends EmptyInterceptor {
 
@@ -18,18 +24,32 @@ public class RefiereInterceptor extends EmptyInterceptor {
 	 * postFlush – Called after the saved, updated or deleted objects are committed to database.
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final Log log = LogFactory.getLog(RefiereUserHome.class);
 
 	public RefiereInterceptor() {
 	}
 
 	public boolean onSave(Object entity,Serializable id,
 			Object[] state,String[] propertyNames,Type[] types)
-			throws CallbackException {
-			
-			if (entity instanceof RefiereCompany){
-				System.out.println("  >>> Saving company!!!");
+					throws CallbackException {
+
+		if (entity instanceof RefiereCompany){
+			RefiereCompany company = (RefiereCompany) entity;
+			if("".equals(company.getEmail())){
+				log.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
+			}else{
+				String [] recipients = {company.getEmail()};
+				String [] attachments = {};
+				try {
+					RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
+							"Bienvenido a Refiere.co",
+							"<h1> Hey Bienvenido!</h1>", attachments);
+				} catch (MessagingException e) {
+					log.error("ERROR: RefiereInterceptor::Sending email", e);
+				}
 			}
-			return false;
-				
 		}
+		return false;
+
+	}
 }

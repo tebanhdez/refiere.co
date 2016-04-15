@@ -6,7 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import co.refiere.dao.RefiereCompanyDao;
-import co.refiere.dao.RefiereUserDAO;
+import co.refiere.dao.RefiereUserDao;
 import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereCompanyTest {

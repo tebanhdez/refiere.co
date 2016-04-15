@@ -3,7 +3,7 @@ package co.refiere.models;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import co.refiere.dao.RefiereUserDAO;
+import co.refiere.dao.RefiereUserDao;
 
 public class RefiereUserTest {
 
@@ -17,7 +17,7 @@ public class RefiereUserTest {
 		newUser.setLogin("testDAO");
 		newUser.setPassword("testpassDAO");
 
-		RefiereUserDAO userDao = new RefiereUserDAO();
+		RefiereUserDao userDao = new RefiereUserDao();
 		userDao.save(newUser);
 	}
 
