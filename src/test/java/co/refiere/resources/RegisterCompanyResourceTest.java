@@ -28,7 +28,7 @@ public class RegisterCompanyResourceTest extends JerseyTest {
     /**
      * Test to see that the message "Got it!" is sent in the response.
      */
-//    @Test
+    @Test
     public void testRegisterCompanyInfo() {
       CompanyRequest newCompany = new CompanyRequest();
       PlanRequest plan = new PlanRequest();
@@ -48,7 +48,6 @@ public class RegisterCompanyResourceTest extends JerseyTest {
       newCompany.setEmail("Testing Company");
       newCompany.setTelephone("Testing Company");
       newCompany.setPlan(plan);
-      
       
       final Response confirmationResponse = target().path("v1/company").request().post(Entity.json(newCompany));
 
