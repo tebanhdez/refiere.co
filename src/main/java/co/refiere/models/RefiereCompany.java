@@ -9,86 +9,86 @@ import java.util.Set;
  */
 public class RefiereCompany implements java.io.Serializable {
 
-	private int id;
-	private String name;
-	private String address;
-	private String email;
-	private String phone;
-	private Set refiereUserCompaniesForUserId = new HashSet(0);
-	private Set refiereUserCompaniesForCompanyId = new HashSet(0);
+    private int id;
+    private String name;
+    private String address;
+    private String email;
+    private String phone;
+    private Set refiereUserCompaniesForUserId = new HashSet(0);
+    private Set refiereUserCompaniesForCompanyId = new HashSet(0);
 
-	public RefiereCompany() {
-	}
+    public RefiereCompany() {
+    }
 
-	public RefiereCompany(int id) {
-		this.id = id;
-	}
+    public RefiereCompany(int id) {
+        this.id = id;
+    }
 
-	public RefiereCompany(int id, String name, String address, String email, String phone,
-			Set refiereUserCompaniesForUserId, Set refiereUserCompaniesForCompanyId) {
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
-		this.refiereUserCompaniesForUserId = refiereUserCompaniesForUserId;
-		this.refiereUserCompaniesForCompanyId = refiereUserCompaniesForCompanyId;
-	}
+    public RefiereCompany(int id, String name, String address, String email, String phone,
+            Set refiereUserCompaniesForUserId, Set refiereUserCompaniesForCompanyId) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.refiereUserCompaniesForUserId = refiereUserCompaniesForUserId;
+        this.refiereUserCompaniesForCompanyId = refiereUserCompaniesForCompanyId;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getAddress() {
-		return this.address;
-	}
+    public String getAddress() {
+        return this.address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
+    public String getPhone() {
+        return this.phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public Set getRefiereUserCompaniesForUserId() {
-		return this.refiereUserCompaniesForUserId;
-	}
+    public Set getRefiereUserCompaniesForUserId() {
+        return this.refiereUserCompaniesForUserId;
+    }
 
-	public void setRefiereUserCompaniesForUserId(Set refiereUserCompaniesForUserId) {
-		this.refiereUserCompaniesForUserId = refiereUserCompaniesForUserId;
-	}
+    public void setRefiereUserCompaniesForUserId(Set refiereUserCompaniesForUserId) {
+        this.refiereUserCompaniesForUserId = refiereUserCompaniesForUserId;
+    }
 
-	public Set getRefiereUserCompaniesForCompanyId() {
-		return this.refiereUserCompaniesForCompanyId;
-	}
+    public Set getRefiereUserCompaniesForCompanyId() {
+        return this.refiereUserCompaniesForCompanyId;
+    }
 
-	public void setRefiereUserCompaniesForCompanyId(Set refiereUserCompaniesForCompanyId) {
-		this.refiereUserCompaniesForCompanyId = refiereUserCompaniesForCompanyId;
-	}
+    public void setRefiereUserCompaniesForCompanyId(Set refiereUserCompaniesForCompanyId) {
+        this.refiereUserCompaniesForCompanyId = refiereUserCompaniesForCompanyId;
+    }
 
 }

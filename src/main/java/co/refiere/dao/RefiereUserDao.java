@@ -12,36 +12,36 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereUserDao extends RefiereUserHome {
 
-	private static final Log log = LogFactory.getLog(RefiereUserHome.class);
-	private final SessionFactory sessionFactory = getSessionFactory();
+    private static final Log log = LogFactory.getLog(RefiereUserHome.class);
+    private final SessionFactory sessionFactory = getSessionFactory();
 
-	public RefiereUserDao() {
+    public RefiereUserDao() {
 
-	}
+    }
 
-	@Override
-	public SessionFactory getSessionFactory(){
-		try {
-			return (SessionFactory) HibernateUtil.getSessionFactory();
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-	
-	public void save(RefiereUser user){
-		log.debug("saving RefiereUser");
-		try {
-			Session session = sessionFactory.openSession();
-			org.hibernate.Transaction trans= session.beginTransaction();
-			if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-				log.debug(" >>> Transaction close.");
-			session.persist(user);
-			trans.commit();
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
+    @Override
+    public SessionFactory getSessionFactory(){
+        try {
+            return (SessionFactory) HibernateUtil.getSessionFactory();
+        } catch (Exception e) {
+            log.error("Could not locate SessionFactory in JNDI", e);
+            throw new IllegalStateException("Could not locate SessionFactory in JNDI");
+        }
+    }
+    
+    public void save(RefiereUser user){
+        log.debug("saving RefiereUser");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            session.persist(user);
+            trans.commit();
+            log.debug("persist successful");
+        } catch (RuntimeException re) {
+            log.error("persist failed", re);
+            throw re;
+        }
+    }
 }

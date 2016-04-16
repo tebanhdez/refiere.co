@@ -6,15 +6,15 @@ import co.refiere.dao.RefiereLapseDao;
 
 public class RefiereLapseTest {
 
-	@Test
-	public void testCreateRefiereLapse() {
+    @Test
+    public void testCreateRefiereLapse() {
 
-		RefiereLapseDao refiereDao = new RefiereLapseDao();
-		RefiereLapse newLapse = new RefiereLapse();
-		newLapse.setName("Testing lapse");
-		newLapse.setDays(1);
-		
-		refiereDao.save(newLapse);
+        RefiereLapseDao refiereDao = new RefiereLapseDao();
+        RefiereLapse newLapse = new RefiereLapse();
+        newLapse.setName("Testing lapse");
+        newLapse.setDays(1);
+        
+        refiereDao.save(newLapse);
 
-	}
+    }
 }

@@ -24,17 +24,17 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+
     public static Session getOpenSession(){
-      return sessionFactory.openSession();
+        return sessionFactory.openSession();
     }
-    
+
     public static void closeSession(Session session){
-      try{
-        if(session.isOpen())
-          session.close();
-      }catch(HibernateException exception){
-        //TODO: Log exception
-      }
+        try{
+            if(session.isOpen())
+                session.close();
+        }catch(HibernateException exception){
+            //TODO: Log exception
+        }
     }
 }

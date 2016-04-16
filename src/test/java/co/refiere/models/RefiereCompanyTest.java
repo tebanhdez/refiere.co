@@ -11,17 +11,17 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereCompanyTest {
 
-	@Ignore
-	@Test
-	public void testCreateRefiereCompany() {
+    @Ignore
+    @Test
+    public void testCreateRefiereCompany() {
 
-		RefiereCompany newCompany = new RefiereCompany();
-		//TODO: Provide Random integer - modify RefiereUser.dbm.xml to assign
-		//newUser.setId();
-		newCompany.setName("Testing Company");
-		newCompany.setEmail("test@email.com");
+        RefiereCompany newCompany = new RefiereCompany();
+        //TODO: Provide Random integer - modify RefiereUser.dbm.xml to assign
+        //newUser.setId();
+        newCompany.setName("Testing Company");
+        newCompany.setEmail("test@email.com");
 
-		RefiereCompanyDao companyDao = new RefiereCompanyDao();
-		companyDao.save(newCompany);
-	}
+        RefiereCompanyDao companyDao = new RefiereCompanyDao();
+        companyDao.save(newCompany);
+    }
 }

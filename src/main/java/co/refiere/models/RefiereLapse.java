@@ -9,68 +9,68 @@ import java.util.Set;
  */
 public class RefiereLapse implements java.io.Serializable {
 
-	private int id;
-	private String name;
-	private int days;
-	private Set refierePlansForReportLapseId = new HashSet(0);
-	private Set refierePlansForCampaignLapseRef = new HashSet(0);
+    private int id;
+    private String name;
+    private int days;
+    private Set refierePlansForReportLapseId = new HashSet(0);
+    private Set refierePlansForCampaignLapseRef = new HashSet(0);
 
-	public RefiereLapse() {
-	}
+    public RefiereLapse() {
+    }
 
-	public RefiereLapse(int id, String name, int days) {
-		this.id = id;
-		this.name = name;
-		this.days = days;
-	}
+    public RefiereLapse(int id, String name, int days) {
+        this.id = id;
+        this.name = name;
+        this.days = days;
+    }
 
-	public RefiereLapse(int id, String name, int days, Set refierePlansForReportLapseId,
-			Set refierePlansForCampaignLapseRef) {
-		this.id = id;
-		this.name = name;
-		this.days = days;
-		this.refierePlansForReportLapseId = refierePlansForReportLapseId;
-		this.refierePlansForCampaignLapseRef = refierePlansForCampaignLapseRef;
-	}
+    public RefiereLapse(int id, String name, int days, Set refierePlansForReportLapseId,
+            Set refierePlansForCampaignLapseRef) {
+        this.id = id;
+        this.name = name;
+        this.days = days;
+        this.refierePlansForReportLapseId = refierePlansForReportLapseId;
+        this.refierePlansForCampaignLapseRef = refierePlansForCampaignLapseRef;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public int getDays() {
-		return this.days;
-	}
+    public int getDays() {
+        return this.days;
+    }
 
-	public void setDays(int days) {
-		this.days = days;
-	}
+    public void setDays(int days) {
+        this.days = days;
+    }
 
-	public Set getRefierePlansForReportLapseId() {
-		return this.refierePlansForReportLapseId;
-	}
+    public Set getRefierePlansForReportLapseId() {
+        return this.refierePlansForReportLapseId;
+    }
 
-	public void setRefierePlansForReportLapseId(Set refierePlansForReportLapseId) {
-		this.refierePlansForReportLapseId = refierePlansForReportLapseId;
-	}
+    public void setRefierePlansForReportLapseId(Set refierePlansForReportLapseId) {
+        this.refierePlansForReportLapseId = refierePlansForReportLapseId;
+    }
 
-	public Set getRefierePlansForCampaignLapseRef() {
-		return this.refierePlansForCampaignLapseRef;
-	}
+    public Set getRefierePlansForCampaignLapseRef() {
+        return this.refierePlansForCampaignLapseRef;
+    }
 
-	public void setRefierePlansForCampaignLapseRef(Set refierePlansForCampaignLapseRef) {
-		this.refierePlansForCampaignLapseRef = refierePlansForCampaignLapseRef;
-	}
+    public void setRefierePlansForCampaignLapseRef(Set refierePlansForCampaignLapseRef) {
+        this.refierePlansForCampaignLapseRef = refierePlansForCampaignLapseRef;
+    }
 
 }

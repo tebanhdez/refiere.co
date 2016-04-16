@@ -9,10 +9,10 @@ import co.refiere.dao.RefiereLapseDao;
 import co.refiere.resources.util.HibernateUtil;
 
 public class RefierePlanTest {
-	
-	@Ignore
-	@Test
-	public void testCreateRefierePlan() {
-		
-	}
+    
+    @Ignore
+    @Test
+    public void testCreateRefierePlan() {
+        
+    }
 }

@@ -10,57 +10,57 @@ import java.util.Set;
  */
 public class RefiereUser implements java.io.Serializable {
 
-	private int id;
-	private String login;
-	private String password;
-	private Set refiereUserCompanies = new HashSet(0);
+    private int id;
+    private String login;
+    private String password;
+    private Set refiereUserCompanies = new HashSet(0);
 
-	public RefiereUser() {
-	}
+    public RefiereUser() {
+    }
 
-	public RefiereUser(int id, String login, String password) {
-		this.id = id;
-		this.login = login;
-		this.password = password;
-	}
+    public RefiereUser(int id, String login, String password) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+    }
 
-	public RefiereUser(int id, String login, String password, Set refiereUserCompanies) {
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.refiereUserCompanies = refiereUserCompanies;
-	}
+    public RefiereUser(int id, String login, String password, Set refiereUserCompanies) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.refiereUserCompanies = refiereUserCompanies;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getLogin() {
-		return this.login;
-	}
+    public String getLogin() {
+        return this.login;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Set getRefiereUserCompanies() {
-		return this.refiereUserCompanies;
-	}
+    public Set getRefiereUserCompanies() {
+        return this.refiereUserCompanies;
+    }
 
-	public void setRefiereUserCompanies(Set refiereUserCompanies) {
-		this.refiereUserCompanies = refiereUserCompanies;
-	}
+    public void setRefiereUserCompanies(Set refiereUserCompanies) {
+        this.refiereUserCompanies = refiereUserCompanies;
+    }
 
 }

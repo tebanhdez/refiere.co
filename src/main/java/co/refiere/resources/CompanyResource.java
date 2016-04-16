@@ -23,73 +23,70 @@ import co.refiere.resources.base.PlanRequest;
 
 @Path("v1/company")
 public class CompanyResource {
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createCompany(CompanyRequest company) {
+        try {
+            //Creating user
+            RefiereUserDao userDao = new RefiereUserDao();
+            RefiereUser user = new RefiereUser();
+            user.setLogin(company.getUser().getLogin());
+            user.setPassword(company.getUser().getPassword());
+            userDao.save(user);
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCompany(CompanyRequest company) {
+            //Creating company
+            RefiereCompanyDao companyDao = new RefiereCompanyDao();
+            RefiereCompany newCompany = new RefiereCompany();
+            newCompany.setName(company.getName());
+            newCompany.setAddress(company.getAddress());
+            newCompany.setEmail(company.getEmail());
+            newCompany.setPhone(company.getTelephone());
+            companyDao.save(newCompany);
 
-		try {
+            //Linking main user to company
+            RefiereUserCompanyRelationDao relationDao = new RefiereUserCompanyRelationDao();
+            RefiereUserCompany relation = new RefiereUserCompany();
+            relation.setRefiereCompany(newCompany);
+            relation.setRefiereUser(user);
+            relationDao.save(relation);
 
-			//Creating user
-			RefiereUserDao userDao = new RefiereUserDao();
-			RefiereUser user = new RefiereUser();
-			user.setLogin(company.getUser().getLogin());
-			user.setPassword(company.getUser().getPassword());
-			userDao.save(user);
+            // ** Setting plan
+            PlanRequest planRequest = company.getPlan();
 
-			//Creating company
-			RefiereCompanyDao companyDao = new RefiereCompanyDao();
-			RefiereCompany newCompany = new RefiereCompany();
-			newCompany.setName(company.getName());
-			newCompany.setAddress(company.getAddress());
-			newCompany.setEmail(company.getEmail());
-			newCompany.setPhone(company.getTelephone());
-			companyDao.save(newCompany);
+            //Setting Lapses
+            RefiereLapseDao lapseDao = new RefiereLapseDao();
+            RefiereLapse lapseCampaigns = new RefiereLapse();
+            lapseCampaigns.setDays(planRequest.getCampaign_lapse().getDays());
+            lapseCampaigns.setName(planRequest.getCampaign_lapse().getLapseName());
 
-			//Linking main user to company
-			RefiereUserCompanyRelationDao relationDao = new RefiereUserCompanyRelationDao();
-			RefiereUserCompany relation = new RefiereUserCompany();
-			relation.setRefiereCompany(newCompany);
-			relation.setRefiereUser(user);
-			relationDao.save(relation);
+            RefiereLapse lapseReports = new RefiereLapse();
+            lapseReports.setDays(planRequest.getTimely_report().getDays());
+            lapseReports.setName(planRequest.getTimely_report().getLapseName());
 
-			// ** Setting plan
-			PlanRequest planRequest = company.getPlan();
-			
-			//Setting Lapses
-			RefiereLapseDao lapseDao = new RefiereLapseDao();
-			RefiereLapse lapseCampaigns = new RefiereLapse();
-			lapseCampaigns.setDays(planRequest.getCampaign_lapse().getDays());
-			lapseCampaigns.setName(planRequest.getCampaign_lapse().getLapseName());
-			
-			RefiereLapse lapseReports = new RefiereLapse();
-			lapseReports.setDays(planRequest.getTimely_report().getDays());
-			lapseReports.setName(planRequest.getTimely_report().getLapseName());
-			
-			lapseDao.save(lapseReports);
-			lapseDao.save(lapseCampaigns);
-			
-			//Setting Selected Plan
-			RefierePlanDao planDao = new RefierePlanDao();
-			RefierePlan plan = new RefierePlan();
-			plan.setName(planRequest.getName());
-			plan.setSalesPercentaje(BigDecimal.valueOf(planRequest.getSalesPercentaje()));
-			plan.setCampaignAmount(plan.getCampaignAmount());
-			plan.setReferrerAmount(plan.getReferrerAmount());
-			plan.setPersonalizedEmail(plan.getPersonalizedEmail());
-			plan.setPaneltype(plan.getPaneltype());
-			plan.setStartDate(plan.getStartDate());
-			plan.setEndDate(plan.getEndDate());
-			//Inactive by Default
-			plan.setStatus(0);
-			plan.setRefiereLapseByCampaignLapseRef(lapseCampaigns);
-			plan.setRefiereLapseByReportLapseId(lapseReports);
-			planDao.save(plan);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Response.status(200).build();
-	}
+            lapseDao.save(lapseReports);
+            lapseDao.save(lapseCampaigns);
+
+            //Setting Selected Plan
+            RefierePlanDao planDao = new RefierePlanDao();
+            RefierePlan plan = new RefierePlan();
+            plan.setName(planRequest.getName());
+            plan.setSalesPercentaje(BigDecimal.valueOf(planRequest.getSalesPercentaje()));
+            plan.setCampaignAmount(plan.getCampaignAmount());
+            plan.setReferrerAmount(plan.getReferrerAmount());
+            plan.setPersonalizedEmail(plan.getPersonalizedEmail());
+            plan.setPaneltype(plan.getPaneltype());
+            plan.setStartDate(plan.getStartDate());
+            plan.setEndDate(plan.getEndDate());
+            //Inactive by Default
+            plan.setStatus(0);
+            plan.setRefiereLapseByCampaignLapseRef(lapseCampaigns);
+            plan.setRefiereLapseByReportLapseId(lapseReports);
+            planDao.save(plan);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        return Response.status(200).build();
+    }
 
 }

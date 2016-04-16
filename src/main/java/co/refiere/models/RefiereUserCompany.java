@@ -9,41 +9,41 @@ import co.refiere.models.RefiereUser;
  */
 public class RefiereUserCompany implements java.io.Serializable {
 
-	private int id;
-	private RefiereCompany refiereCompany;
-	private RefiereUser refiereUser;
+    private int id;
+    private RefiereCompany refiereCompany;
+    private RefiereUser refiereUser;
 
-	public RefiereUserCompany() {
-	}
+    public RefiereUserCompany() {
+    }
 
-	public RefiereUserCompany(int id, RefiereCompany refiereCompany, RefiereUser refiereUser) {
-		this.id = id;
-		this.refiereCompany = refiereCompany;
-		this.refiereUser = refiereUser;
-	}
+    public RefiereUserCompany(int id, RefiereCompany refiereCompany, RefiereUser refiereUser) {
+        this.id = id;
+        this.refiereCompany = refiereCompany;
+        this.refiereUser = refiereUser;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public RefiereCompany getRefiereCompany() {
-		return this.refiereCompany;
-	}
+    public RefiereCompany getRefiereCompany() {
+        return this.refiereCompany;
+    }
 
-	public void setRefiereCompany(RefiereCompany refiereCompany) {
-		this.refiereCompany = refiereCompany;
-	}
+    public void setRefiereCompany(RefiereCompany refiereCompany) {
+        this.refiereCompany = refiereCompany;
+    }
 
-	public RefiereUser getRefiereUser() {
-		return this.refiereUser;
-	}
+    public RefiereUser getRefiereUser() {
+        return this.refiereUser;
+    }
 
-	public void setRefiereUser(RefiereUser refiereUser) {
-		this.refiereUser = refiereUser;
-	}
+    public void setRefiereUser(RefiereUser refiereUser) {
+        this.refiereUser = refiereUser;
+    }
 
 }

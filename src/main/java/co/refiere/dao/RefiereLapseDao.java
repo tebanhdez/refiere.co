@@ -13,35 +13,35 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereLapseDao extends RefiereLapseHome {
 
-	private static final Log log = LogFactory.getLog(RefiereUserHome.class);
-	private final SessionFactory sessionFactory = getSessionFactory();
-	
-	public RefiereLapseDao() {
-	}
-	
-	@Override
-	public SessionFactory getSessionFactory(){
-		try {
-			return (SessionFactory) HibernateUtil.getSessionFactory();
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-	
-	public void save(RefiereLapse lapse){
-		log.debug("saving RefiereLapse");
-		try {
-			Session session = sessionFactory.openSession();
-			org.hibernate.Transaction trans= session.beginTransaction();
-			if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-				log.debug(" >>> Transaction close.");
-			session.persist(lapse);
-			trans.commit();
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
-		}
-	}
+    private static final Log log = LogFactory.getLog(RefiereUserHome.class);
+    private final SessionFactory sessionFactory = getSessionFactory();
+    
+    public RefiereLapseDao() {
+    }
+    
+    @Override
+    public SessionFactory getSessionFactory(){
+        try {
+            return (SessionFactory) HibernateUtil.getSessionFactory();
+        } catch (Exception e) {
+            log.error("Could not locate SessionFactory in JNDI", e);
+            throw new IllegalStateException("Could not locate SessionFactory in JNDI");
+        }
+    }
+    
+    public void save(RefiereLapse lapse){
+        log.debug("saving RefiereLapse");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            session.persist(lapse);
+            trans.commit();
+            log.debug("persist successful");
+        } catch (RuntimeException re) {
+            log.error("persist failed", re);
+            throw re;
+        }
+    }
 }
