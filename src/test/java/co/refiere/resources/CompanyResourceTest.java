@@ -48,6 +48,7 @@ public class CompanyResourceTest extends JerseyTest {
 		//LapseDetails
 		LapseRequest dummyLapse = new LapseRequest();
 		dummyLapse.setId(1);
+		dummyLapse.setDays(30);
 		dummyLapse.setLapseName("TestLapse");
 		
 		//Plan details
