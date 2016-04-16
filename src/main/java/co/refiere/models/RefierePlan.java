@@ -10,14 +10,16 @@ import java.util.Date;
 public class RefierePlan implements java.io.Serializable {
 
 	private int id;
+	private String name;
+	private BigDecimal salesPercentaje;
+	private int campaignAmount;
+	
+	private int referrerAmount;
+	private String personalizedEmail;
+	private short paneltype;
 	private RefiereLapse refiereLapseByReportLapseId;
 	private RefiereLapse refiereLapseByCampaignLapseRef;
-	private int campaignAmount;
-	private String name;
-	private short paneltype;
-	private String personalizedEmail;
-	private int referrerAmount;
-	private BigDecimal salesPercentaje;
+	
 	private Integer status;
 	private Date startDate;
 	private Date endDate;

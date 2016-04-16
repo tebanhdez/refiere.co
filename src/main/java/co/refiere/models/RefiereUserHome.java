@@ -96,7 +96,7 @@ public class RefiereUserHome {
 		log.debug("getting RefiereUser instance with id: " + id);
 		try {
 			RefiereUser instance = (RefiereUser) sessionFactory.getCurrentSession()
-					.get("co.refiere.models2.RefiereUser", id);
+					.get("co.refiere.models.RefiereUser", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {

@@ -1,5 +1,5 @@
 package co.refiere.models;
-// Generated Apr 15, 2016 11:32:27 AM by Hibernate Tools 4.3.1.Final
+// Generated Apr 15, 2016 6:14:42 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -85,11 +85,11 @@ public class RefiereUserCompanyHome {
 		}
 	}
 
-	public RefiereUserCompany findById(java.lang.String id) {
+	public RefiereUserCompany findById(int id) {
 		log.debug("getting RefiereUserCompany instance with id: " + id);
 		try {
 			RefiereUserCompany instance = (RefiereUserCompany) sessionFactory.getCurrentSession()
-					.get("co.refiere.models.RefiereUserCompany", id);
+					.get("co.refiere.models2.RefiereUserCompany", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -105,7 +105,7 @@ public class RefiereUserCompanyHome {
 	public List findByExample(RefiereUserCompany instance) {
 		log.debug("finding RefiereUserCompany instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models.RefiereUserCompany")
+			List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models2.RefiereUserCompany")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
