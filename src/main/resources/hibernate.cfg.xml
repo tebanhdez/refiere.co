@@ -13,8 +13,12 @@
   <property name="hibernate.validator.apply_to_ddl">false</property>
   <property name="hibernate.transaction.auto_close_session">true</property>
   <property name="hibernate.current_session_context_class">thread</property>
-  <!-- Drop and re-create all database on startup -->
-  <!-- property name="hibernate.hbm2ddl.auto">create-drop</property -->
+  <!-- Possible values: -->
+  <!-- 'create'     -> creates the schema, destroying previous data
+       'create-drop'-> drop the schema at the end of the session
+       'update'     -> update the schema, 
+       'validate'   -> validates the schema, no changes on DB -->
+  <property name="hibernate.hbm2ddl.auto">create</property>
   <mapping resource="RefiereUser.hbm.xml"/>
   <mapping resource="RefiereCompany.hbm.xml"/>
   <mapping resource="RefierePlan.hbm.xml"/>
