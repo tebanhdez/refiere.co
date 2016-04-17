@@ -3,6 +3,7 @@ package co.refiere.resources;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
@@ -35,7 +36,7 @@ public class CompanyResourceTest extends JerseyTest {
     public void testRegisterCompanyInfo() {
         //User details
         UserRequest companyUser = new UserRequest();
-        companyUser.setLogin("login");
+        companyUser.setLogin(UUID.randomUUID().toString().substring(0, 18));
         companyUser.setPassword("password");
         
         //Company details

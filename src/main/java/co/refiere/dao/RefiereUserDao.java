@@ -2,8 +2,12 @@ package co.refiere.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.engine.spi.TypedValue;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.RefiereUser;
@@ -41,6 +45,31 @@ public class RefiereUserDao extends RefiereUserHome {
             log.debug("persist successful");
         } catch (RuntimeException re) {
             log.error("persist failed", re);
+            throw re;
+        }
+    }
+
+
+    public RefiereUser findByLogin(String login) {
+        log.debug("getting RefiereUser instance with login: " + login);
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            Query query = session.createQuery("from RefiereUser where login = :login");
+            query.setParameter("login", login);
+            java.util.List results = query.list();
+            trans.commit();
+            RefiereUser instance = (results != null && results.size() == 1) ? (RefiereUser) results.get(0) : null;
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
             throw re;
         }
     }

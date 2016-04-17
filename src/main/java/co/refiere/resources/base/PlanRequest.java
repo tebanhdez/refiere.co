@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class PlanRequest {
 
+    private int id;
     private String name;
     private float salesPercentaje;
     private int campaignAmount;
@@ -16,6 +17,15 @@ public class PlanRequest {
 
     //private Integer status; //Set Default to 0:Disable
     private Date startDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private Date endDate;
     public String getName() {
         return name;
