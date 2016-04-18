@@ -68,13 +68,11 @@ public class CompanyResourceTest extends JerseyTest {
         plan.setStartDate(new Date());
         plan.setEndDate(new Date());
         
-
-        
         //Setting up properties
         newCompany.setUser(companyUser);
         newCompany.setPlan(plan);
 
-        final Response confirmationResponse = target().path("v1/company").request().post(Entity.json(newCompany));
+        final Response confirmationResponse = target().path("v1/company/register").request().post(Entity.json(newCompany));
 
         assertEquals(200, confirmationResponse.getStatus());
     }

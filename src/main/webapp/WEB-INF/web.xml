@@ -21,6 +21,10 @@
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>co.refiere.resources.filter.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>excludedPaths</param-name>
+            <param-value>/rest/v1/company/register</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
