@@ -2,6 +2,7 @@ package co.refiere.resources;
 
 import java.math.BigDecimal;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,6 +27,7 @@ public class CompanyResource {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/register")
     public Response createCompany(CompanyRequest company) {
         try {
             //Creating user
@@ -83,8 +85,8 @@ public class CompanyResource {
             plan.setRefiereLapseByCampaignLapseRef(lapseCampaigns);
             plan.setRefiereLapseByReportLapseId(lapseReports);
             planDao.save(plan);
-            }catch (Exception e) {
-                e.printStackTrace();
+            }catch (NullPointerException e) {
+                return Response.status(Response.Status.BAD_REQUEST).build();
             }
         return Response.status(200).build();
     }
