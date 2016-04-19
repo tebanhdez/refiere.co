@@ -10,8 +10,7 @@ import org.hibernate.CallbackException;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 
-import co.refiere.models.RefiereCompany;
-import co.refiere.models.RefiereUserHome;
+import co.refiere.models.Company;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class RefiereInterceptor extends EmptyInterceptor {
@@ -24,7 +23,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
      * postFlush – Called after the saved, updated or deleted objects are committed to database.
      */
     private static final long serialVersionUID = 1L;
-    private static final Log log = LogFactory.getLog(RefiereUserHome.class);
+    private static final Log log = LogFactory.getLog(RefiereInterceptor.class);
 
     public RefiereInterceptor() {
     }
@@ -33,8 +32,8 @@ public class RefiereInterceptor extends EmptyInterceptor {
             Object[] state,String[] propertyNames,Type[] types)
                     throws CallbackException {
 
-        if (entity instanceof RefiereCompany){
-            RefiereCompany company = (RefiereCompany) entity;
+        if (entity instanceof Company){
+            Company company = (Company) entity;
             if("".equals(company.getEmail())){
                 log.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
             }else{

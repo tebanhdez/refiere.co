@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 15, 2016 12:27:03 PM by Hibernate Tools 4.3.1.Final -->
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="co.refiere.models.RefiereLapse" table="refiere_lapse" schema="public" optimistic-lock="version">
+    <class name="co.refiere.models.Lapse" table="lapse" schema="public" optimistic-lock="version">
         <id name="id" type="int">
             <column name="id" />
             <generator class="increment" />
@@ -14,17 +14,17 @@
         <property name="days" type="int">
             <column name="days" not-null="true" />
         </property>
-        <set name="refierePlansForReportLapseId" table="refiere_plan" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="report_lapse_id" />
-            </key>
-            <one-to-many class="co.refiere.models.RefierePlan" />
-        </set>
-        <set name="refierePlansForCampaignLapseRef" table="refiere_plan" inverse="true" lazy="true" fetch="select">
+        <set name="plansForCampaignLapseRef" table="plan" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="campaign_lapse_ref" />
             </key>
-            <one-to-many class="co.refiere.models.RefierePlan" />
+            <one-to-many class="co.refiere.models.Plan" />
+        </set>
+        <set name="plansForReportLapseId" table="plan" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="report_lapse_id" />
+            </key>
+            <one-to-many class="co.refiere.models.Plan" />
         </set>
     </class>
 </hibernate-mapping>

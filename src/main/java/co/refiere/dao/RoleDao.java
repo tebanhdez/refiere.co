@@ -6,17 +6,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.UserCompany;
-import co.refiere.models.UserCompanyHome;
+import co.refiere.models.UserRoles;
+import co.refiere.models.UserRolesHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserCompanyRelationDao extends UserCompanyHome {
-
-    private static final Log log = LogFactory.getLog(RefiereUserCompanyRelationDao.class);
+public class RoleDao extends UserRolesHome {
+    
+    private static final Log log = LogFactory.getLog(RoleDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-
-    public RefiereUserCompanyRelationDao() {
-    }
 
     @Override
     public SessionFactory getSessionFactory(){
@@ -27,19 +24,24 @@ public class RefiereUserCompanyRelationDao extends UserCompanyHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-    
-    public void save(UserCompany company){
-        log.debug("saving RefiereCompany");
+
+    public UserRoles findByRoleId(int id) {
+        log.debug("getting UserRoles instance with login: " + id);
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.persist(company);
+            UserRoles instance = (UserRoles) session.get("co.refiere.models.UserRoles", id);
             trans.commit();
-            log.debug("persist successful");
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
         } catch (RuntimeException re) {
-            log.error("persist failed", re);
+            log.error("get failed", re);
             throw re;
         }
     }

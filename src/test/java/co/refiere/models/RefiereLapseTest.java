@@ -10,7 +10,7 @@ public class RefiereLapseTest {
     public void testCreateRefiereLapse() {
 
         RefiereLapseDao refiereDao = new RefiereLapseDao();
-        RefiereLapse newLapse = new RefiereLapse();
+        Lapse newLapse = new Lapse();
         newLapse.setName("Testing lapse");
         newLapse.setDays(1);
         

@@ -6,14 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.RefiereCompany;
-import co.refiere.models.RefiereCompanyHome;
-import co.refiere.models.RefiereUserHome;
+import co.refiere.models.Company;
+import co.refiere.models.CompanyHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereCompanyDao extends RefiereCompanyHome {
+public class RefiereCompanyDao extends CompanyHome {
 
-    private static final Log log = LogFactory.getLog(RefiereUserHome.class);
+    private static final Log log = LogFactory.getLog(RefiereCompanyDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     public RefiereCompanyDao() {
@@ -30,7 +29,7 @@ public class RefiereCompanyDao extends RefiereCompanyHome {
         }
     }
     
-    public void save(RefiereCompany company){
+    public void save(Company company){
         log.debug("saving RefiereCompany");
         try {
             Session session = sessionFactory.openSession();

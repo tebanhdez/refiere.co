@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.Payment" table="payment" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="currency" class="co.refiere.models.Currency" fetch="select">
+            <column name="currency_id" />
+        </many-to-one>
+        <many-to-one name="paymentType" class="co.refiere.models.PaymentType" fetch="select">
+            <column name="payment_type_id" />
+        </many-to-one>
+        <property name="paymentDescription" type="string">
+            <column name="payment_description" length="50" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="4" not-null="true" />
+        </property>
+        <property name="discount" type="big_decimal">
+            <column name="discount" precision="4" />
+        </property>
+        <property name="totalPrice" type="big_decimal">
+            <column name="total_price" precision="4" not-null="true" />
+        </property>
+        <set name="planOrders" table="plan_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_id" unique="true" />
+            </key>
+            <one-to-many class="co.refiere.models.PlanOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

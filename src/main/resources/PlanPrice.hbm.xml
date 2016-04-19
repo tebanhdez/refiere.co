@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.PlanPrice" table="plan_price" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="currency" class="co.refiere.models.Currency" fetch="select">
+            <column name="price_currency_ref_id" />
+        </many-to-one>
+        <many-to-one name="plan" class="co.refiere.models.Plan" fetch="select">
+            <column name="plan_ref_id" />
+        </many-to-one>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="4" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

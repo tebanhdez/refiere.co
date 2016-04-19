@@ -2,27 +2,40 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
-  <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-  <property name="hibernate.connection.password">refiere</property>
-  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/refiere</property>
-  <property name="hibernate.connection.username">refiere</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-  <property name="hibernate.search.autoregister_listeners">false</property>
-  <property name="hibernate.show_sql">true</property>
-  <property name="hibernate.validator.apply_to_ddl">false</property>
-  <property name="hibernate.transaction.auto_close_session">true</property>
-  <property name="hibernate.current_session_context_class">thread</property>
-  <!-- Possible values: -->
-  <!-- 'create'     -> creates the schema, destroying previous data
-       'create-drop'-> drop the schema at the end of the session
-       'update'     -> update the schema, 
-       'validate'   -> validates the schema, no changes on DB -->
-  <property name="hibernate.hbm2ddl.auto">create</property>
-  <mapping resource="RefiereUser.hbm.xml"/>
-  <mapping resource="RefiereCompany.hbm.xml"/>
-  <mapping resource="RefierePlan.hbm.xml"/>
-  <mapping resource="RefiereLapse.hbm.xml"/>
-  <mapping resource="RefiereUserCompany.hbm.xml"/>
- </session-factory>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">refiere</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/refiere</property>
+        <property name="hibernate.connection.username">refiere</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <property name="hibernate.transaction.auto_close_session">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- Possible values: -->
+        <!-- 'create' -> creates the schema, destroying previous data 'create-drop'-> 
+            drop the schema at the end of the session 'update' -> update the schema, 
+            'validate' -> validates the schema, no changes on DB -->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="hibernate.hbm2ddl.import_files">initializeDB.sql</property>
+        <mapping resource="Campaign.hbm.xml" />
+        <mapping resource="Company.hbm.xml" />
+        <mapping resource="CompanyDatabase.hbm.xml" />
+        <mapping resource="Currency.hbm.xml" />
+        <mapping resource="Lapse.hbm.xml" />
+        <mapping resource="OrderStatus.hbm.xml" />
+        <mapping resource="Payment.hbm.xml" />
+        <mapping resource="PaymentType.hbm.xml" />
+        <mapping resource="Person.hbm.xml" />
+        <mapping resource="Plan.hbm.xml" />
+        <mapping resource="PlanOrder.hbm.xml" />
+        <mapping resource="PlanOrderHistory.hbm.xml" />
+        <mapping resource="PlanPrice.hbm.xml" />
+        <mapping resource="Prize.hbm.xml" />
+        <mapping resource="ReferencesCodes.hbm.xml" />
+        <mapping resource="SimpleUser.hbm.xml" />
+        <mapping resource="UserRoles.hbm.xml" />
+        <mapping resource="UserCompany.hbm.xml" />
+    </session-factory>
 </hibernate-configuration>

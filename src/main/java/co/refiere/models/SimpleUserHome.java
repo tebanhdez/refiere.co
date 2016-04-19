@@ -1,5 +1,5 @@
 package co.refiere.models;
-// Generated Apr 15, 2016 11:32:27 AM by Hibernate Tools 4.3.1.Final
+// Generated Apr 19, 2016 12:44:33 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class RefierePlan.
- * @see co.refiere.models.RefierePlan
+ * Home object for domain model class SimpleUser.
+ * @see co.refiere.models2.SimpleUser
  * @author Hibernate Tools
  */
-public class RefierePlanHome {
+public class SimpleUserHome {
 
-    private static final Log log = LogFactory.getLog(RefierePlanHome.class);
+    private static final Log log = LogFactory.getLog(SimpleUserHome.class);
 
     private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -29,8 +29,8 @@ public class RefierePlanHome {
         }
     }
 
-    public void persist(RefierePlan transientInstance) {
-        log.debug("persisting RefierePlan instance");
+    public void persist(SimpleUser transientInstance) {
+        log.debug("persisting SimpleUser instance");
         try {
             sessionFactory.getCurrentSession().persist(transientInstance);
             log.debug("persist successful");
@@ -40,8 +40,8 @@ public class RefierePlanHome {
         }
     }
 
-    public void attachDirty(RefierePlan instance) {
-        log.debug("attaching dirty RefierePlan instance");
+    public void attachDirty(SimpleUser instance) {
+        log.debug("attaching dirty SimpleUser instance");
         try {
             sessionFactory.getCurrentSession().saveOrUpdate(instance);
             log.debug("attach successful");
@@ -51,8 +51,8 @@ public class RefierePlanHome {
         }
     }
 
-    public void attachClean(RefierePlan instance) {
-        log.debug("attaching clean RefierePlan instance");
+    public void attachClean(SimpleUser instance) {
+        log.debug("attaching clean SimpleUser instance");
         try {
             sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
             log.debug("attach successful");
@@ -62,8 +62,8 @@ public class RefierePlanHome {
         }
     }
 
-    public void delete(RefierePlan persistentInstance) {
-        log.debug("deleting RefierePlan instance");
+    public void delete(SimpleUser persistentInstance) {
+        log.debug("deleting SimpleUser instance");
         try {
             sessionFactory.getCurrentSession().delete(persistentInstance);
             log.debug("delete successful");
@@ -73,10 +73,10 @@ public class RefierePlanHome {
         }
     }
 
-    public RefierePlan merge(RefierePlan detachedInstance) {
-        log.debug("merging RefierePlan instance");
+    public SimpleUser merge(SimpleUser detachedInstance) {
+        log.debug("merging SimpleUser instance");
         try {
-            RefierePlan result = (RefierePlan) sessionFactory.getCurrentSession().merge(detachedInstance);
+            SimpleUser result = (SimpleUser) sessionFactory.getCurrentSession().merge(detachedInstance);
             log.debug("merge successful");
             return result;
         } catch (RuntimeException re) {
@@ -85,10 +85,10 @@ public class RefierePlanHome {
         }
     }
 
-    public RefierePlan findById(int id) {
-        log.debug("getting RefierePlan instance with id: " + id);
+    public SimpleUser findById(int id) {
+        log.debug("getting SimpleUser instance with id: " + id);
         try {
-            RefierePlan instance = (RefierePlan) sessionFactory.getCurrentSession().get("co.refiere.models.RefierePlan",
+            SimpleUser instance = (SimpleUser) sessionFactory.getCurrentSession().get("co.refiere.models.SimpleUser",
                     id);
             if (instance == null) {
                 log.debug("get successful, no instance found");
@@ -102,10 +102,10 @@ public class RefierePlanHome {
         }
     }
 
-    public List findByExample(RefierePlan instance) {
-        log.debug("finding RefierePlan instance by example");
+    public List findByExample(SimpleUser instance) {
+        log.debug("finding SimpleUser instance by example");
         try {
-            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models.RefierePlan")
+            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models.SimpleUser")
                     .add(Example.create(instance)).list();
             log.debug("find by example successful, result size: " + results.size());
             return results;

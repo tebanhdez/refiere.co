@@ -8,7 +8,7 @@ import org.eclipse.jetty.util.StringUtil;
 import com.google.common.io.BaseEncoding;
 
 import co.refiere.dao.RefiereUserDao;
-import co.refiere.models.RefiereUser;
+import co.refiere.models.SimpleUser;
 
 
 public class AuthenticationService {
@@ -35,7 +35,7 @@ public class AuthenticationService {
         if(StringUtil.isBlank(username) || StringUtil.isBlank(password))
             return false;
         RefiereUserDao userDao = new RefiereUserDao();
-        RefiereUser userObject = userDao.findByLogin(username);
+        SimpleUser userObject = userDao.findByLogin(username);
 
         boolean authenticationStatus = false;
 

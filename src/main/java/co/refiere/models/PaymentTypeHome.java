@@ -1,5 +1,5 @@
 package co.refiere.models;
-// Generated Apr 15, 2016 11:32:27 AM by Hibernate Tools 4.3.1.Final
+// Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class RefiereLapse.
- * @see co.refiere.models.RefiereLapse
+ * Home object for domain model class PaymentType.
+ * @see co.refiere.models.PaymentType
  * @author Hibernate Tools
  */
-public class RefiereLapseHome {
+public class PaymentTypeHome {
 
-    private static final Log log = LogFactory.getLog(RefiereLapseHome.class);
+    private static final Log log = LogFactory.getLog(PaymentTypeHome.class);
 
     private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -29,8 +29,8 @@ public class RefiereLapseHome {
         }
     }
 
-    public void persist(RefiereLapse transientInstance) {
-        log.debug("persisting RefiereLapse instance");
+    public void persist(PaymentType transientInstance) {
+        log.debug("persisting PaymentType instance");
         try {
             sessionFactory.getCurrentSession().persist(transientInstance);
             log.debug("persist successful");
@@ -40,8 +40,8 @@ public class RefiereLapseHome {
         }
     }
 
-    public void attachDirty(RefiereLapse instance) {
-        log.debug("attaching dirty RefiereLapse instance");
+    public void attachDirty(PaymentType instance) {
+        log.debug("attaching dirty PaymentType instance");
         try {
             sessionFactory.getCurrentSession().saveOrUpdate(instance);
             log.debug("attach successful");
@@ -51,8 +51,8 @@ public class RefiereLapseHome {
         }
     }
 
-    public void attachClean(RefiereLapse instance) {
-        log.debug("attaching clean RefiereLapse instance");
+    public void attachClean(PaymentType instance) {
+        log.debug("attaching clean PaymentType instance");
         try {
             sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
             log.debug("attach successful");
@@ -62,8 +62,8 @@ public class RefiereLapseHome {
         }
     }
 
-    public void delete(RefiereLapse persistentInstance) {
-        log.debug("deleting RefiereLapse instance");
+    public void delete(PaymentType persistentInstance) {
+        log.debug("deleting PaymentType instance");
         try {
             sessionFactory.getCurrentSession().delete(persistentInstance);
             log.debug("delete successful");
@@ -73,10 +73,10 @@ public class RefiereLapseHome {
         }
     }
 
-    public RefiereLapse merge(RefiereLapse detachedInstance) {
-        log.debug("merging RefiereLapse instance");
+    public PaymentType merge(PaymentType detachedInstance) {
+        log.debug("merging PaymentType instance");
         try {
-            RefiereLapse result = (RefiereLapse) sessionFactory.getCurrentSession().merge(detachedInstance);
+            PaymentType result = (PaymentType) sessionFactory.getCurrentSession().merge(detachedInstance);
             log.debug("merge successful");
             return result;
         } catch (RuntimeException re) {
@@ -85,11 +85,11 @@ public class RefiereLapseHome {
         }
     }
 
-    public RefiereLapse findById(int id) {
-        log.debug("getting RefiereLapse instance with id: " + id);
+    public PaymentType findById(int id) {
+        log.debug("getting PaymentType instance with id: " + id);
         try {
-            RefiereLapse instance = (RefiereLapse) sessionFactory.getCurrentSession()
-                    .get("co.refiere.models.RefiereLapse", id);
+            PaymentType instance = (PaymentType) sessionFactory.getCurrentSession().get("co.refiere.models.PaymentType",
+                    id);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
@@ -102,10 +102,10 @@ public class RefiereLapseHome {
         }
     }
 
-    public List findByExample(RefiereLapse instance) {
-        log.debug("finding RefiereLapse instance by example");
+    public List findByExample(PaymentType instance) {
+        log.debug("finding PaymentType instance by example");
         try {
-            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models.RefiereLapse")
+            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models.PaymentType")
                     .add(Example.create(instance)).list();
             log.debug("find by example successful, result size: " + results.size());
             return results;

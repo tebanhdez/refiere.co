@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.Prize" table="prize" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="description" type="string">
+            <column name="description" length="60" not-null="true" />
+        </property>
+        <set name="campaignsForPrizeForRefiereId" table="campaign" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prize_for_refiere_id" />
+            </key>
+            <one-to-many class="co.refiere.models.Campaign" />
+        </set>
+        <set name="campaignsForPrizeForRefereeId" table="campaign" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prize_for_referee_id" />
+            </key>
+            <one-to-many class="co.refiere.models.Campaign" />
+        </set>
+    </class>
+</hibernate-mapping>

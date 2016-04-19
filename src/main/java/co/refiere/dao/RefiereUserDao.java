@@ -5,18 +5,15 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.engine.spi.TypedValue;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.RefiereUser;
-import co.refiere.models.RefiereUserHome;
+import co.refiere.models.SimpleUser;
+import co.refiere.models.SimpleUserHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserDao extends RefiereUserHome {
+public class RefiereUserDao extends SimpleUserHome {
 
-    private static final Log log = LogFactory.getLog(RefiereUserHome.class);
+    private static final Log log = LogFactory.getLog(RefiereUserDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     public RefiereUserDao() {
@@ -33,7 +30,7 @@ public class RefiereUserDao extends RefiereUserHome {
         }
     }
     
-    public void save(RefiereUser user){
+    public void save(SimpleUser user){
         log.debug("saving RefiereUser");
         try {
             Session session = sessionFactory.openSession();
@@ -50,18 +47,18 @@ public class RefiereUserDao extends RefiereUserHome {
     }
 
 
-    public RefiereUser findByLogin(String login) {
+    public SimpleUser findByLogin(String login) {
         log.debug("getting RefiereUser instance with login: " + login);
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            Query query = session.createQuery("from RefiereUser where login = :login");
+            Query query = session.createQuery("from SimpleUser where login = :login");
             query.setParameter("login", login);
             java.util.List results = query.list();
             trans.commit();
-            RefiereUser instance = (results != null && results.size() == 1) ? (RefiereUser) results.get(0) : null;
+            SimpleUser instance = (results != null && results.size() == 1) ? (SimpleUser) results.get(0) : null;
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {

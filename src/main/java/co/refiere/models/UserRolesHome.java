@@ -1,5 +1,5 @@
 package co.refiere.models;
-// Generated Apr 15, 2016 6:14:42 PM by Hibernate Tools 4.3.1.Final
+// Generated Apr 19, 2016 12:44:33 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class RefiereUserCompany.
- * @see co.refiere.models.RefiereUserCompany
+ * Home object for domain model class UserRoles.
+ * @see co.refiere.models.UserRoles
  * @author Hibernate Tools
  */
-public class RefiereUserCompanyHome {
+public class UserRolesHome {
 
-    private static final Log log = LogFactory.getLog(RefiereUserCompanyHome.class);
+    private static final Log log = LogFactory.getLog(UserRolesHome.class);
 
     private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -29,8 +29,8 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public void persist(RefiereUserCompany transientInstance) {
-        log.debug("persisting RefiereUserCompany instance");
+    public void persist(UserRoles transientInstance) {
+        log.debug("persisting UserRoles instance");
         try {
             sessionFactory.getCurrentSession().persist(transientInstance);
             log.debug("persist successful");
@@ -40,8 +40,8 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public void attachDirty(RefiereUserCompany instance) {
-        log.debug("attaching dirty RefiereUserCompany instance");
+    public void attachDirty(UserRoles instance) {
+        log.debug("attaching dirty UserRoles instance");
         try {
             sessionFactory.getCurrentSession().saveOrUpdate(instance);
             log.debug("attach successful");
@@ -51,8 +51,8 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public void attachClean(RefiereUserCompany instance) {
-        log.debug("attaching clean RefiereUserCompany instance");
+    public void attachClean(UserRoles instance) {
+        log.debug("attaching clean UserRoles instance");
         try {
             sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
             log.debug("attach successful");
@@ -62,8 +62,8 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public void delete(RefiereUserCompany persistentInstance) {
-        log.debug("deleting RefiereUserCompany instance");
+    public void delete(UserRoles persistentInstance) {
+        log.debug("deleting UserRoles instance");
         try {
             sessionFactory.getCurrentSession().delete(persistentInstance);
             log.debug("delete successful");
@@ -73,10 +73,10 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public RefiereUserCompany merge(RefiereUserCompany detachedInstance) {
-        log.debug("merging RefiereUserCompany instance");
+    public UserRoles merge(UserRoles detachedInstance) {
+        log.debug("merging UserRoles instance");
         try {
-            RefiereUserCompany result = (RefiereUserCompany) sessionFactory.getCurrentSession().merge(detachedInstance);
+            UserRoles result = (UserRoles) sessionFactory.getCurrentSession().merge(detachedInstance);
             log.debug("merge successful");
             return result;
         } catch (RuntimeException re) {
@@ -85,11 +85,10 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public RefiereUserCompany findById(int id) {
-        log.debug("getting RefiereUserCompany instance with id: " + id);
+    public UserRoles findById(int id) {
+        log.debug("getting UserRoles instance with id: " + id);
         try {
-            RefiereUserCompany instance = (RefiereUserCompany) sessionFactory.getCurrentSession()
-                    .get("co.refiere.models2.RefiereUserCompany", id);
+            UserRoles instance = (UserRoles) sessionFactory.getCurrentSession().get("co.refiere.models.UserRoles", id);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
@@ -102,10 +101,10 @@ public class RefiereUserCompanyHome {
         }
     }
 
-    public List findByExample(RefiereUserCompany instance) {
-        log.debug("finding RefiereUserCompany instance by example");
+    public List findByExample(UserRoles instance) {
+        log.debug("finding UserRoles instance by example");
         try {
-            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models2.RefiereUserCompany")
+            List results = sessionFactory.getCurrentSession().createCriteria("co.refiere.models2.UserRoles")
                     .add(Example.create(instance)).list();
             log.debug("find by example successful, result size: " + results.size());
             return results;
