@@ -6,19 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.Plan;
-import co.refiere.models.PlanHome;
-import co.refiere.models.UserRoles;
+import co.refiere.models.PaymentType;
+import co.refiere.models.PlanOrder;
+import co.refiere.models.PlanOrderHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefierePlanDao extends PlanHome {
-
+public class PlanOrderDao extends PlanOrderHome {
     private static final Log log = LogFactory.getLog(RefierePlanDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
-    public RefierePlanDao() {
-    }
-    
     @Override
     public SessionFactory getSessionFactory(){
         try {
@@ -29,14 +25,14 @@ public class RefierePlanDao extends PlanHome {
         }
     }
     
-    public void save(Plan plan){
-        log.debug("saving RefiereLapse");
+    public void save(PlanOrder planOrder){
+        log.debug("saving PlanOrder");
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.saveOrUpdate(plan);
+            session.saveOrUpdate(planOrder);
             trans.commit();
             log.debug("persist successful");
         } catch (RuntimeException re) {
@@ -45,14 +41,14 @@ public class RefierePlanDao extends PlanHome {
         }
     }
     
-    public Plan findByPlanById(int id) {
+    public PlanOrder findPlanOrderById(int id) {
         log.debug("getting UserRoles instance with login: " + id);
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            Plan instance = (Plan) session.get("co.refiere.models.Plan", id);
+            PlanOrder instance = (PlanOrder) session.get("co.refiere.models.PlanOrder", id);
             trans.commit();
             if (instance == null) {
                 log.debug("get successful, no instance found");

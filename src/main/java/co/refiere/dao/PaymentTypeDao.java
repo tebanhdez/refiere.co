@@ -6,18 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.Plan;
-import co.refiere.models.PlanHome;
-import co.refiere.models.UserRoles;
+import co.refiere.models.PaymentType;
+import co.refiere.models.PaymentTypeHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefierePlanDao extends PlanHome {
+public class PaymentTypeDao extends PaymentTypeHome {
 
-    private static final Log log = LogFactory.getLog(RefierePlanDao.class);
+    private static final Log log = LogFactory.getLog(PaymentTypeDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-
-    public RefierePlanDao() {
-    }
+    
     
     @Override
     public SessionFactory getSessionFactory(){
@@ -29,14 +26,14 @@ public class RefierePlanDao extends PlanHome {
         }
     }
     
-    public void save(Plan plan){
+    public void save(PaymentType paymentType){
         log.debug("saving RefiereLapse");
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.saveOrUpdate(plan);
+            session.persist(paymentType);
             trans.commit();
             log.debug("persist successful");
         } catch (RuntimeException re) {
@@ -45,14 +42,14 @@ public class RefierePlanDao extends PlanHome {
         }
     }
     
-    public Plan findByPlanById(int id) {
+    public PaymentType findPaymentTypeById(int id) {
         log.debug("getting UserRoles instance with login: " + id);
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            Plan instance = (Plan) session.get("co.refiere.models.Plan", id);
+            PaymentType instance = (PaymentType) session.get("co.refiere.models.PaymentType", id);
             trans.commit();
             if (instance == null) {
                 log.debug("get successful, no instance found");

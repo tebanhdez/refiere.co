@@ -6,17 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.UserCompany;
-import co.refiere.models.UserCompanyHome;
+import co.refiere.models.Payment;
+import co.refiere.models.PaymentHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserCompanyRelationDao extends UserCompanyHome {
-
-    private static final Log log = LogFactory.getLog(RefiereUserCompanyRelationDao.class);
+public class PaymentDao extends PaymentHome {
+    private static final Log log = LogFactory.getLog(PaymentDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-
-    public RefiereUserCompanyRelationDao() {
-    }
 
     @Override
     public SessionFactory getSessionFactory(){
@@ -28,14 +24,14 @@ public class RefiereUserCompanyRelationDao extends UserCompanyHome {
         }
     }
     
-    public void save(UserCompany company){
-        log.debug("saving RefiereCompany");
+    public void save(Payment payment){
+        log.debug("saving PlanOrder");
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.persist(company);
+            session.saveOrUpdate(payment);
             trans.commit();
             log.debug("persist successful");
         } catch (RuntimeException re) {

@@ -15,7 +15,7 @@ public class RefiereCompanyTest {
     @Test
     public void testCreateRefiereCompany() {
 
-        RefiereCompany newCompany = new RefiereCompany();
+        Company newCompany = new Company();
         //TODO: Provide Random integer - modify RefiereUser.dbm.xml to assign
         //newUser.setId();
         newCompany.setName("Testing Company");

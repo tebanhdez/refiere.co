@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 12:44:33 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.SimpleUser" table="simple_user" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="userRoles" class="co.refiere.models.UserRoles" fetch="select">
+            <column name="user_role_id" />
+        </many-to-one>
+        <property name="login" type="string">
+            <column name="login" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <set name="userCompanies" table="user_company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="co.refiere.models.UserCompany" />
+        </set>
+    </class>
+</hibernate-mapping>

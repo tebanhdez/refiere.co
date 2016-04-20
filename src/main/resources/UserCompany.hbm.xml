@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.UserCompany" table="user_company" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="company" class="co.refiere.models.Company" fetch="select">
+            <column name="company_id" />
+        </many-to-one>
+        <many-to-one name="simpleUser" class="co.refiere.models.SimpleUser" fetch="select">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

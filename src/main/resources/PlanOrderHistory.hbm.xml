@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.PlanOrderHistory" table="plan_order_history" schema="public" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="planOrder" class="co.refiere.models.PlanOrder" fetch="select">
+            <column name="plan_order_ref_id" length="20" />
+        </many-to-one>
+        <property name="paymentId" type="int">
+            <column name="payment_id" not-null="true" />
+        </property>
+        <property name="statusId" type="int">
+            <column name="status_id" not-null="true" />
+        </property>
+        <property name="companyId" type="int">
+            <column name="company_id" not-null="true" />
+        </property>
+        <property name="approvedBy" type="string">
+            <column name="approved_by" length="20" not-null="true" />
+        </property>
+        <property name="changeBy" type="string">
+            <column name="change_by" length="20" not-null="true" />
+        </property>
+        <property name="changeDate" type="date">
+            <column name="change_date" length="13" not-null="true" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="start_date" length="13" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="end_date" length="13" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

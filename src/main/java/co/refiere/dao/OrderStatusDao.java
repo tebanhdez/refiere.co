@@ -6,17 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.UserCompany;
-import co.refiere.models.UserCompanyHome;
+import co.refiere.models.OrderStatus;
+import co.refiere.models.OrderStatusHome;
+import co.refiere.models.PlanOrder;
 import co.refiere.resources.util.HibernateUtil;
 
-public class RefiereUserCompanyRelationDao extends UserCompanyHome {
+public class OrderStatusDao extends OrderStatusHome {
 
-    private static final Log log = LogFactory.getLog(RefiereUserCompanyRelationDao.class);
+    private static final Log log = LogFactory.getLog(OrderStatusDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-
-    public RefiereUserCompanyRelationDao() {
-    }
 
     @Override
     public SessionFactory getSessionFactory(){
@@ -28,18 +26,37 @@ public class RefiereUserCompanyRelationDao extends UserCompanyHome {
         }
     }
     
-    public void save(UserCompany company){
-        log.debug("saving RefiereCompany");
+    public void save(OrderStatus orderStatus){
+        log.debug("saving PlanOrder");
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.persist(company);
+            session.saveOrUpdate(orderStatus);
             trans.commit();
             log.debug("persist successful");
         } catch (RuntimeException re) {
             log.error("persist failed", re);
+            throw re;
+        }
+    }
+
+    public OrderStatus findOrderStatusById(int id) {
+        log.debug("getting OrderStatus instance with id: " + id);
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans = session.beginTransaction();
+            OrderStatus instance = (OrderStatus) session.get("co.refiere.models.OrderStatus",id);
+            trans.commit();
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
             throw re;
         }
     }

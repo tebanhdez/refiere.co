@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.ReferencesCodes" table="references_codes" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="co.refiere.models.ReferencesCodesId">
+            <key-property name="campaignId" type="int">
+                <column name="campaign_id" />
+            </key-property>
+            <key-property name="personId" type="int">
+                <column name="person_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="person" class="co.refiere.models.Person" fetch="select">
+            <column name="referrer_id">
+                <!--comment>Who referred me?</comment-->
+            </column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

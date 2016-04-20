@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.Plan" table="plan" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="lapseByCampaignLapseRef" class="co.refiere.models.Lapse" fetch="select">
+            <column name="campaign_lapse_ref" />
+        </many-to-one>
+        <many-to-one name="lapseByReportLapseId" class="co.refiere.models.Lapse" fetch="select">
+            <column name="report_lapse_id" />
+        </many-to-one>
+        <property name="campaignAmount" type="int">
+            <column name="campaign_amount" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="referrerAmount" type="int">
+            <column name="referrer_amount" not-null="true" />
+        </property>
+        <property name="salesPercentaje" type="big_decimal">
+            <column name="sales_percentaje" precision="4" not-null="true" />
+        </property>
+        <property name="isActive" type="boolean">
+            <column name="is_active" not-null="true" />
+        </property>
+        <set name="planPrices" table="plan_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plan_ref_id" />
+            </key>
+            <one-to-many class="co.refiere.models.PlanPrice" />
+        </set>
+        <set name="planOrders" table="plan_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plan_id" />
+            </key>
+            <one-to-many class="co.refiere.models.PlanOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

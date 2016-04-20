@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="co.refiere.models.Currency" table="currency" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="currencyId" type="string">
+            <column name="currency_id" length="5" not-null="true" />
+        </property>
+        <property name="currencyDescription" type="string">
+            <column name="currency_description" length="50" not-null="true" />
+        </property>
+        <set name="planPrices" table="plan_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="price_currency_ref_id" />
+            </key>
+            <one-to-many class="co.refiere.models.PlanPrice" />
+        </set>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="currency_id" />
+            </key>
+            <one-to-many class="co.refiere.models.Payment" />
+        </set>
+    </class>
+</hibernate-mapping>
