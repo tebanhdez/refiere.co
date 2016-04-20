@@ -1,21 +1,26 @@
 package co.refiere.resources;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import co.refiere.dao.OrderStatusDao;
+import co.refiere.dao.PlanOrderDao;
 import co.refiere.dao.RefiereCompanyDao;
-import co.refiere.dao.RefiereLapseDao;
 import co.refiere.dao.RefierePlanDao;
 import co.refiere.dao.RefiereUserCompanyRelationDao;
 import co.refiere.dao.RefiereUserDao;
 import co.refiere.models.Company;
-import co.refiere.models.Lapse;
+import co.refiere.models.OrderStatus;
 import co.refiere.models.Plan;
+import co.refiere.models.PlanOrder;
 import co.refiere.models.SimpleUser;
 import co.refiere.models.UserCompany;
 import co.refiere.resources.base.CompanyRequest;
@@ -34,7 +39,6 @@ public class CompanyResource {
             SimpleUser user = new SimpleUser();
             user.setLogin(company.getUser().getLogin());
             user.setPassword(company.getUser().getPassword());
-            userDao.save(user);
 
             //Creating company
             RefiereCompanyDao companyDao = new RefiereCompanyDao();
@@ -43,23 +47,45 @@ public class CompanyResource {
             newCompany.setAddress(company.getAddress());
             newCompany.setEmail(company.getEmail());
             newCompany.setPhone(company.getTelephone());
-            companyDao.save(newCompany);
 
             //Linking main user to company
-            RefiereUserCompanyRelationDao relationDao = new RefiereUserCompanyRelationDao();
+            RefiereUserCompanyRelationDao userCompanyRelationDao = new RefiereUserCompanyRelationDao();
             UserCompany relation = new UserCompany();
             relation.setCompany(newCompany);
             relation.setSimpleUser(user);
-            relationDao.save(relation);
 
-            // ** Setting plan
+            // Setting plan
             PlanRequest planRequest = company.getPlan();
 
-            //Setting Selected Plan
+            // Injecting DAOs
             RefierePlanDao planDao = new RefierePlanDao();
-            Plan plan = new Plan();
-            planDao.findByPlanById(planRequest.getId());
+            PlanOrderDao orderDao = new PlanOrderDao();
+            OrderStatusDao orderStatusDao = new OrderStatusDao();
             
+            Plan planSelected = planDao.findByPlanById(planRequest.getId());
+            if(planSelected == null)
+                return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Plan not found \"}")).build();
+            
+            OrderStatus orderPendingApproval = orderStatusDao.findOrderStatusById(2);
+            
+            PlanOrder planOrder = new PlanOrder();
+            planOrder.setCompany(newCompany);
+            planOrder.setPlan(planSelected);
+            planOrder.setApprovedBy("");
+            planOrder.setPersonalizedEmail( (planRequest.getPersonalizedEmail() == null) ? "" : planRequest.getPersonalizedEmail()); 
+            planOrder.setStartDate(new Date());
+            planOrder.setEndDate(new Date());
+
+            if(orderPendingApproval == null)
+                return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Cannot process your order \"}")).build();
+
+            planOrder.setOrderStatus(orderPendingApproval);
+            //Saving all objects
+            planDao.save(planSelected);
+            userDao.save(user);
+            companyDao.save(newCompany);
+            userCompanyRelationDao.save(relation);
+            orderDao.save(planOrder);
             }catch (NullPointerException e) {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }

@@ -46,28 +46,10 @@ public class CompanyResourceTest extends JerseyTest {
         newCompany.setEmail("jehehe1@gmail.com");
         newCompany.setTelephone("+506 0000 0000");
         
-        //LapseDetails
-        LapseRequest dummyLapse = new LapseRequest();
-        dummyLapse.setId(1);
-        dummyLapse.setDays(30);
-        dummyLapse.setLapseName("TestLapse");
-        
         //Plan details
         PlanRequest plan = new PlanRequest();
-        plan.setName("Test Plan");
-        plan.setSalesPercentaje((float) 9.5);
-        plan.setCampaignAmount(200);
-        
-        plan.setReferrerAmount(500);
-        plan.setPersonalizedEmail("fake@email.com");
-        plan.setPanelType((byte) 0);
-        
-        plan.setCampaign_lapse(dummyLapse);
-        plan.setTimely_report(dummyLapse);
-        
-        plan.setStartDate(new Date());
-        plan.setEndDate(new Date());
-        
+        plan.setId(0); // 0 - Basic Plan
+        plan.setPersonalizedEmail("company@custom.email");
         //Setting up properties
         newCompany.setUser(companyUser);
         newCompany.setPlan(plan);

@@ -12,7 +12,7 @@ import co.refiere.dao.RoleDao;
 public class RefiereUserTest {
 
     String SYS_LOGIN = "companyAdmin";//UUID.randomUUID().toString().substring(0, 18);
-    String SYS_PASS  = "@dmin";
+    String SYS_PASS  = "@dm1n";
     @Test
     public void testCreateCompanyAdminUser() {
 

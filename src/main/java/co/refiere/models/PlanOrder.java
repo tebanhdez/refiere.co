@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class PlanOrder implements java.io.Serializable {
 
-    private String id;
+    private int id;
     private Company company;
     private OrderStatus orderStatus;
     private Payment payment;
@@ -25,7 +25,7 @@ public class PlanOrder implements java.io.Serializable {
     public PlanOrder() {
     }
 
-    public PlanOrder(String id, String approvedBy, Date startDate, Date endDate, short paneltype) {
+    public PlanOrder(int id, String approvedBy, Date startDate, Date endDate, short paneltype) {
         this.id = id;
         this.approvedBy = approvedBy;
         this.startDate = startDate;
@@ -33,7 +33,7 @@ public class PlanOrder implements java.io.Serializable {
         this.paneltype = paneltype;
     }
 
-    public PlanOrder(String id, Company company, OrderStatus orderStatus, Payment payment, short paneltype, String personalizedEmail, Plan plan, String approvedBy,
+    public PlanOrder(int id, Company company, OrderStatus orderStatus, Payment payment, short paneltype, String personalizedEmail, Plan plan, String approvedBy,
             Date startDate, Date endDate, Set planOrderHistories) {
         this.id = id;
         this.company = company;
@@ -49,11 +49,11 @@ public class PlanOrder implements java.io.Serializable {
         this.planOrderHistories = planOrderHistories;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

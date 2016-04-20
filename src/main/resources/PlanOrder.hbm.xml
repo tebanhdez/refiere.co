@@ -4,8 +4,8 @@
 <!-- Generated Apr 19, 2016 11:27:45 AM by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="co.refiere.models.PlanOrder" table="plan_order" schema="public" optimistic-lock="version">
-        <id name="id" type="string">
-            <column name="id" length="20" />
+        <id name="id" type="int">
+            <column name="id"/>
             <generator class="increment" />
         </id>
         <many-to-one name="company" class="co.refiere.models.Company" fetch="select">
