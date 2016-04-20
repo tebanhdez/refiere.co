@@ -14,6 +14,7 @@ public class Payment implements java.io.Serializable {
     private Currency currency;
     private PaymentType paymentType;
     private String paymentDescription;
+    private String accountingTrackRef;
     private BigDecimal price;
     private BigDecimal discount;
     private BigDecimal totalPrice;
@@ -68,10 +69,18 @@ public class Payment implements java.io.Serializable {
         return this.paymentDescription;
     }
 
+    public void setAccountingTrackRef(String accountingTrackRef) {
+        this.accountingTrackRef = accountingTrackRef;
+    }
+
+    public String getaccountingTrackRef() {
+        return this.accountingTrackRef;
+    }
+
     public void setPaymentDescription(String paymentDescription) {
         this.paymentDescription = paymentDescription;
     }
-
+    
     public BigDecimal getPrice() {
         return this.price;
     }

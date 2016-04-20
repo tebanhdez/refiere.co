@@ -10,7 +10,7 @@ import java.util.Set;
 public class Currency implements java.io.Serializable {
 
     private int id;
-    private int currencyId;
+    private String currencyId;
     private String currencyDescription;
     private Set planPrices = new HashSet(0);
     private Set payments = new HashSet(0);
@@ -18,13 +18,13 @@ public class Currency implements java.io.Serializable {
     public Currency() {
     }
 
-    public Currency(int id, int currencyId, String currencyDescription) {
+    public Currency(int id, String currencyId, String currencyDescription) {
         this.id = id;
         this.currencyId = currencyId;
         this.currencyDescription = currencyDescription;
     }
 
-    public Currency(int id, int currencyId, String currencyDescription, Set planPrices, Set payments) {
+    public Currency(int id, String currencyId, String currencyDescription, Set planPrices, Set payments) {
         this.id = id;
         this.currencyId = currencyId;
         this.currencyDescription = currencyDescription;
@@ -40,11 +40,11 @@ public class Currency implements java.io.Serializable {
         this.id = id;
     }
 
-    public int getCurrencyId() {
+    public String getCurrencyId() {
         return this.currencyId;
     }
 
-    public void setCurrencyId(int currencyId) {
+    public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
     }
 

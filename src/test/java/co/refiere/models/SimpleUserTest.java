@@ -9,10 +9,11 @@ import org.junit.Test;
 import co.refiere.dao.RefiereUserDao;
 import co.refiere.dao.RoleDao;
 
-public class RefiereUserTest {
+public class SimpleUserTest {
 
-    String SYS_LOGIN = "companyAdmin";//UUID.randomUUID().toString().substring(0, 18);
-    String SYS_PASS  = "@dm1n";
+    String SYS_LOGIN = "root";//UUID.randomUUID().toString().substring(0, 18);
+    String SYS_PASS  = "@dm1n15tra@t0r";
+    
     @Test
     public void testCreateCompanyAdminUser() {
 

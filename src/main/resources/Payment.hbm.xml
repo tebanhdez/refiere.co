@@ -17,6 +17,9 @@
         <property name="paymentDescription" type="string">
             <column name="payment_description" length="50" />
         </property>
+        <property name="accountingTrackRef" type="string">
+            <column name="accounting_tracking_ref" length="50" />
+        </property>
         <property name="price" type="big_decimal">
             <column name="price" precision="4" not-null="true" />
         </property>

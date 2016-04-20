@@ -7,14 +7,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.PaymentType;
-import co.refiere.models.PlanOrder;
-import co.refiere.models.PlanOrderHome;
+import co.refiere.models.PaymentTypeHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class PlanOrderDao extends PlanOrderHome {
-    private static final Log log = LogFactory.getLog(RefierePlanDao.class);
-    private final SessionFactory sessionFactory = getSessionFactory();
+public class PaymentTypeDao extends PaymentTypeHome {
 
+    private static final Log log = LogFactory.getLog(PaymentTypeDao.class);
+    private final SessionFactory sessionFactory = getSessionFactory();
+    
+    
     @Override
     public SessionFactory getSessionFactory(){
         try {
@@ -25,14 +26,14 @@ public class PlanOrderDao extends PlanOrderHome {
         }
     }
     
-    public void save(PlanOrder planOrder){
-        log.debug("saving PlanOrder");
+    public void save(PaymentType paymentType){
+        log.debug("saving RefiereLapse");
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.saveOrUpdate(planOrder);
+            session.persist(paymentType);
             trans.commit();
             log.debug("persist successful");
         } catch (RuntimeException re) {
@@ -41,14 +42,14 @@ public class PlanOrderDao extends PlanOrderHome {
         }
     }
     
-    public PlanOrder findPlanOrderById(int id) {
+    public PaymentType findPaymentTypeById(int id) {
         log.debug("getting UserRoles instance with login: " + id);
         try {
             Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            PlanOrder instance = (PlanOrder) session.get("co.refiere.models.PlanOrder", id);
+            PaymentType instance = (PaymentType) session.get("co.refiere.models.PaymentType", id);
             trans.commit();
             if (instance == null) {
                 log.debug("get successful, no instance found");

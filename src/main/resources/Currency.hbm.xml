@@ -8,8 +8,8 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <property name="currencyId" type="int">
-            <column name="currency_id" not-null="true" />
+        <property name="currencyId" type="string">
+            <column name="currency_id" length="5" not-null="true" />
         </property>
         <property name="currencyDescription" type="string">
             <column name="currency_description" length="50" not-null="true" />
