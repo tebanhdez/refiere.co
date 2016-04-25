@@ -5,6 +5,5 @@
     .module('refiereApp', [
       'refiereApp.chore',
       'refiereApp.dashboard',
-      'refiereApp.login',
-      'ui.router']);
+      'refiereApp.login']);
 })();

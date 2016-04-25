@@ -26,8 +26,9 @@
           controller: 'SidebarCtrl as sidebar'
         },
         'content@app.dashboard': {
-          templateUrl: 'app/dashboard/views/campaign/view.html'
-        }
+          templateUrl: 'app/dashboard/views/campaign/view.html',
+          controller: 'CampaignCtrl as campaign'
+        },
       }
     });
   }

@@ -378,3 +378,13 @@ ul.top-menu > li > .logout {
   margin-top: 15px;
   
 }
+#Panel{
+    color:white;
+    text-align: center;
+    background: #b86e28;
+    font-size: 16px;
+}
+#panelPosition{
+    position: relative;
+    top: 250px;
+}

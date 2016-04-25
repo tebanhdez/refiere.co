@@ -12,7 +12,7 @@
       icon: 'fa-dashboard'
     },{
       title: 'Métricas',
-      state: 'home',
+      state: 'campaign',
       icon: 'fa-bar-chart-o'
     },{
       title: 'Base de datos',

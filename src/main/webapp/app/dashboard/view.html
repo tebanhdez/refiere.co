@@ -1,5 +1,19 @@
 <section id="container-full">
-    <div ui-view="header"></div>
-    <div ui-view="sidebar"></div>
-    <div ui-view></div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header"
+				ui-view="header">
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-1 sidebar" 
+				ui-view="sidebar">
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content" 
+				ui-view="content">
+			</div>
+		</div>
+	</div>
 </section>
