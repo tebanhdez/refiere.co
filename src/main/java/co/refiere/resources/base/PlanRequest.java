@@ -2,6 +2,9 @@ package co.refiere.resources.base;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="PlanRequest")
 public class PlanRequest {
 
     private int id;
