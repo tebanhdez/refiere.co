@@ -1,21 +1,33 @@
 <!-- Header -->
 <header id="top" class="header_ladingpage">
    <div class="text-vertical-center">
-     <div class="col-sm-2 col-md-offset-5">
-       <img src="images/refiere_logo.png" alt="Refiere logo">
+     <div class="col-xs-1 col-sm-3 col-md-3"></div>
+     <div class="col-xs-10 col-sm-6 col-md-6">
+       <img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">
        <form submit="vm.saveNewCompany()">
-         <input type="text" class="form-control" ng-model="vm.newCompanyData.UserRequest.login" placeholder="Name">
-         <input type="password" class="form-control" ng-model="vm.newCompanyData.UserRequest.password" placeholder="Password">
-         <input type="text" class="form-control" ng-model="vm.newCompanyData.name" placeholder="Company Name">
-         <input type="text" class="form-control" ng-model="vm.newCompanyData.address" placeholder="Company Addresss">
-         <input type="email" class="form-control" ng-model="vm.newCompanyData.email" placeholder="Email">
-         <input type="text" class="form-control" ng-model="vm.newCompanyData.telephone" placeholder="Phone">
-         <input type="number" min="0" max="2" class="form-control" ng-model="vm.newCompanyData.PlanRequest.id" placeholder="Plan">
-         <!-- <a ui-sref="app.dashboard" type="button" class="btn btn-primary btn-block" ng-click="vm.saveNewCompany()">Register Company</a> -->
-         <a type="button" class="btn btn-primary btn-block" ng-click="vm.saveNewCompany()">Register Company</a>
-         <br>
-       </form>
+         <input type="text" class="form-control" ng-model="vm.newCompanyData.UserRequest.login" placeholder="Nombre">
+         <input type="password" class="form-control" ng-model="vm.newCompanyData.UserRequest.password" placeholder="Contraseña">
+         <input type="text" class="form-control" ng-model="vm.newCompanyData.name" placeholder="Nombre de la compañía">
+         <input type="text" class="form-control" ng-model="vm.newCompanyData.address" placeholder="Dirección física">
+         <input type="email" class="form-control" ng-model="vm.newCompanyData.email" placeholder="Correo Electrónico">
+         <input type="text" class="form-control" ng-model="vm.newCompanyData.telephone" placeholder="Teléfono">
+         <!-- <input type="number" min="0" max="2" class="form-control" ng-model="vm.newCompanyData.PlanRequest.id" placeholder="Plan"> -->
+         <div class="button-submit">
+           <div class="col-xs-4 col-sm-4 col-md-4">
+             <button type="button" class="btn btn-default" ng-click="vm.newCompanyData.PlanRequest.id=0">0</button>
+           </div>
+           <div class="col-xs-4 col-sm-4 col-md-4">
+             <button type="button" class="btn btn-default" ng-click="vm.newCompanyData.PlanRequest.id=1">1</button>
+           </div>
+           <div class="col-xs-4 col-sm-4 col-md-4">
+             <button type="button" class="btn btn-default" ng-click="vm.newCompanyData.PlanRequest.id=2">2</button>
+           </div>
+         </div>
+         <br><br><br>
+         <button type="button" class="btn btn-primary btn-block button-block" ng-click="vm.saveNewCompany()">Register Company</a>
+         </form>
      </div>
+     <div class="col-xs-1 col-sm-3 col-md-3"></div>
    </div>
 </header>
 <!-- Footer -->

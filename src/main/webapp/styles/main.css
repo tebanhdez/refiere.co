@@ -105,6 +105,30 @@ body {
   }
 }
 
+/* Input layout */
+
+.form-control {
+    margin: 1em;
+    text-align: center;
+    padding: 2em;
+}
+
+.image-display {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttom-block {
+  display: block;
+  margin: 2em;
+  padding: 2em;
+}
+
+.button-submit {
+  text-align: center;
+  display: block;
+}
 
 /* header dashboard */
 
@@ -376,5 +400,5 @@ ul.top-menu > li > .logout {
   margin-right: 15px;
   background: #b86e28;
   margin-top: 15px;
-  
+
 }
