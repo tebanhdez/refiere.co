@@ -8,11 +8,11 @@
   function SidebarCtrl() {
     this.tabs = [{
       title: 'Campaña',
-      state: 'home',
+      state: 'campaign',
       icon: 'fa-dashboard'
     },{
       title: 'Métricas',
-      state: 'campaign',
+      state: 'home',
       icon: 'fa-bar-chart-o'
     },{
       title: 'Base de datos',

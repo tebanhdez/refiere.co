@@ -376,8 +376,13 @@ ul.top-menu > li > .logout {
   margin-right: 15px;
   background: #b86e28;
   margin-top: 15px;
-  
 }
+
+ul.top-menu > li > .logout:hover {
+  background: #9d5627;
+    border: 1px solid #5f3b13 !important;
+}
+
 #Panel{
     color:white;
     text-align: center;
@@ -386,5 +391,9 @@ ul.top-menu > li > .logout {
 }
 #panelPosition{
     position: relative;
-    top: 250px;
+    top: 200px;
+}
+
+.content {
+    padding-top: 80px;
 }

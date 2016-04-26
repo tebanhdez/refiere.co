@@ -8,8 +8,7 @@
   function setupRoutes($stateProvider) {
     $stateProvider
     .state('campaign', {
-      url: '/campaign',
-      templateUrl: 'app/dashboard/views/campaign/viewAll.html',
+      url: '/campaign'
     });
   }
 })();

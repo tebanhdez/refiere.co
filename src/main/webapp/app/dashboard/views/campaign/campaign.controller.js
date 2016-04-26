@@ -6,6 +6,5 @@
     .controller('CampaignCtrl', CampaignCtrl);
 
   function CampaignCtrl() {
-
   }
 })();
