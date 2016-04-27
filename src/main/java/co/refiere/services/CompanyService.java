@@ -57,7 +57,7 @@ public class CompanyService {
             if(planSelected == null)
                 return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Plan not found \"}")).build();
 
-            OrderStatus orderPendingApproval = orderStatusDao.findOrderStatusById(2);
+            OrderStatus orderPendingApproval = orderStatusDao.findOrderStatusById(12);
 
             PlanOrder planOrder = new PlanOrder();
             planOrder.setCompany(newCompany);
@@ -72,10 +72,10 @@ public class CompanyService {
 
             planOrder.setOrderStatus(orderPendingApproval);
             //Saving all objects
-            planDao.save(planSelected);
             userDao.save(user);
             companyDao.save(newCompany);
             userCompanyRelationDao.save(relation);
+            //planDao.save(planSelected);
             orderDao.save(planOrder);
             orderSubmitted = String.format(orderSubmitted, planOrder.getId());
             System.out.println("   >>>>  "+orderSubmitted);

@@ -21,7 +21,7 @@ public class ReferalCodeService {
 		person.setCompanyDatabase(null);
 		
 		CompanyDatabaseDao companyDataBase = new CompanyDatabaseDao();
-		companyDataBase.findCompanyDatabaseById(newUser.getCampaignId());
+		companyDataBase.findDatabaseById(newUser.getCampaignId());
 		
 		PersonDao personDao = new PersonDao();
 		personDao.save(person);

@@ -46,7 +46,7 @@ public class PlanOrderResourceTest extends JerseyTest {
         
         //Plan details
         PlanRequest plan = new PlanRequest();
-        plan.setId(0); // 0 - Basic Plan
+        plan.setId(10); // 10 - Basic Plan
         plan.setPersonalizedEmail("company@custom.email");
         //Setting up properties
         newCompany.setUser(companyUser);
@@ -61,11 +61,11 @@ public class PlanOrderResourceTest extends JerseyTest {
         PaymentRequest paymentRequest = new PaymentRequest();
         //paymentRequest.setId(orderId);
         paymentRequest.setOrderId(1);
-        paymentRequest.setCurrencyId(0); // 0 - Colones
+        paymentRequest.setCurrencyId(10); // 0 - Colones
         paymentRequest.setDiscount(BigDecimal.valueOf(0.10));
         paymentRequest.setPrice(BigDecimal.valueOf(99.99));
         paymentRequest.setPaymentDescription("Payment of Testing Company");
-        paymentRequest.setPaymentTypeId(0); //Bank deposit
+        paymentRequest.setPaymentTypeId(10); //Bank deposit
         paymentRequest.setTotalPrice(BigDecimal.valueOf(98.99));
         paymentRequest.setAccountingTrackRef("BANCO NACIONAL: 0832028384");
         paymentRequest.setUserName("ehernandez");

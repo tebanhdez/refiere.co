@@ -1,26 +1,23 @@
 package co.refiere.dao;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.Campaign;
-import co.refiere.models.Company;
 import co.refiere.models.CompanyDatabase;
 import co.refiere.models.CompanyDatabaseHome;
-
 import co.refiere.resources.util.HibernateUtil;
 
 public class CompanyDatabaseDao extends CompanyDatabaseHome {
-	
-	private static final Log log = LogFactory.getLog(CompanyDatabaseDao.class);
+
+    private static final Log log = LogFactory.getLog(CurrencyDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-	
-    public CompanyDatabaseDao(){
-    	
-    }
     
     @Override
     public SessionFactory getSessionFactory(){
@@ -31,40 +28,39 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-    
-    public void save(CompanyDatabase company){
-        log.debug("saving RefiereCompanyDatabase");
+
+    public List<CompanyDatabase> findAllDatabasesByCompanyId(int companyId){
+        log.debug("getting company's databases: " + companyId);
+        java.util.List results = new LinkedList<>();
         try {
-            Session session = sessionFactory.openSession();
+            Session session = sessionFactory.getCurrentSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            session.persist(company);
+            Query query = session.createQuery("from CompanyDatabase cdb inner join cdb.campaign ca where ca.company.id = :companyId");
+            query.setParameter("companyId", companyId);
+            results = query.list();
             trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
-    }
-    public CompanyDatabase findCompanyDatabaseById(int id) {
-        log.debug("getting UserRoles instance with login: " + id);
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            CompanyDatabase instance = (CompanyDatabase) session.get("co.refiere.models.CompanyDatabase", id);
-            trans.commit();
-            if (instance == null) {
-                log.debug("get successful, no instance found");
-            } else {
-                log.debug("get successful, instance found");
-            }
-            return instance;
+            return results;
         } catch (RuntimeException re) {
             log.error("get failed", re);
             throw re;
         }
     }
+
+    public void save(CompanyDatabase dataBase) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(dataBase);
+        trans.commit();
+    }
+
+    public CompanyDatabase findDatabaseById(int companyDataBaseId) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        CompanyDatabase dataBase = findById(companyDataBaseId);
+        trans.commit();
+        return dataBase;
+    }
+
 }

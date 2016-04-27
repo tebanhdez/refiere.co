@@ -13,14 +13,14 @@ public class RefierePlanTest {
         RefierePlanDao planDao = new RefierePlanDao();
         RefiereLapseDao lapseDao = new RefiereLapseDao();
 
-        Lapse semanal = lapseDao.findBylapseById(1);
-        Lapse quincenal = lapseDao.findBylapseById(2);
-        Lapse mensual = lapseDao.findBylapseById(3);
-        Lapse bimestral = lapseDao.findBylapseById(4);
+        Lapse semanal = lapseDao.findBylapseById(11);
+        Lapse quincenal = lapseDao.findBylapseById(12);
+        Lapse mensual = lapseDao.findBylapseById(13);
+        Lapse bimestral = lapseDao.findBylapseById(14);
 
-        Plan basic = planDao.findByPlanById(0);
-        Plan enterprice = planDao.findByPlanById(1);
-        Plan corporate = planDao.findByPlanById(2);
+        Plan basic = planDao.findByPlanById(10);
+        Plan enterprice = planDao.findByPlanById(11);
+        Plan corporate = planDao.findByPlanById(12);
 
         basic.setLapseByCampaignLapseRef(bimestral);
         enterprice.setLapseByCampaignLapseRef(bimestral);
