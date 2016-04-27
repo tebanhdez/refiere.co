@@ -26,39 +26,24 @@ public class PlanOrderDao extends PlanOrderHome {
     }
     
     public void save(PlanOrder planOrder){
-        log.debug("saving PlanOrder");
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            session.saveOrUpdate(planOrder);
-            trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        session.save(planOrder);
+        trans.commit();
+    }
+    
+    public void update(PlanOrder planOrder){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        session.saveOrUpdate(planOrder);
+        trans.commit();
     }
     
     public PlanOrder findPlanOrderById(int id) {
-        log.debug("getting UserRoles instance with login: " + id);
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            PlanOrder instance = (PlanOrder) session.get("co.refiere.models.PlanOrder", id);
-            trans.commit();
-            if (instance == null) {
-                log.debug("get successful, no instance found");
-            } else {
-                log.debug("get successful, instance found");
-            }
-            return instance;
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        PlanOrder instance = (PlanOrder) session.get("co.refiere.models.PlanOrder", id);
+        trans.commit();
+        return instance;
     }
 }

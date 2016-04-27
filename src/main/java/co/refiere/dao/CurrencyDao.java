@@ -28,39 +28,17 @@ public class CurrencyDao extends CurrencyHome {
     }
     
     public void save(Currency currency){
-        log.debug("saving RefiereLapse");
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            session.persist(currency);
-            trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(currency);
+        trans.commit();
     }
     
     public Currency findCurrencyTypeById(int id) {
-        log.debug("getting UserRoles instance with login: " + id);
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            Currency instance = (Currency) session.get("co.refiere.models.Currency", id);
-            trans.commit();
-            if (instance == null) {
-                log.debug("get successful, no instance found");
-            } else {
-                log.debug("get successful, instance found");
-            }
-            return instance;
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        Currency instance = (Currency) findById(id);
+        trans.commit();
+        return instance;
     }
 }

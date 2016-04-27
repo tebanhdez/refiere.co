@@ -18,7 +18,7 @@ public class SimpleUserTest {
     public void testCreateCompanyAdminUser() {
 
         RoleDao role = new RoleDao();
-        UserRoles userRole = role.findByRoleId(1);
+        UserRoles userRole = role.findByRoleId(11);
         Assert.assertNotNull("Role not found",userRole);
         
         SimpleUser adminUser = new SimpleUser();

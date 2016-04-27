@@ -26,23 +26,10 @@ public class RoleDao extends UserRolesHome {
     }
 
     public UserRoles findByRoleId(int id) {
-        log.debug("getting UserRoles instance with login: " + id);
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            UserRoles instance = (UserRoles) session.get("co.refiere.models.UserRoles", id);
-            trans.commit();
-            if (instance == null) {
-                log.debug("get successful, no instance found");
-            } else {
-                log.debug("get successful, instance found");
-            }
-            return instance;
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        UserRoles instance = findById(id);
+        trans.commit();
+        return instance;
     }
 }

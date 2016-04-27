@@ -13,10 +13,10 @@ import co.refiere.services.CampaignService;
 @Path("v1/campaign")
 public class CampaignResource {
 
-	    @POST
-	    @Consumes(MediaType.APPLICATION_JSON)
-	    public Response createCampaign(CampaignRequest campaign) {
-	        CampaignService campaignService = new CampaignService();
-	    	return campaignService.createCampaign(campaign);
-	    }
+        @POST
+        @Consumes(MediaType.APPLICATION_JSON)
+        public Response createCampaign(CampaignRequest campaign) {
+            CampaignService campaignService = new CampaignService();
+            return campaignService.createCampaign(campaign);
+        }
 }

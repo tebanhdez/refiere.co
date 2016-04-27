@@ -31,19 +31,10 @@ public class RefiereUserDao extends SimpleUserHome {
     }
     
     public void save(SimpleUser user){
-        log.debug("saving RefiereUser");
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            session.persist(user);
-            trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(user);
+        trans.commit();
     }
 
 
