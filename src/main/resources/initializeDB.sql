@@ -37,3 +37,10 @@ INSERT INTO payment_type (id, type_description) VALUES (11, 'Electronic Transact
 INSERT INTO payment_type (id, type_description) VALUES (12, 'Credit Card')
 INSERT INTO payment_type (id, type_description) VALUES (13, 'Cash')
 INSERT INTO payment_type (id, type_description) VALUES (14, 'Check')
+
+--INSERT DEFAULT Prizes
+INSERT INTO prize (id, description) VALUES (10, 'Money')
+INSERT INTO prize (id, description) VALUES (11, 'Discount')
+INSERT INTO prize (id, description) VALUES (12, 'Bonus')
+INSERT INTO prize (id, description) VALUES (13, 'Prize')
+INSERT INTO prize (id, description) VALUES (14, 'Improve service/product')
