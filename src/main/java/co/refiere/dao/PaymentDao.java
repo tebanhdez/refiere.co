@@ -25,18 +25,9 @@ public class PaymentDao extends PaymentHome {
     }
     
     public void save(Payment payment){
-        log.debug("saving PlanOrder");
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            session.saveOrUpdate(payment);
-            trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(payment);
+        trans.commit();
     }
 }

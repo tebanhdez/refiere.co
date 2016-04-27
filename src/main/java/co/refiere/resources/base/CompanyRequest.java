@@ -1,12 +1,18 @@
 package co.refiere.resources.base;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class CompanyRequest {
 
+    @XmlElement(name="UserRequest", type=UserRequest.class)
     private UserRequest user;
     private String name;
     private String address;
     private String email;
     private String telephone;
+    @XmlElement(name="PlanRequest", type=PlanRequest.class)
     private PlanRequest plan;
 
     public String getName() {
