@@ -32,7 +32,7 @@ public class RefierePlanDao extends PlanHome {
     public void save(Plan plan){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        session.save(plan);
+        session.saveOrUpdate(plan);
         trans.commit();
     }
     
