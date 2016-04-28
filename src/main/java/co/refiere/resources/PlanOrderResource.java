@@ -41,7 +41,7 @@ public class PlanOrderResource {
         PaymentType type = paymentTypeDao.findPaymentTypeById(payment.getPaymentTypeId());
         Currency currency = currencyDao.findCurrencyTypeById(payment.getCurrencyId());
         PlanOrder planOrder = planOrderDao.findPlanOrderById(payment.getOrderId());
-        OrderStatus confirmed = statusDao.findOrderStatusById(3); //Confirmed
+        OrderStatus confirmed = statusDao.findOrderStatusById(13); //Confirmed
         if(type == null)
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Payment type not found \"}")).build(); 
         if(currency == null)
@@ -67,9 +67,6 @@ public class PlanOrderResource {
         planOrder.setApprovedBy(payment.getUserName());
         planOrder.setOrderStatus(confirmed);
 
-        statusDao.save(confirmed);
-        currencyDao.save(currency);
-        paymentTypeDao.save(type);
         paymentDao.save(paymentObject);
         planOrderDao.save(planOrder);
         return Response.status(200).build();

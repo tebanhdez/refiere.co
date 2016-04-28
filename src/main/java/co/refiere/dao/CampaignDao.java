@@ -6,14 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.OrderStatus;
-import co.refiere.models.OrderStatusHome;
-import co.refiere.models.PlanOrder;
+import co.refiere.models.Campaign;
+import co.refiere.models.CampaignHome;
 import co.refiere.resources.util.HibernateUtil;
 
-public class OrderStatusDao extends OrderStatusHome {
+public class CampaignDao extends CampaignHome {
 
-    private static final Log log = LogFactory.getLog(OrderStatusDao.class);
+    private static final Log log = LogFactory.getLog(CampaignDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     @Override
@@ -26,18 +25,10 @@ public class OrderStatusDao extends OrderStatusHome {
         }
     }
     
-    public void save(OrderStatus orderStatus){
+    public void save(Campaign campaign){
         Session session = sessionFactory.getCurrentSession();
-        org.hibernate.Transaction trans = session.beginTransaction();
-        persist(orderStatus);
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(campaign);
         trans.commit();
-    }
-
-    public OrderStatus findOrderStatusById(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        org.hibernate.Transaction trans = session.beginTransaction();
-        OrderStatus instance = findById(id);
-        trans.commit();
-        return instance;
     }
 }

@@ -41,14 +41,14 @@ public class CompanyResourceTest extends JerseyTest {
         
         //Company details
         CompanyRequest newCompany = new CompanyRequest();
-        newCompany.setName("Testing Company");
-        newCompany.setAddress("Testing Company");
+        newCompany.setName("CompanyResourceTest::testRegisterCompanyInfo");
+        newCompany.setAddress("RegisterCompanyInfo Company");
         newCompany.setEmail("jehehe1@gmail.com");
         newCompany.setTelephone("+506 0000 0000");
         
         //Plan details
         PlanRequest plan = new PlanRequest();
-        plan.setId(0); // 0 - Basic Plan
+        plan.setId(10); // 10 - Basic Plan
         plan.setPersonalizedEmail("company@custom.email");
         //Setting up properties
         newCompany.setUser(companyUser);

@@ -17,7 +17,6 @@ import org.hibernate.criterion.Example;
 public class CompanyDatabaseHome {
 
     private static final Log log = LogFactory.getLog(CompanyDatabaseHome.class);
-
     private final SessionFactory sessionFactory = getSessionFactory();
 
     protected SessionFactory getSessionFactory() {
