@@ -31,4 +31,19 @@ public class CampaignDao extends CampaignHome {
         persist(campaign);
         trans.commit();
     }
+
+    public Campaign getCampaigById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        Campaign instance = findById(id);
+        trans.commit();
+        return instance;
+    }
+
+    public void deleteCampaign(Campaign campaign) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(campaign);
+        trans.commit();
+    }
 }

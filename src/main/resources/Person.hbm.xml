@@ -9,7 +9,7 @@
             <generator class="increment" />
         </id>
         <many-to-one name="companyDatabase" class="co.refiere.models.CompanyDatabase" fetch="select">
-            <column name="company_database_id" />
+            <column name="company_database_id"/>
         </many-to-one>
         <property name="identificationCardNumber" type="string">
             <column name="identification_card_number" length="20" not-null="true" />
