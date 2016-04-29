@@ -1,28 +1,42 @@
 package co.refiere.resources;
 
-import static org.junit.Assert.assertEquals;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import javax.json.JsonObject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import co.refiere.dao.PaymentDao;
+import co.refiere.dao.RefiereCompanyDao;
+import co.refiere.dao.RefiereUserDao;
+import co.refiere.models.Company;
+import co.refiere.models.Payment;
+import co.refiere.models.SimpleUser;
 import co.refiere.resources.base.CompanyRequest;
 import co.refiere.resources.base.PaymentRequest;
 import co.refiere.resources.base.PlanRequest;
 import co.refiere.resources.base.UserRequest;
+import co.refiere.resources.util.JsonUtils;
 import co.refiere.services.CompanyService;
 
 public class PlanOrderResourceTest extends JerseyTest {
+
+
+    CompanyRequest newCompany;
+    private int companyId;
+    private int userId;
+    private int paymentId;
 
     @Override
     protected Application configure() {
@@ -30,7 +44,7 @@ public class PlanOrderResourceTest extends JerseyTest {
     }
     
     @Before
-    public void setTestCompany(){
+    public void setTestCompany() throws NoContentException{
       
         //User details
         UserRequest companyUser = new UserRequest();
@@ -53,9 +67,14 @@ public class PlanOrderResourceTest extends JerseyTest {
         newCompany.setPlan(plan);
 
         CompanyService companyService = new CompanyService();
-        companyService.createCompanyAccount(newCompany);
+        String response = companyService.createCompanyAccount(newCompany);
+        JsonObject jsonResponse = JsonUtils.parseStringToJson(response);
+        Assert.assertTrue("Key not found", jsonResponse.containsKey("userId"));
+        Assert.assertTrue("Key not found", jsonResponse.containsKey("companyId"));
+        userId = jsonResponse.getInt("userId");
+        companyId = jsonResponse.getInt("companyId");
     }
-    
+
     @Test
     public void testAcceptPlanOrderPayment(){
         PaymentRequest paymentRequest = new PaymentRequest();
@@ -69,7 +88,28 @@ public class PlanOrderResourceTest extends JerseyTest {
         paymentRequest.setTotalPrice(BigDecimal.valueOf(98.99));
         paymentRequest.setAccountingTrackRef("BANCO NACIONAL: 0832028384");
         paymentRequest.setUserName("ehernandez");
-        final Response paymentResponse = target().path("v1/order/payment").request().header("Authorization", "Basic cm9vdDpAZG0xbjE1dHJhQHQwcg==").post(Entity.json(paymentRequest));
-        Assert.assertTrue(paymentResponse.getStatus() == 200);
+        final String paymentResponse = target().path("v1/order/payment").request()
+                .post(Entity.json(paymentRequest), String.class);
+        JsonObject jsonResponse = JsonUtils.parseStringToJson(paymentResponse);
+        JsonObject resultObject = jsonResponse.getJsonObject("result");
+        paymentId = resultObject.getInt("paymentId");
+        Assert.assertNotNull("No payment Id found", paymentId);
+    }
+
+    @After
+    public void deleteTestData(){
+        Assert.assertNotNull("No userId found", userId);
+        Assert.assertNotNull("No companyId found", companyId);
+        RefiereUserDao userDao = new RefiereUserDao();
+        SimpleUser user = userDao.findUserById(userId);
+        PaymentDao paymentDao = new PaymentDao();
+        
+        RefiereCompanyDao companyDao = new RefiereCompanyDao();
+        Company companyToDelete = companyDao.findCompanyById(companyId);
+
+        companyDao.deleteCompany(companyToDelete);
+        userDao.deleteUser(user);
+        Payment payment = paymentDao.findPaymentById(paymentId);
+        paymentDao.deletePayment(payment);
     }
 }

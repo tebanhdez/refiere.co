@@ -1,46 +1,47 @@
 package co.refiere.resources;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Date;
 import java.util.UUID;
 
+import javax.json.JsonObject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import co.refiere.dao.RefiereCompanyDao;
+import co.refiere.dao.RefiereUserDao;
+import co.refiere.models.Company;
+import co.refiere.models.SimpleUser;
 import co.refiere.resources.base.CompanyRequest;
-import co.refiere.resources.base.LapseRequest;
 import co.refiere.resources.base.PlanRequest;
 import co.refiere.resources.base.UserRequest;
+import co.refiere.resources.util.JsonUtils;
 
 public class CompanyResourceTest extends JerseyTest {
 
-    @Override
+    CompanyRequest newCompany;
+    private int companyId;
+    private int userId;
 
+    @Override
     protected Application configure() {
         return new ResourceConfig(CompanyResource.class);      
     }
-    //    protected Application configure() {
-    //        return new ResourceConfig(MailerResource.class);
-    //    }
-    //
-    /**
-     * 
-     */
-    @Test
-    public void testRegisterCompanyInfo() {
-        //User details
+    
+    
+    @Before
+    public void setTestData(){
+    	//User details
         UserRequest companyUser = new UserRequest();
         companyUser.setLogin(UUID.randomUUID().toString().substring(0, 18));
         companyUser.setPassword("password");
         
         //Company details
-        CompanyRequest newCompany = new CompanyRequest();
+        newCompany = new CompanyRequest();
         newCompany.setName("CompanyResourceTest::testRegisterCompanyInfo");
         newCompany.setAddress("RegisterCompanyInfo Company");
         newCompany.setEmail("jehehe1@gmail.com");
@@ -53,14 +54,35 @@ public class CompanyResourceTest extends JerseyTest {
         //Setting up properties
         newCompany.setUser(companyUser);
         newCompany.setPlan(plan);
+    }
+    /**
+     * 
+     */
+    @Test
+    public void testRegisterCompanyInfo() {
 
-        final Response confirmationResponse = target().path("v1/company/register").request().post(Entity.json(newCompany));
-
-        assertEquals(200, confirmationResponse.getStatus());
+        final String confirmationResponse = target().path("v1/company/register").request()
+                .post(Entity.json(newCompany), String.class);
+        JsonObject jsonResponse = JsonUtils.parseStringToJson(confirmationResponse);
+        JsonObject resultObject = jsonResponse.getJsonObject("result");
+        userId = resultObject.getInt("userId");
+        companyId = resultObject.getInt("companyId");
     }
 
     private Application ResourceConfig() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @After
+    public void deleteTestData(){
+        RefiereUserDao userDao = new RefiereUserDao();
+        SimpleUser user = userDao.findUserById(userId);
+
+        RefiereCompanyDao companyDao = new RefiereCompanyDao();
+        Company companyToDelete = companyDao.findCompanyById(companyId);
+
+        companyDao.deleteCompany(companyToDelete);
+        userDao.deleteUser(user);
     }
 }

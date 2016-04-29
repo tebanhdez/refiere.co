@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import co.refiere.models.CompanyDatabase;
 import co.refiere.models.SimpleUser;
 import co.refiere.models.SimpleUserHome;
 import co.refiere.resources.util.HibernateUtil;
@@ -37,6 +38,20 @@ public class RefiereUserDao extends SimpleUserHome {
         trans.commit();
     }
 
+    public void deleteUser(SimpleUser user){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(user);
+        trans.commit();
+    }
+    
+    public SimpleUser findUserById(int userId) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        SimpleUser dataBase = session.get(SimpleUser.class, userId);
+        trans.commit();
+        return dataBase;
+    }
 
     public SimpleUser findByLogin(String login) {
         log.debug("getting RefiereUser instance with login: " + login);

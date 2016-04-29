@@ -2,8 +2,7 @@ package co.refiere.services;
 
 import java.util.Date;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.NoContentException;
 
 import co.refiere.dao.OrderStatusDao;
 import co.refiere.dao.PlanOrderDao;
@@ -22,66 +21,60 @@ import co.refiere.resources.base.PlanRequest;
 
 public class CompanyService {
 
-    public Response createCompanyAccount(CompanyRequest company) {
-        String orderSubmitted = "{\"status\": \"success\", \"order\" : \"%s\"}";
-        try {
-            //Creating user
-            RefiereUserDao userDao = new RefiereUserDao();
-            SimpleUser user = new SimpleUser();
-            user.setLogin(company.getUser().getLogin());
-            user.setPassword(company.getUser().getPassword());
+    public String createCompanyAccount(CompanyRequest company) throws NoContentException {
+        String response = "{\"companyId\" : %d, \"userId\" : %d}";
+        //Creating user
+        RefiereUserDao userDao = new RefiereUserDao();
+        SimpleUser user = new SimpleUser();
+        user.setLogin(company.getUser().getLogin());
+        user.setPassword(company.getUser().getPassword());
 
-            //Creating company
-            RefiereCompanyDao companyDao = new RefiereCompanyDao();
-            Company newCompany = new Company();
-            newCompany.setName(company.getName());
-            newCompany.setAddress(company.getAddress());
-            newCompany.setEmail(company.getEmail());
-            newCompany.setPhone(company.getTelephone());
+        //Creating company
+        RefiereCompanyDao companyDao = new RefiereCompanyDao();
+        Company newCompany = new Company();
+        newCompany.setName(company.getName());
+        newCompany.setAddress(company.getAddress());
+        newCompany.setEmail(company.getEmail());
+        newCompany.setPhone(company.getTelephone());
 
-            //Linking main user to company
-            RefiereUserCompanyRelationDao userCompanyRelationDao = new RefiereUserCompanyRelationDao();
-            UserCompany relation = new UserCompany();
-            relation.setCompany(newCompany);
-            relation.setSimpleUser(user);
+        //Linking main user to company
+        RefiereUserCompanyRelationDao userCompanyRelationDao = new RefiereUserCompanyRelationDao();
+        UserCompany relation = new UserCompany();
+        relation.setCompany(newCompany);
+        relation.setSimpleUser(user);
 
-            // Setting plan
-            PlanRequest planRequest = company.getPlan();
+        // Setting plan
+        PlanRequest planRequest = company.getPlan();
 
-            // Injecting DAOs
-            RefierePlanDao planDao = new RefierePlanDao();
-            PlanOrderDao orderDao = new PlanOrderDao();
-            OrderStatusDao orderStatusDao = new OrderStatusDao();
+        // Injecting DAOs
+        RefierePlanDao planDao = new RefierePlanDao();
+        PlanOrderDao orderDao = new PlanOrderDao();
+        OrderStatusDao orderStatusDao = new OrderStatusDao();
 
-            Plan planSelected = planDao.findByPlanById(planRequest.getId());
-            if(planSelected == null)
-                return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Plan not found \"}")).build();
+        Plan planSelected = planDao.findByPlanById(planRequest.getId());
+        if(planSelected == null)
+            throw new NoContentException("\"Error \": \"Plan not found \"");
 
-            OrderStatus orderPendingApproval = orderStatusDao.findOrderStatusById(12);
+        OrderStatus orderPendingApproval = orderStatusDao.findOrderStatusById(12);
 
-            PlanOrder planOrder = new PlanOrder();
-            planOrder.setCompany(newCompany);
-            planOrder.setPlan(planSelected);
-            planOrder.setApprovedBy("");
-            planOrder.setPersonalizedEmail( (planRequest.getPersonalizedEmail() == null) ? "" : planRequest.getPersonalizedEmail()); 
-            planOrder.setStartDate(new Date());
-            planOrder.setEndDate(new Date());
+        PlanOrder planOrder = new PlanOrder();
+        planOrder.setCompany(newCompany);
+        planOrder.setPlan(planSelected);
+        planOrder.setApprovedBy("");
+        planOrder.setPersonalizedEmail( (planRequest.getPersonalizedEmail() == null) ? "" : planRequest.getPersonalizedEmail()); 
+        planOrder.setStartDate(new Date());
+        planOrder.setEndDate(new Date());
 
-            if(orderPendingApproval == null)
-                return Response.status(Status.INTERNAL_SERVER_ERROR).entity(javax.ws.rs.client.Entity.json("{\"Error \": \"Cannot process your order \"}")).build();
+        if(orderPendingApproval == null)
+            throw new NoContentException("\"Error \": \"Cannot process your order \"");
 
-            planOrder.setOrderStatus(orderPendingApproval);
-            //Saving all objects
-            userDao.save(user);
-            companyDao.save(newCompany);
-            userCompanyRelationDao.save(relation);
-            //planDao.save(planSelected);
-            orderDao.save(planOrder);
-            orderSubmitted = String.format(orderSubmitted, planOrder.getId());
-            System.out.println("   >>>>  "+orderSubmitted);
-        }catch (NullPointerException e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-        return Response.status(200).build();
+        planOrder.setOrderStatus(orderPendingApproval);
+        //Saving all objects
+        userDao.save(user);
+        companyDao.save(newCompany);
+        response = String.format(response, newCompany.getId(), user.getId());
+        userCompanyRelationDao.save(relation);
+        orderDao.save(planOrder);
+        return response;//Response.status(200).entity(response).build();
     }
 }

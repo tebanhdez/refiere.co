@@ -42,7 +42,7 @@ public class PlanOrderDao extends PlanOrderHome {
     public PlanOrder findPlanOrderById(int id) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        PlanOrder instance = (PlanOrder) session.get("co.refiere.models.PlanOrder", id);
+        PlanOrder instance = session.get(PlanOrder.class, id);
         trans.commit();
         return instance;
     }
