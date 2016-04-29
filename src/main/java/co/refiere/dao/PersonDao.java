@@ -11,6 +11,12 @@ import co.refiere.models.Person;
 import co.refiere.models.PersonHome;
 import co.refiere.models.Prize;
 import co.refiere.resources.util.HibernateUtil;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+
+import co.refiere.models.Person;
+import co.refiere.models.PersonHome;
+import co.refiere.resources.util.HibernateUtil;
+
 
 public class PersonDao extends PersonHome {
     
@@ -26,7 +32,7 @@ public class PersonDao extends PersonHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-    
+
     public StatelessSession getStatelessSession(){
         return sessionFactory.openStatelessSession();
     }

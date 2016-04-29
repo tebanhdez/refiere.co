@@ -19,7 +19,6 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
     private static final Log log = LogFactory.getLog(CompanyDatabaseDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
     
-    
     @Override
     public SessionFactory getSessionFactory(){
         try {
@@ -29,7 +28,7 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-    
+
     public List<CompanyDatabase> findAllDatabasesByCompanyId(int companyId){
         log.debug("getting company's databases: " + companyId);
         java.util.List results = new LinkedList<>();
@@ -63,6 +62,7 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
         trans.commit();
         return dataBase;
     }
+
 
     public void deleteCompanyDatabase(CompanyDatabase dataBase) {
         Session session = sessionFactory.getCurrentSession();
