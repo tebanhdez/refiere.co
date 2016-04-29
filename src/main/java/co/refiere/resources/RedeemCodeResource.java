@@ -20,6 +20,4 @@ public class RedeemCodeResource {
 		return referalService.registerNewPerson(newUser);
 	}
 	
-	// POST - As a company user I read/redeem a code
-	
 }

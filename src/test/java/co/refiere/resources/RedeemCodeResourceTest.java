@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.refiere.dao.CampaingDao;
+import co.refiere.dao.CampaignDao;
 import co.refiere.dao.CompanyDatabaseDao;
 import co.refiere.models.Campaign;
 import co.refiere.models.CompanyDatabase;
@@ -38,11 +38,10 @@ public class RedeemCodeResourceTest extends JerseyTest {
          
          Campaign campaign = new Campaign();
          campaign.setName("test campaig name");
-         campaign.setCompanyDatabase(companyData);
-         CampaingDao campaingDao = new CampaingDao();
-         campaingDao.save(campaign);
+ 		 campaign.setCompanyDatabase(companyData);
+ 		 CampaignDao campaignDao = new CampaignDao();
+ 		 campaignDao.save(campaign);
      }
-    
      
       @Test
       public void testGetIt() {
@@ -57,4 +56,5 @@ public class RedeemCodeResourceTest extends JerseyTest {
         Response response = target().path("v1/redeemCode/registerUser").request().post(Entity.json(newUserRequest));
         assertEquals(200, response.getStatus());
       }
+
 }
