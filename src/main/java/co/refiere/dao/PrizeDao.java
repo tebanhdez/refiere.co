@@ -11,7 +11,7 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class PrizeDao extends PrizeHome {
 
-    private static final Log log = LogFactory.getLog(CampaignDao.class);
+    private static final Log log = LogFactory.getLog(PrizeDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     @Override

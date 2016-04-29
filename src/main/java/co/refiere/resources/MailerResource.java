@@ -28,15 +28,13 @@ public class MailerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response sendEmail(EmailRequest emailReq) {
-    	
-    	try {
-    		List<String> recipients = emailReq.getRecipients();
-    		List<String> attachments = emailReq.getAttachments();
-    		RefiereServiceFactory.getMailService().generateAndSendEmail(Arrays.copyOf(recipients.toArray(), recipients.size(), String[].class), emailReq.getSubject(), 
-    				emailReq.getBody(), Arrays.copyOf(attachments.toArray(), attachments.size(), String[].class));
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-    	return Response.ok().build(); 
+        
+        try {
+            RefiereServiceFactory.getMailService().generateAndSendEmail(emailReq.getAttachmentsAsArray(), emailReq.getSubject(), 
+                    emailReq.getBody(), emailReq.getAttachmentsAsArray());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return Response.ok().build(); 
     }
 }

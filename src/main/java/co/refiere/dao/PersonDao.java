@@ -4,15 +4,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.resource.transaction.spi.TransactionStatus;
+import org.hibernate.StatelessSession;
 
-import co.refiere.models.Campaign;
-import co.refiere.models.CampaignHome;
+import co.refiere.models.Currency;
+import co.refiere.models.Person;
+import co.refiere.models.PersonHome;
+import co.refiere.models.Prize;
 import co.refiere.resources.util.HibernateUtil;
 
-public class CampaignDao extends CampaignHome {
-
-    private static final Log log = LogFactory.getLog(CampaignDao.class);
+public class PersonDao extends PersonHome {
+    
+    private static final Log log = LogFactory.getLog(PersonDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     @Override
@@ -25,25 +27,22 @@ public class CampaignDao extends CampaignHome {
         }
     }
     
-    public void save(Campaign campaign){
+    public StatelessSession getStatelessSession(){
+        return sessionFactory.openStatelessSession();
+    }
+    
+    public void save(Person person){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        persist(campaign);
+        persist(person);
         trans.commit();
     }
-
-    public Campaign getCampaigById(int id) {
+    
+    public Person findPersonsByDatabaseId(int id) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        Campaign instance = findById(id);
+        Person instance = findById(id);
         trans.commit();
         return instance;
-    }
-
-    public void deleteCampaign(Campaign campaign) {
-        Session session = sessionFactory.getCurrentSession();
-        org.hibernate.Transaction trans= session.beginTransaction();
-        delete(campaign);
-        trans.commit();
     }
 }

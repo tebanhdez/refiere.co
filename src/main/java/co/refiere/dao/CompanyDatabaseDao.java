@@ -16,7 +16,7 @@ import co.refiere.resources.util.HibernateUtil;
 
 public class CompanyDatabaseDao extends CompanyDatabaseHome {
 
-    private static final Log log = LogFactory.getLog(CurrencyDao.class);
+    private static final Log log = LogFactory.getLog(CompanyDatabaseDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
     
     
@@ -59,8 +59,15 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
     public CompanyDatabase findDatabaseById(int companyDataBaseId) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        CompanyDatabase dataBase = findById(companyDataBaseId);
+        CompanyDatabase dataBase = session.get(CompanyDatabase.class, companyDataBaseId);
         trans.commit();
         return dataBase;
+    }
+
+    public void deleteCompanyDatabase(CompanyDatabase dataBase) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(dataBase);
+        trans.commit();
     }
 }
