@@ -36,12 +36,29 @@ public class RefiereUserDao extends SimpleUserHome {
         persist(user);
         trans.commit();
     }
-
-
+    
+    public void deleteUser(SimpleUser user){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(user);
+        trans.commit();
+    }
+    
+    public SimpleUser findUserByid(int id){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        SimpleUser instance = session.load(SimpleUser.class, id);
+        instance.getUserRoles();
+        instance.getUserRoles().getDescription();
+        instance.getUserRoles().getRoleIdentifier();
+        instance.getUserCompanies();
+        trans.commit();
+        return instance;
+    }
     public SimpleUser findByLogin(String login) {
         log.debug("getting RefiereUser instance with login: " + login);
         try {
-            Session session = sessionFactory.openSession();
+            Session session = sessionFactory.getCurrentSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
@@ -54,6 +71,7 @@ public class RefiereUserDao extends SimpleUserHome {
                 log.debug("get successful, no instance found");
             } else {
                 log.debug("get successful, instance found");
+                return findUserByid(instance.getId());
             }
             return instance;
         } catch (RuntimeException re) {

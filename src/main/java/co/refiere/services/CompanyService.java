@@ -78,8 +78,9 @@ public class CompanyService {
             //planDao.save(planSelected);
             orderDao.save(planOrder);
             orderSubmitted = String.format(orderSubmitted, planOrder.getId());
-            System.out.println("   >>>>  "+orderSubmitted);
+            
         }catch (NullPointerException e) {
+            System.err.println(e);
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return Response.status(200).build();

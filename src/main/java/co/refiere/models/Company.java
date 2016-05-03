@@ -101,4 +101,7 @@ public class Company implements java.io.Serializable {
         this.userCompanies = userCompanies;
     }
 
+    public String toJson() {
+        return "{\"name\": " + name + ", \"address:\" " + address + ", \"email:\" " + email + ", \"phone:\" "  + phone + "}";
+    }
 }
