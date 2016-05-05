@@ -21,7 +21,7 @@
     },{
       title: 'Base de datos',
       state: 'dashboard.database',
-      icon: 'fa-tasks'
+      icon: 'fa-dashboard'
     },{
       title: 'Noticias',
       state: 'home',

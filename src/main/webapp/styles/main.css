@@ -397,3 +397,12 @@ ul.top-menu > li > .logout:hover {
 .content {
     padding-top: 80px;
 }
+
+#PanelBases{
+    background: #383838;
+}
+
+#selector{
+    background: blue;
+    color: white;
+}
