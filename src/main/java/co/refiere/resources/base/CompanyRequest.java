@@ -8,6 +8,7 @@ public class CompanyRequest {
 
     @XmlElement(name="UserRequest", type=UserRequest.class)
     private UserRequest user;
+    private int companyId;
     private String name;
     private String address;
     private String email;
@@ -15,6 +16,12 @@ public class CompanyRequest {
     @XmlElement(name="PlanRequest", type=PlanRequest.class)
     private PlanRequest plan;
 
+    public int getCompanyId() {
+        return companyId;
+    }
+    public void setCompanyId(int id) {
+        this.companyId = id;
+    }
     public String getName() {
         return name;
     }

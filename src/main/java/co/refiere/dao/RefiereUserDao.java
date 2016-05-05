@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import co.refiere.models.CompanyDatabase;
 import co.refiere.models.SimpleUser;
 import co.refiere.models.SimpleUserHome;
 import co.refiere.resources.util.HibernateUtil;
@@ -36,29 +37,26 @@ public class RefiereUserDao extends SimpleUserHome {
         persist(user);
         trans.commit();
     }
-    
+
     public void deleteUser(SimpleUser user){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
         delete(user);
         trans.commit();
     }
-    
-    public SimpleUser findUserByid(int id){
+
+    public SimpleUser findUserById(int userId) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        SimpleUser instance = session.load(SimpleUser.class, id);
-        instance.getUserRoles();
-        instance.getUserRoles().getDescription();
-        instance.getUserRoles().getRoleIdentifier();
-        instance.getUserCompanies();
+        SimpleUser dataBase = session.get(SimpleUser.class, userId);
         trans.commit();
-        return instance;
+        return dataBase;
     }
+
     public SimpleUser findByLogin(String login) {
         log.debug("getting RefiereUser instance with login: " + login);
         try {
-            Session session = sessionFactory.getCurrentSession();
+            Session session = sessionFactory.openSession();
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
@@ -71,7 +69,6 @@ public class RefiereUserDao extends SimpleUserHome {
                 log.debug("get successful, no instance found");
             } else {
                 log.debug("get successful, instance found");
-                return findUserByid(instance.getId());
             }
             return instance;
         } catch (RuntimeException re) {

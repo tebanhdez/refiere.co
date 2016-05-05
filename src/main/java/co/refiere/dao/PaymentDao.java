@@ -30,4 +30,19 @@ public class PaymentDao extends PaymentHome {
         persist(payment);
         trans.commit();
     }
+
+    public void deletePayment(Payment payment){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(payment);
+        trans.commit();
+    }
+
+    public Payment findPaymentById(int id){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        Payment instance = session.get(Payment.class, id);
+        trans.commit();
+        return instance;
+    }
 }

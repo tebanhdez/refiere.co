@@ -2,6 +2,7 @@ package co.refiere.services.mailer;
 
 
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -19,8 +20,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import co.refiere.resources.base.EmailRequest;
+import co.refiere.resources.util.RefiereInterceptor;
+
 public class MailService{
 
+    private static final Log log = LogFactory.getLog(RefiereInterceptor.class);
     static Properties mailServerProperties;
     static Session getMailSession;
 
@@ -68,5 +76,26 @@ public class MailService{
         transport.connect(mailServerProperties.getProperty("refiere.email.server"), mailServerProperties.getProperty("refiere.email.user"), mailServerProperties.getProperty("refiere.email.password"));
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
+    }
+    
+
+    public void emailWorker(final List<EmailRequest> emailRequests) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(EmailRequest request : emailRequests){
+                    try {
+                        log.info("[BACKGROUND PROCESS]::emailWorker");
+                        log.info(emailRequests.toString());
+                        generateAndSendEmail(request.getRecipientAsArray(),
+                                request.getSubject(),
+                                request.getBody(),
+                                request.getAttachmentsAsArray());
+                    } catch (MessagingException exception) {
+                        log.error(exception);
+                    }
+                }
+            }
+        }).start();
     }
 }

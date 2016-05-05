@@ -64,4 +64,11 @@ public class RefiereCompanyDao extends CompanyHome {
             throw re;
         }
     }
+
+    public void deleteCompany(Company company) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans = session.beginTransaction();
+        delete(company);
+        trans.commit();
+    }
 }

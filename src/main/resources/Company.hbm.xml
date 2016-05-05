@@ -26,13 +26,13 @@
             </key>
             <one-to-many class="co.refiere.models.Campaign" />
         </set>
-        <set name="planOrders" table="plan_order" inverse="true" lazy="true" fetch="select">
+        <set name="planOrders" table="plan_order" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="company_id" />
             </key>
             <one-to-many class="co.refiere.models.PlanOrder" />
         </set>
-        <set name="userCompanies" table="user_company" inverse="true" lazy="true" fetch="select">
+        <set name="userCompanies" table="user_company" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="company_id" />
             </key>

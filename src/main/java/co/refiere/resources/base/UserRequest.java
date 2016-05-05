@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="UserRequest")
 public class UserRequest {
-    private Long id;
+    private int id;
     private String login;
     private String password;
 
@@ -22,5 +22,13 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

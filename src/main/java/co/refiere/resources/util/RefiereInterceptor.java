@@ -1,16 +1,26 @@
 package co.refiere.resources.util;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.CallbackException;
 import org.hibernate.EmptyInterceptor;
+import org.hibernate.ScrollMode;
+import org.hibernate.ScrollableResults;
+import org.hibernate.StatelessSession;
 import org.hibernate.type.Type;
 
+import co.refiere.dao.PersonDao;
+import co.refiere.models.Campaign;
 import co.refiere.models.Company;
+import co.refiere.models.Person;
+import co.refiere.resources.base.EmailRequest;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class RefiereInterceptor extends EmptyInterceptor {
@@ -48,7 +58,51 @@ public class RefiereInterceptor extends EmptyInterceptor {
                 }
             }
         }
-        return false;
 
+        if(entity instanceof Campaign){
+            Campaign campaign = (Campaign) entity;
+            int dataBase = campaign.getCompanyDatabase().getId();
+            String query = "from Person where company_database_id = %d";
+            PersonDao personDao = new PersonDao();
+            StatelessSession statelessSession = personDao.getStatelessSession();
+            statelessSession.beginTransaction();
+            try {
+                ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase)).scroll(ScrollMode.FORWARD_ONLY);
+
+                int CHUNK_SIZE = 100;
+                List<EmailRequest> campaignTargets = new ArrayList<>(); 
+                while (scrollableResults.next()) {
+                    Object personObj = scrollableResults.get()[0];
+                    Person person = (Person) personObj;
+                    List<String> recipients = new ArrayList<>();
+                    recipients.add(person.getEmail());
+                    List<String> attachmentsFilesPaths = new ArrayList<>();
+                    EmailRequest request = new EmailRequest();
+                    request.setSubject("Email PipeLine Test");
+                    request.setRecipients(recipients);
+                    request.setBody("<h1>-- INSERT CODE HERE!! --</h1>");
+                    request.setAttachments(attachmentsFilesPaths);
+                    campaignTargets.add(request);
+                    if(campaignTargets.size() == CHUNK_SIZE){
+                        log.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
+                        RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
+                        campaignTargets.clear();
+                    }
+                }
+                if(campaignTargets.size() > 0){
+                    log.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
+                    RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
+                }
+            statelessSession.getTransaction().commit();
+        } finally {
+            try{
+                statelessSession.close();
+            }catch (org.hibernate.SessionException exception) {
+                log.error(exception.getMessage());
+            }
+        }
     }
+    return false;
+
+}
 }

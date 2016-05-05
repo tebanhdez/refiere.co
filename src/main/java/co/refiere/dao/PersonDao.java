@@ -4,17 +4,24 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
+
+import co.refiere.models.Currency;
+import co.refiere.models.Person;
+import co.refiere.models.PersonHome;
+import co.refiere.models.Prize;
+import co.refiere.resources.util.HibernateUtil;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.Person;
 import co.refiere.models.PersonHome;
 import co.refiere.resources.util.HibernateUtil;
 
+
 public class PersonDao extends PersonHome {
-
-	private static final Log log = LogFactory.getLog(PersonDao.class);
+    
+    private static final Log log = LogFactory.getLog(PersonDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
-
 
     @Override
     public SessionFactory getSessionFactory(){
@@ -25,20 +32,23 @@ public class PersonDao extends PersonHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
+
+    public StatelessSession getStatelessSession(){
+        return sessionFactory.openStatelessSession();
+    }
     
-    public void save(Person user){
-        log.debug("saving RefiereUser");
-        try {
-            Session session = sessionFactory.openSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            session.persist(user);
-            trans.commit();
-            log.debug("persist successful");
-        } catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
+    public void save(Person person){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        persist(person);
+        trans.commit();
+    }
+    
+    public Person findPersonsByDatabaseId(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        Person instance = findById(id);
+        trans.commit();
+        return instance;
     }
 }

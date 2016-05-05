@@ -17,9 +17,9 @@
             </key>
             <one-to-many class="co.refiere.models.Campaign" />
         </set>
-        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
+        <set name="persons" table="person" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
-                <column name="company_database_id" />
+                <column name="company_database_id"/>
             </key>
             <one-to-many class="co.refiere.models.Person" />
         </set>

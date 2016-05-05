@@ -20,41 +20,41 @@ import co.refiere.resources.base.NewUserRequest;
 
 public class RedeemCodeResourceTest extends JerseyTest {
      
-	private int databaseId;
-	
-	@Override
-	  protected Application configure() {
-	    return new ResourceConfig(RedeemCodeResource.class);
-	  }
-	
-	 @Before
-	 public void createTestData(){
-		 CompanyDatabase companyData = new CompanyDatabase();
-		 companyData.setName("testCompany");
-		 CompanyDatabaseDao companyDataBase = new CompanyDatabaseDao();
-		 companyDataBase.save(companyData);
-		 databaseId = companyData.getId();
+    private int databaseId;
+    
+    @Override
+      protected Application configure() {
+        return new ResourceConfig(RedeemCodeResource.class);
+      }
+    
+     @Before
+     public void createTestData(){
+         CompanyDatabase companyData = new CompanyDatabase();
+         companyData.setName("testCompany");
+         CompanyDatabaseDao companyDataBase = new CompanyDatabaseDao();
+         companyDataBase.save(companyData);
+         databaseId = companyData.getId();
          Assert.assertNotNull(databaseId);
          
          Campaign campaign = new Campaign();
- 		 campaign.setName("test campaig name");
- 		 campaign.setCompanyDatabase(companyData);
- 		 CampaingDao campaingDao = new CampaingDao();
- 		 campaingDao.save(campaign);
-	 }
-	
-	 
-	  @Test
-	  public void testGetIt() {
-	    NewUserRequest newUserRequest = new NewUserRequest();
-	    newUserRequest.setCampaignId(databaseId); 
-	    newUserRequest.setReferalPersonId(2);
-	    newUserRequest.setIdentificationCardNumber("1274563495");
-	    newUserRequest.setName("User Test Name");
-	    newUserRequest.setLastName("Last-name");
-	    newUserRequest.setEmail("email@test.com");
-	    newUserRequest.setPhoneNumber("89898989");
-		Response response = target().path("v1/redeemCode/registerUser").request().post(Entity.json(newUserRequest));
-	    assertEquals(200, response.getStatus());
-	  }
+         campaign.setName("test campaig name");
+         campaign.setCompanyDatabase(companyData);
+         CampaingDao campaingDao = new CampaingDao();
+         campaingDao.save(campaign);
+     }
+    
+     
+      @Test
+      public void testGetIt() {
+        NewUserRequest newUserRequest = new NewUserRequest();
+        newUserRequest.setCampaignId(databaseId); 
+        newUserRequest.setReferalPersonId(2);
+        newUserRequest.setIdentificationCardNumber("1274563495");
+        newUserRequest.setName("User Test Name");
+        newUserRequest.setLastName("Last-name");
+        newUserRequest.setEmail("email@test.com");
+        newUserRequest.setPhoneNumber("89898989");
+        Response response = target().path("v1/redeemCode/registerUser").request().post(Entity.json(newUserRequest));
+        assertEquals(200, response.getStatus());
+      }
 }
