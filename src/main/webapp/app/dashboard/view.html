@@ -1,19 +1,16 @@
-<section id="container-full">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header"
-				ui-view="header">
-			</div>
-		</div>
-	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3 col-md-1 sidebar" 
-				ui-view="sidebar">
-			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content" 
-				ui-view="content">
-			</div>
-		</div>
-	</div>
-</section>
+<header></header>
+<div id="sidebar" class="nav-collapse ">
+  <ul class="sidebar-menu" id="nav-accordion">
+    <p class="centered"><img src="images/refiere_logo.png" class="img-circle" width="60"></p>
+    <h5 class="centered">Jorge L&oacute;pez</h5>
+    <li ng-repeat="tab in tabs" class="sub-menu">
+      <a ui-sref="{{tab.state}}">
+        <i class="fa {{tab.icon}}"></i>
+        <span>{{tab.title}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div ui-sref="dashboard.database"></div>
+<div class="dashboard-container" ui-view></div>
+

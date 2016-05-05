@@ -7,29 +7,18 @@
 
   function setupRoutes($stateProvider) {
     $stateProvider
-      .state('app', {
-        url: '/app',
-        abstract : true,
-        template : '<div ui-view></div>'
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'app/dashboard/view.html',
+        controller: 'DashboardCtrl'
       })
-      .state('app.dashboard', {
-      url: '/dashboard',
-      views: {
-        '': {
-          templateUrl: 'app/dashboard/view.html'
-        },
-        'header@app.dashboard': {
-          templateUrl: 'app/dashboard/header/view.html'
-        },
-        'sidebar@app.dashboard': {
-          templateUrl: 'app/dashboard/sidebar/view.html',
-          controller: 'SidebarCtrl as sidebar'
-        },
-        'content@app.dashboard': {
-          templateUrl: 'app/dashboard/views/campaign/view.html',
-          controller: 'CampaignCtrl as campaign'
-        },
-      }
-    });
+      .state('dashboard.campaign', {
+        url: '/campaign',
+        templateUrl: 'app/dashboard/views/campaign/view.html',
+      })
+      .state('dashboard.database', {
+        url: '/database',
+        templateUrl:'app/dashboard/views/database/view.html'
+      });
   }
 })();
