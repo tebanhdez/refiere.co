@@ -16,8 +16,8 @@
       icon: 'fa-dashboard'
     },{
       title: 'Métricas',
-      state: 'home',
-      icon: 'fa-bar-chart-o'
+      state: 'dashboard.metrics',
+      icon: 'fa-dashboard'
     },{
       title: 'Base de datos',
       state: 'dashboard.database',

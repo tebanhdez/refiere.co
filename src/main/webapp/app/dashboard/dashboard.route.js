@@ -16,9 +16,13 @@
         url: '/campaign',
         templateUrl: 'app/dashboard/views/campaign/view.html',
       })
+      .state('dashboard.metrics', {
+        url: '/metrics',
+        templateUrl: 'app/dashboard/views/metrics/view.html',
+      })
       .state('dashboard.database', {
         url: '/database',
-        templateUrl:'app/dashboard/views/database/view.html'
+        templateUrl:'app/dashboard/views/database/view.html',
       });
   }
 })();

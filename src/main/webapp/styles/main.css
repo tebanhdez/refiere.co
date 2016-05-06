@@ -126,6 +126,19 @@ body {
 }
 
 
+.panel-primary{
+	border-color:#337ab7;
+}
+
+.panel-green{
+	border-color:#5cb85c;
+}
+
+.panel-yellow{
+	border-color:#f0ad4e;
+}
+
+
 
 /*sidebar navigation*/
 

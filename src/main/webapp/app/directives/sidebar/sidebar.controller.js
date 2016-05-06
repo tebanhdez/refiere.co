@@ -12,15 +12,15 @@
     $scope.selectedOption = "";
     $scope.tabs = [{
       title: 'Campaña',
-      state: 'campaign',
+      state: 'dashboard.campaign',
       icon: 'fa-dashboard'
     },{
       title: 'Métricas',
-      state: 'home',
+      state: 'dashboard.metrics',
       icon: 'fa-bar-chart-o'
     },{
       title: 'Base de datos',
-      state: 'database',
+      state: 'dashboard.database',
       icon: 'fa-tasks'
     },{
       title: 'Noticias',
