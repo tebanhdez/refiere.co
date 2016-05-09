@@ -21,14 +21,14 @@
         .then(function(data) {
           console.log(data.status);
           if (data.status === 200){
-            $window.alert("Bienvenido " + vm.newCompanyData.UserRequest.login + "." );
+            $window.alert('Bienvenido ' + vm.newCompanyData.UserRequest.login + '.' );
             $state.go('app.dashboard');
           }
           else if (data.status === 400){
-            $window.alert("Por favor ingrese los datos correctos." );
+            $window.alert('Por favor ingrese los datos correctos.');
           }
           else{
-            $window.alert("Ocurrió un error con la conexión" );
+            $window.alert('Ocurrió un error con la conexión');
           }
         })
         .catch(function(error) {

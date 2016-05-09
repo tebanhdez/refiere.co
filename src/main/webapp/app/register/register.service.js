@@ -14,6 +14,6 @@
 
     function postCompanyInfo(data) {
       return $http.post('http://localhost:5000/rest/v1/company/register', data);
-    };
+    }
   }
 })();

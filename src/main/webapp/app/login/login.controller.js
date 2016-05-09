@@ -5,10 +5,10 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv'];
+  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv) {
+  function LoginCtrl($state, LoginSrv, $window) {
     var vm = this;
 
     vm.loginData = {};
@@ -25,10 +25,10 @@
             $state.go('app.dashboard');
           }
           else if (data.status === 400){
-            $window.alert("Por favor ingrese los datos correctos." );
+            $window.alert('Por favor ingrese los datos correctos.');
           }
           else{
-            $window.alert("Ocurrió un error con la conexión" );
+            $window.alert('Ocurrió un error con la conexión');
           }
         })
         .catch(function(error) {
