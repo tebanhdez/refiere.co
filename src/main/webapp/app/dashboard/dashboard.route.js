@@ -20,6 +20,10 @@
         url: '/metrics',
         templateUrl: 'app/dashboard/views/metrics/view.html',
       })
+      .state('dashboard.news', {
+        url: '/news',
+        templateUrl: 'app/dashboard/views/metrics/view.html',
+      })
       .state('dashboard.database', {
         url: '/database',
         templateUrl:'app/dashboard/views/database/view.html',

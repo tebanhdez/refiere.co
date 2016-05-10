@@ -24,7 +24,7 @@
       icon: 'fa-tasks'
     },{
       title: 'Noticias',
-      state: 'home',
+      state: 'dashboard.news',
       icon: 'fa-book'
     },{
       title: 'Reportes',
