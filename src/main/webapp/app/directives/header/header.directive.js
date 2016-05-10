@@ -9,7 +9,7 @@
       restrict: 'E',
       templateUrl: 'app/directives/header/view.html',
     };
-
+  
     return directive;
   }
 
