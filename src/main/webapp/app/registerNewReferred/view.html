@@ -1,0 +1,68 @@
+<!-- Header -->
+<header id="top" class="header_ladingpage">
+    <div class="text-vertical-center">
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+        <div class="col-xs-10 col-sm-6 col-md-6">
+            <!--<img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">-->
+            <form submit="vm.saveNewReferred()" name="newReferredForm">
+                <input type="text" class="form-control"
+                       ng-model="vm.newReferredData.identificationCardNumber"
+                       placeholder="Identificación"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newReferredData.name"
+                       placeholder="Nombre"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newReferredData.lastName"
+                       placeholder="Apellido"
+                       required>
+                <input type="email" class="form-control"
+                       ng-model="vm.newReferredData.email"
+                       placeholder="Correo Electrónico"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newReferredData.phoneNumber"
+                       placeholder="Telefóno"
+                       required>
+                <button type="button" class="btn btn-primary btn-block button-block"
+                        ng-click="vm.saveNewReferred()"
+                        ng-disabled="newReferredForm.$invalid">
+                    Registrar Referido
+                </button>
+            </form>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+    </div>
+</header>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Refiere.co</strong>
+                </h4>
+                <p>San Jos&eacute; <br>Costa Rica</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; Refiere.co 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>

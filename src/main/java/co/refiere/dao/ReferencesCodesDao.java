@@ -33,5 +33,11 @@ public class ReferencesCodesDao extends ReferencesCodesHome {
 		trans.commit();
 	}
 
+	public void deleteReferencesCodes(ReferencesCodes referencesCodes) {
+		Session session = sessionFactory.getCurrentSession();
+		org.hibernate.Transaction trans= session.beginTransaction();
+		delete(referencesCodes);
+		trans.commit();
+	}
 }
 

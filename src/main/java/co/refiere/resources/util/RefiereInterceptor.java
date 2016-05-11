@@ -43,7 +43,9 @@ public class RefiereInterceptor extends EmptyInterceptor {
 	}
 
 	public String getStringfontTemplate(String fileName){
-		File file = new File(fileName);
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		File file = new File(classloader.getResource(fileName).getFile());
+
 		String stringFile = "";
 		try {
 			stringFile = FileUtils.readFileToString(file);
@@ -68,7 +70,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
 				try {
 					RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
 							"Bienvenido a Refiere.co",
-							getStringfontTemplate("RefiereTemplateCode.html"), attachments);
+							getStringfontTemplate("RefiereTemplateInvoice.html"), attachments);
 				} catch (MessagingException e) {
 					log.error("ERROR: RefiereInterceptor::Sending email", e);
 				}
