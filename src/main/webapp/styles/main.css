@@ -142,7 +142,7 @@ body {
 
 /*sidebar navigation*/
 
-.sidebar {
+#sidebar {
     width: 210px;
     height: 100%;
     position: fixed;
@@ -201,7 +201,7 @@ ul.sidebar-menu {
 }
 
 #sidebar > ul > li > ul.sub {
-    display: block;
+    display: none;
 }
 
 #sidebar > ul > li.active > ul.sub, #sidebar > ul > li > ul.sub > li > a {
@@ -264,7 +264,7 @@ ul.sidebar-menu li a span{
 }
 
 ul.sidebar-menu li a{
-    color: #0d5696;;
+    color: #fff;
     text-decoration: none;
     display: block;
     padding: 15px 0 15px 10px;
@@ -288,30 +288,18 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-.sidebar .dashboard-menu ul.menu-list li.active {
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-.sidebar .dashboard-menu ul.menu-list li {
-    height: 43px;
-    display: block;
-    width: 100%;
-    float: left;
-    position: relative;
-}
 
 ul.sidebar-menu li a i {
     font-size: 15px;
     padding-right: 6px;
 }
 
-ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
-    color: #0d5696;
+.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
+    color: #fff;
 }
 
-ul.sidebar-menu li a.active i {
-    color: #0d5696;
+.sidebar-menu li a.active i {
+    color: #fff;
 }
 
 

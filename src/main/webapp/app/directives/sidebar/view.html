@@ -1,14 +1,14 @@
-<aside class="sidebar">
-	<p class="top-logo"><img src="images/refiere_logo.png" class="img-circle" width="60"></p>
-	<h5 class="centered">Jorge L&oacute;pez</h5>
- 	<div class="dashboard-menu" class="nav-collapse ">
-  		<ul class="menu-list" id="nav-accordion"> 
-   	 		<li ng-repeat="tab in tabs" class="sub-menu" ng-class="{active: $state.includes('{{tab.state}}')}">
-    	  		<a ng-transclude ui-sref="{{tab.state}}">
-        			<i class="fa {{tab.icon}}"></i>
-        			<span>{{tab.title}}</span>
-      			</a>
-    				</li>
-  		</ul>
-	</div>
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <ul class="sidebar-menu" id="nav-accordion">
+            <p class="centered"><img src="images/refiere_logo.png" class="img-circle" width="60"></p>
+            <h5 class="centered">Jorge L&oacute;pez</h5>
+            <li ng-repeat="tab in tabs" class="sub-menu">
+                <a ui-sref="{{tab.state}}">
+                    <i class="fa {{tab.icon}}"></i>
+                    <span>{{tab.title}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </aside>
