@@ -404,6 +404,7 @@ ul.top-menu > li > .logout:hover {
 #panelPosition{
     position: relative;
     top: 200px;
+    left: 200px;
 }
 
 .content {
