@@ -10,12 +10,14 @@ import co.refiere.dao.RefiereCompanyDao;
 import co.refiere.dao.RefierePlanDao;
 import co.refiere.dao.RefiereUserCompanyRelationDao;
 import co.refiere.dao.RefiereUserDao;
+import co.refiere.dao.RoleDao;
 import co.refiere.models.Company;
 import co.refiere.models.OrderStatus;
 import co.refiere.models.Plan;
 import co.refiere.models.PlanOrder;
 import co.refiere.models.SimpleUser;
 import co.refiere.models.UserCompany;
+import co.refiere.models.UserRoles;
 import co.refiere.resources.base.CompanyRequest;
 import co.refiere.resources.base.PlanRequest;
 
@@ -28,6 +30,9 @@ public class CompanyService {
         SimpleUser user = new SimpleUser();
         user.setLogin(company.getUser().getLogin());
         user.setPassword(company.getUser().getPassword());
+        RoleDao roleDao = new RoleDao();
+        UserRoles roleID = roleDao.findByRoleId(11);
+        user.setUserRoles(roleID);
 
         //Creating company
         RefiereCompanyDao companyDao = new RefiereCompanyDao();

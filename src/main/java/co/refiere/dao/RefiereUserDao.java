@@ -10,6 +10,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 import co.refiere.models.CompanyDatabase;
 import co.refiere.models.SimpleUser;
 import co.refiere.models.SimpleUserHome;
+import co.refiere.models.UserRoles;
 import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereUserDao extends SimpleUserHome {
@@ -44,7 +45,7 @@ public class RefiereUserDao extends SimpleUserHome {
         delete(user);
         trans.commit();
     }
-
+    
     public SimpleUser findUserById(int userId) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
@@ -69,6 +70,8 @@ public class RefiereUserDao extends SimpleUserHome {
                 log.debug("get successful, no instance found");
             } else {
                 log.debug("get successful, instance found");
+                UserRoles roles = instance.getUserRoles();
+                System.out.println("UserRoles: " + roles.getDescription());
             }
             return instance;
         } catch (RuntimeException re) {

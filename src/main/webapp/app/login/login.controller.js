@@ -5,10 +5,10 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window'];
+  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window', '$base64'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv, $window) {
+  function LoginCtrl($state, LoginSrv, $window, $base64) {
     var vm = this;
 
     vm.loginData = {};
@@ -16,10 +16,15 @@
 
     function login() {
       console.log(vm.loginData);
+      var userDataString = vm.loginData.username + ':' + vm.loginData.password;
+      console.log(userDataString);
+      var encodedData = $base64.encode(userDataString);
+      console.log(encodedData);
 
       LoginSrv.verifyUser(vm.loginData)
         .then(function(data) {
           console.log(data.status);
+
           if (data.status === 200){
             // $window.alert("Bienvenido " + vm.newCompanyData.UserRequest.login + "." );
             $state.go('app.dashboard');

@@ -42,7 +42,6 @@ public class AuthenticationResourceTest extends JerseyTest{
         
         RefiereUserDao refiereUserDao = new RefiereUserDao();
         //refiereUserDao.save(user);
-        
     }
 
     @Test
