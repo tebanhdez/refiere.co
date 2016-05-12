@@ -61,7 +61,7 @@ public class CampaignResourceTest extends JerseyTest {
             personTest.setName("CampaignResourceTest::settingTestData::Name");
             personTest.setLastName("CampaignResourceTest::settingTestData::LastName");
             personTest.setPhoneNumber("+000999999999");
-            personTest.setEmail("jehehe1@gmail.com");
+            personTest.setEmail("jfernandez@pernix-solutions.com");
             personTest.setCompanyDatabase(dataBase);
             personDao.save(personTest);
         }

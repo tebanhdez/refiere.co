@@ -13,7 +13,7 @@ import org.junit.Test;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
-private final String [] EMAIL_ADDRESS_TEST = {"jehehe@gmail.com"};
+private final String [] EMAIL_ADDRESS_TEST = {"jfernandez@pernix-solutions.com"};
     
 	@Ignore
     @Test
@@ -26,7 +26,7 @@ private final String [] EMAIL_ADDRESS_TEST = {"jehehe@gmail.com"};
         String [] attachments = {temp1.getAbsolutePath(), temp2.getAbsolutePath()};
         RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test 2 Attachments", "<h1>Testing mail</h1>", attachments);
     }
-    @Ignore
+
     @Test
     public void testGetMailServiceNoAttachments() throws AddressException, MessagingException, IOException {
         String [] attachments = {};

@@ -6,5 +6,6 @@
       'refiereApp.chore',
       'refiereApp.dashboard',
       'refiereApp.login',
+      'refiereApp.registerNewReferred',
       'ui.router']);
 })();

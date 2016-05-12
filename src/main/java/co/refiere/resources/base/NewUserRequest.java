@@ -3,6 +3,7 @@ package co.refiere.resources.base;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+
 public class NewUserRequest {
 
 	 	private int campaignId;
@@ -10,7 +11,10 @@ public class NewUserRequest {
 	    private String identificationCardNumber;
 	    private String name;
 	    private String lastName;
-	    private String email;
+        private String email;
+	    private String phoneNumber;
+
+
 	    
 	    public int getCampaignId() {
 			return campaignId;
@@ -54,5 +58,18 @@ public class NewUserRequest {
 		public void setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
-		private String phoneNumber;
+
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "NewUserRequest{" +
+                "campaignId=" + campaignId +
+                ", referalPersonId=" + referalPersonId +
+                ", identificationCardNumber='" + identificationCardNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
