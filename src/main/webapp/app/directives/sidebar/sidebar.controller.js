@@ -5,27 +5,37 @@
     .module('refiereApp.dashboard')
     .controller('SidebarCtrl', SidebarCtrl);
 
-  function SidebarCtrl() {
-    this.tabs = [{
+  SidebarCtrl.$inject = ['$scope'];
+
+  function SidebarCtrl($scope) {
+
+    $scope.selectedOption = "";
+    $scope.tabs = [{
       title: 'Campaña',
-      state: 'home',
+      state: 'dashboard.campaign',
       icon: 'fa-dashboard'
     },{
       title: 'Métricas',
-      state: 'home',
+      state: 'dashboard.metrics',
       icon: 'fa-bar-chart-o'
     },{
       title: 'Base de datos',
-      state: 'home',
+      state: 'dashboard.database',
       icon: 'fa-tasks'
     },{
       title: 'Noticias',
-      state: 'home',
+      state: 'dashboard.news',
       icon: 'fa-book'
     },{
       title: 'Reportes',
       state: 'home',
       icon: 'fa-cogs'
     }];
+
+
+  $scope.getOptionSelected = function(selected){
+    $scope.seletedOption = selected;
+    console.log(selected);
+  };
   }
 })();

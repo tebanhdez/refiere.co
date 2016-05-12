@@ -126,6 +126,19 @@ body {
 }
 
 
+.panel-primary{
+	border-color:#337ab7;
+}
+
+.panel-green{
+	border-color:#5cb85c;
+}
+
+.panel-yellow{
+	border-color:#f0ad4e;
+}
+
+
 
 /*sidebar navigation*/
 
@@ -196,7 +209,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li ul.sub li{
-    background: #424a5d;
+    background: #0d5696;;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -221,7 +234,7 @@ ul.sidebar-menu li ul.sub li a {
 }
 
 ul.sidebar-menu li ul.sub li a:hover {
-  color: white;
+  color: #0d5696;
   background: transparent;
 }
 
@@ -251,7 +264,7 @@ ul.sidebar-menu li a span{
 }
 
 ul.sidebar-menu li a{
-    color: #aeb2b7;
+    color: #fff;
     text-decoration: none;
     display: block;
     padding: 15px 0 15px 10px;
@@ -266,9 +279,9 @@ ul.sidebar-menu li a{
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #b86e28;
-    color: #fff;
+    color: #0d5696;
     display: block;
-
+	position: relative;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -276,17 +289,16 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     transition: all 0.3s ease;
 }
 
-
 ul.sidebar-menu li a i {
     font-size: 15px;
     padding-right: 6px;
 }
 
-ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
+.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
     color: #fff;
 }
 
-ul.sidebar-menu li a.active i {
+.sidebar-menu li a.active i {
     color: #fff;
 }
 
@@ -376,5 +388,33 @@ ul.top-menu > li > .logout {
   margin-right: 15px;
   background: #b86e28;
   margin-top: 15px;
-  
+}
+
+ul.top-menu > li > .logout:hover {
+  background: #9d5627;
+    border: 1px solid #5f3b13 !important;
+}
+
+#Panel{
+    color:white;
+    text-align: center;
+    background: #b86e28;
+    font-size: 16px;
+}
+#panelPosition{
+    position: relative;
+    top: 200px;
+}
+
+.content {
+    padding-top: 80px;
+}
+
+#PanelBases{
+    background: #383838;
+}
+
+#selector{
+    background: blue;
+    color: white;
 }

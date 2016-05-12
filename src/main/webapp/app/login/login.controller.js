@@ -10,7 +10,7 @@
     vm.login = login;
 
     function login() {
-      $state.go('app.dashboard');
+      $state.go('dashboard');
     }
   }
 })();
