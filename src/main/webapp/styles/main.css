@@ -438,12 +438,13 @@ ul.top-menu > li > .logout:hover {
     margin-right: -15px;
     margin-left: -15px;
     position: relative;
-    top: 200px;
+    top: 100px;
     left: 250px;
-    width: 800px;
+    width: 1300px;
+    
 }
 #PanelMetricsContainer {
-    width: 30%;
+    width: 25%;
 }
 .dashboard-stat {
     display: block;
@@ -452,8 +453,8 @@ ul.top-menu > li > .logout:hover {
     border-radius: 4px;
 }
 .dashboard-stat .visual {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 130px;
     display: block;
     float: left;
     padding-top: 10px;
@@ -464,7 +465,7 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat.blue .visual>i {
     color: #FFF;
-    opacity: .1;
+    opacity: 0.3;
 }
 .dashboard-stat .visual>i {
     margin-left: -35px;
@@ -490,11 +491,11 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat.blue .details .desc {
     color: #FFF;
-    opacity: 1;
+    opacity: 0.3;
 }
 .dashboard-stat .details .desc {
     text-align: right;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 0;
     font-weight: 300;
 }
@@ -522,7 +523,7 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat.red .visual>i {
     color: #fff;
-    opacity: .1;
+    opacity: 0.3;
 }
 .dashboard-stat.red .more {
     color: #fff;
@@ -533,7 +534,7 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat.green .visual>i {
     color: #FFF;
-    opacity: .1;
+    opacity: 0.3;
 }
 .dashboard-stat.green .more {
     color: #FFF;
@@ -544,11 +545,56 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat.purple .visual>i {
     color: #fff;
-    opacity: .1;
+    opacity: 0.3;
 }
 .dashboard-stat.purple .more {
     color: #fff;
     background-color: #823e9e;
+}
+.dashboard-stat.bronw .more {
+    color: #fff;
+    background-color: #61210B;
+}
+.dashboard-stat.bronw{
+    background-color: #61210B;
+}
+.dashboard-stat.bronw .visual>i {
+    color: #fff;
+    opacity: 0.3;
+}
+.dashboard-stat.orange {
+    background-color: #faac58;
+}
+.dashboard-stat.orange .visual>i {
+    color: #fff;
+    opacity: 0.3;
+}
+.dashboard-stat.orange .more {
+    color: #fff;
+    background-color: #faac58;
+}
+
+.dashboard-stat.grey {
+    background-color: #424242;
+}
+.dashboard-stat.grey .visual>i {
+    color: #fff;
+    opacity: 0.3;
+}
+.dashboard-stat.grey .more {
+    color: #fff;
+    background-color: #424242;
+}
+.dashboard-stat.yellow {
+    background-color: #868A08;
+}
+.dashboard-stat.yellow .visual>i {
+    color: #fff;
+    opacity: 0.3;
+}
+.dashboard-stat.yellow .more {
+    color: #fff;
+    background-color: #868A08;
 }
 #nameMetrics{
 	color: #fff;
