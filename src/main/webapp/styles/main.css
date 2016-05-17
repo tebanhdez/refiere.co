@@ -9,6 +9,21 @@ body {
   padding: 0;
 }
 
+.btn-plan {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.btn-margin {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.div-block {
+  display: inline-block;
+  width: 100%;
+  word-wrap: break-word;
+}
 
 .header_ladingpage {
     display: table;

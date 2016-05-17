@@ -88,7 +88,7 @@ public class PlanHome {
     public Plan findById(int id) {
         log.debug("getting Plan instance with id: " + id);
         try {
-            Plan instance = (Plan) sessionFactory.getCurrentSession().get("co.refiere.models.Plan", id);
+            Plan instance = (Plan) sessionFactory.getCurrentSession().get(Plan.class, id);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {

@@ -11,9 +11,14 @@
   function RegisterSrv($http) {
 
     this.postCompanyInfo = postCompanyInfo;
+    this.getPlansFromServer = getPlansFromServer;
 
     function postCompanyInfo(data) {
       return $http.post('http://localhost:5000/rest/v1/company/register', data);
+    }
+
+    function getPlansFromServer(data) {
+      return $http.get('http://localhost:5000/rest/v1/plan/all', data);
     }
   }
 })();

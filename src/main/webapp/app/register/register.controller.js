@@ -13,6 +13,17 @@
 
     vm.newCompanyData = {};
     vm.saveNewCompany = saveNewCompany;
+    vm.plans = {};
+
+    getPlans();
+
+    function getPlans() {
+      RegisterSrv.getPlansFromServer()
+        .then(function(plansData){
+          vm.plans = plansData.data;
+          console.log(vm.plans);
+        })
+    }
 
     function saveNewCompany() {
       console.log(vm.newCompanyData);

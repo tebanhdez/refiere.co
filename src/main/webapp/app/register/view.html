@@ -29,28 +29,24 @@
                            ng-model="vm.newCompanyData.telephone"
                            placeholder="Teléfono"
                            required>
-        <div class="button-submit">
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <button type="button" class="btn btn-default"
-                                ng-click="vm.newCompanyData.PlanRequest.id=0">
-          0
-          </button>
+        <div class="button-submit btn-margin">
+          <h3>Seleccione un plan: </h3>
+          <div class="col-md-4" ng-repeat="plan in vm.plans">
+            <button type="button" class="btn btn-default btn-plan div-block"
+                                  ng-click="vm.newCompanyData.PlanRequest.id=plan.planId">
+              - {{plan.name}}
+              <br>
+              - {{plan.campaignPeriodicity}}
+              <br>
+              - {{plan.planPrice}}
+              <br>
+              - {{plan.reportsPeriodicity}}
+            </button>
+          </div>
+          <h3>.</h3>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <button type="button" class="btn btn-default"
-                                ng-click="vm.newCompanyData.PlanRequest.id=1">
-          1
-          </button>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <button type="button" class="btn btn-default"
-                                ng-click="vm.newCompanyData.PlanRequest.id=2">
-          2
-          </button>
-        </div>
-      </div>
-        <br><br><br>
-        <button type="button" class="btn btn-primary btn-block button-block"
+
+        <button type="button" class="btn btn-primary btn-block button-block btn-margin"
                               ng-click="vm.saveNewCompany()"
                               ng-disabled="newCompanyForm.$invalid">
         Register Company
