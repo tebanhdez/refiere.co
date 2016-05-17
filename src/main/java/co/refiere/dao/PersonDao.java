@@ -44,7 +44,7 @@ public class PersonDao extends PersonHome {
         trans.commit();
     }
     
-    public Person findPersonsByDatabaseId(int id) {
+    public Person findPersonsById(int id) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
         Person instance = findById(id);
