@@ -32,15 +32,35 @@
         <div class="button-submit btn-margin">
           <h3>Seleccione un plan: </h3>
           <div class="col-md-4" ng-repeat="plan in vm.plans">
-            <button type="button" class="btn btn-default btn-plan div-block"
+            <button
                                   ng-click="vm.newCompanyData.PlanRequest.id=plan.planId">
-              - {{plan.name}}
-              <br>
-              - {{plan.campaignPeriodicity}}
-              <br>
-              - {{plan.planPrice}}
-              <br>
-              - {{plan.reportsPeriodicity}}
+              <table class="div-block">
+                <tr>
+                  <td><b>- {{plan.name}}</b></td>
+                </tr>
+                <tr class="div-block">
+                  <td>- {{plan.campaignPeriodicity}}</td>
+                </tr>
+                <tr>
+                  <td>- {{plan.planPrice}}</td>
+                </tr>
+                <tr>
+                  <td>- {{plan.reportsPeriodicity}}</td>
+                </tr>
+              </table>
+
+              <!-- <p class="data-base-string">
+                - {{plan.name}}
+              </p>
+              <p class="data-base-string">
+                - {{plan.campaignPeriodicity}}
+              </p>
+              <p class="data-base-string">
+                - {{plan.planPrice}}
+              </p>
+              <p class="data-base-string">
+                - {{plan.reportsPeriodicity}}
+              </p> -->
             </button>
           </div>
           <h3>.</h3>

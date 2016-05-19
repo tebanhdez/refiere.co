@@ -19,10 +19,22 @@ body {
   margin-bottom: 2em;
 }
 
+.data-base-string {
+  text-align: center;
+}
+
 .div-block {
   display: inline-block;
-  width: 100%;
+  /*width: 20%;*/
   word-wrap: break-word;
+}
+
+table, th, td {
+    width: 100%;
+}
+
+button {
+    width: 100%;
 }
 
 .header_ladingpage {

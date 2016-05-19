@@ -16,21 +16,20 @@
 
     function login() {
       console.log(vm.loginData);
-      var userDataString = vm.loginData.username + ':' + vm.loginData.password;
-      console.log(userDataString);
-      var encodedData = $base64.encode(userDataString);
-      console.log(encodedData);
 
       LoginSrv.verifyUser(vm.loginData)
         .then(function(data) {
           console.log(data.status);
 
           if (data.status === 200){
-            // $window.alert("Bienvenido " + vm.newCompanyData.UserRequest.login + "." );
+            $window.alert("Bienvenido " + vm.loginData.login + "." );
             $state.go('app.dashboard');
           }
           else if (data.status === 400){
             $window.alert('Por favor ingrese los datos correctos.');
+          }
+          else if (data.status === 500){
+            $window.alert('El usuario y/o la contraseña no son correctos.');
           }
           else{
             $window.alert('Ocurrió un error con la conexión');
@@ -39,10 +38,7 @@
         .catch(function(error) {
           console.log(error);
         });
-
-      // $state.go('app.dashboard');
     }
-
   }
 
 })();

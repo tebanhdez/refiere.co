@@ -23,6 +23,7 @@ public class AuthenticationFilter implements javax.servlet.Filter {
     public static final String AUTHENTICATION_HEADER = "Authorization";
     private List<String> excludedPaths = new ArrayList<String>();
     private static final Log LOGGER = LogFactory.getLog(AuthenticationFilter.class);
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain filterChain) throws IOException, ServletException {
@@ -47,6 +48,7 @@ public class AuthenticationFilter implements javax.servlet.Filter {
                     .authenticate(authCredentials);
 
             if (authenticationStatus) {
+                System.out.println("User authenticated, applying next filters..");
                 filterChain.doFilter(request, response);
             } else {
                 if (response instanceof HttpServletResponse) {

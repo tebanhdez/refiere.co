@@ -61,17 +61,18 @@ public class RefiereUserDao extends SimpleUserHome {
             org.hibernate.Transaction trans= session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close.");
-            Query query = session.createQuery("from SimpleUser where login = :login");
+            Query query = session.createQuery("from SimpleUser su join fetch su.userRoles where login = :login");
             query.setParameter("login", login);
             java.util.List results = query.list();
-            trans.commit();
+            System.out.println("Result list: " + results.size());
             SimpleUser instance = (results != null && results.size() == 1) ? (SimpleUser) results.get(0) : null;
+            UserRoles roles = instance.getUserRoles();
+            System.out.println("UserRoles: " + roles.getDescription());
+            trans.commit();
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
                 log.debug("get successful, instance found");
-                UserRoles roles = instance.getUserRoles();
-                System.out.println("UserRoles: " + roles.getDescription());
             }
             return instance;
         } catch (RuntimeException re) {
