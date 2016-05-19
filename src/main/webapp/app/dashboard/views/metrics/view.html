@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <p class="input-group">
           <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
@@ -25,24 +25,24 @@
 			 	</a>
 			</div>
 		</div>
-	<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-		<div class="dashboard-stat red">
-			<div class="visual">
-				<i class="fa fa-bar-chart-o">
-		 		</i>
+		<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="dashboard-stat red">
+				<div class="visual">
+					<i class="fa fa-bar-chart-o">
+		 			</i>
+				</div>
+				<div class="details">
+					<div id="statistics" class="number">12.5</div>
+					<div id="nameMetrics" class="desc">Referencias Efectivas</div>		
+				</div>
+				<a class="more" href=#>
+		 			"View More"
+		 		</a>
 			</div>
-			<div class="details">
-				<div id="statistics" class="number">12.5</div>
-				<div id="nameMetrics" class="desc">Referencias Efectivas</div>		
-			</div>
-			<a class="more" href=#>
-		 		"View More"
-		 	</a>
 		</div>
-	</div>
-	<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="dashboard-stat purple">
-			<div class="visual">
+				<div class="visual">
 				<i class="fa fa-globe">
 		 		</i>
 			</div>
@@ -52,24 +52,26 @@
 			</div>
 			<a class="more" href=#>
 		 		"View More"
-		 	</a>
+		 		</a>
+			</div>
 		</div>
-	</div>
 		<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-		<div class="dashboard-stat green">
-			<div class="visual">
-				<i class="fa fa-shopping-cart">
-		 		</i>
-			</div>
-			<div class="details">
-				<div id="statistics" class="number">549</div>
-				<div id="nameMetrics" class="desc">Referencias Pendientes de Pago</div>		
-			</div>
+			<div class="dashboard-stat green">
+				<div class="visual">
+					<i class="fa fa-shopping-cart">
+		 			</i>
+				</div>
+				<div class="details">
+					<div id="statistics" class="number">549</div>
+					<div id="nameMetrics" class="desc">Referencias Pendientes de Pago</div>		
+				</div>
 			<a class="more" href=#>
 		 		"View More"
 		 	</a>
+			</div>
 		</div>
 	</div>
+	<div id="containerMetrics" class="row">	
 		<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 		<div class="dashboard-stat bronw">
 			<div class="visual">
