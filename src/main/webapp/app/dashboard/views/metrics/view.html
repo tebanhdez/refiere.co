@@ -1,19 +1,30 @@
-<div id="containerMetrics" class="row">	
-	<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">	 
-		 <div class="dashboard-stat blue">
-		 	<div class="visual">
-		 		<i class="fa fa-comments">
-		 		</i>
-		 	</div>
-		 	<div class="details">
-		 		<div id="statistics" class="number">1349</div>
-		 		<div id="nameMetrics" class="desc">Cantidad de Referidores</div>
-		 	</div>
-		 	<a class="more" href=#>
-		 		"View More"
-		 	</a>
-		</div>
+<div class="container-fluid">
+	<div class="row">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
 	</div>
+	<div id="containerMetrics" class="row">	
+		<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">	 
+			 <div class="dashboard-stat blue">
+		 		<div class="visual">
+		 			<i class="fa fa-comments">
+		 			</i>
+		 		</div>
+			 	<div class="details">
+			 		<div id="statistics" class="number">1349</div>
+			 		<div id="nameMetrics" class="desc">Cantidad de Referidores</div>
+			 	</div>
+			 	<a class="more" href=#>
+			 		"View More"
+			 	</a>
+			</div>
+		</div>
 	<div id="PanelMetricsContainer" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 		<div class="dashboard-stat red">
 			<div class="visual">
@@ -119,6 +130,5 @@
 		 	</a>
 		</div>
 	</div>
-	
-
+	</div>
 </div>

@@ -105,9 +105,19 @@ body {
   }
 }
 
-
+.dashboard-container{
+	position: relative;
+    top: 50px;
+    left: 230px;
+    height: 600px;
+	
+}
 /* header dashboard */
-
+.headerNav{
+	position: relative;
+    min-height: 0px;
+    margin-bottom: 20px;
+}
 .header-dashboard {
     min-height: 60px;
     padding: 0 15px;
@@ -141,7 +151,10 @@ body {
 
 
 /*sidebar navigation*/
-
+.sidebarNav{
+	position: relative;
+    min-height: 0px;
+}
 #sidebar {
     width: 210px;
     height: 100%;
@@ -403,8 +416,7 @@ ul.top-menu > li > .logout:hover {
 }
 #panelPosition{
     position: relative;
-    top: 200px;
-    left: 200px;
+    top: 100px;
 }
 
 .content {
@@ -603,3 +615,15 @@ ul.top-menu > li > .logout:hover {
 #statistics{
 	color: #fff;
 }
+/* datepicker in Metrics */
+ 
+ .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
