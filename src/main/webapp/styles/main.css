@@ -69,6 +69,10 @@ body {
   padding: 14px 24px;
 }
 
+.row{
+	left:250px;
+}
+
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
@@ -443,6 +447,9 @@ ul.top-menu > li > .logout:hover {
     left: 250px;
     width: 1000px;
     
+}
+#rowContainer{
+	left:250px;
 }
 #PanelMetricsContainer {
     width: 25%;
