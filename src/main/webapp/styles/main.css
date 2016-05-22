@@ -105,19 +105,8 @@ body {
   }
 }
 
-.dashboard-container{
-	position: relative;
-    top: 50px;
-    left: 230px;
-    height: 600px;
-	
-}
+/**/
 /* header dashboard */
-.headerNav{
-	position: relative;
-    min-height: 0px;
-    margin-bottom: 20px;
-}
 .header-dashboard {
     min-height: 60px;
     padding: 0 15px;
@@ -135,7 +124,7 @@ body {
     border-bottom: 1px solid #c9aa5f;
 }
 
-
+/*Panels in Metrics*/
 .panel-primary{
 	border-color:#337ab7;
 }
@@ -148,7 +137,7 @@ body {
 	border-color:#f0ad4e;
 }
 
-
+/*End Panels Metrics*/
 
 /*sidebar navigation*/
 .sidebarNav{
@@ -452,7 +441,7 @@ ul.top-menu > li > .logout:hover {
     position: relative;
     top: 100px;
     left: 250px;
-    width: 1300px;
+    width: 1000px;
     
 }
 #PanelMetricsContainer {
