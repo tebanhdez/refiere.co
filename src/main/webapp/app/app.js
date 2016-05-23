@@ -7,5 +7,6 @@
       'refiereApp.dashboard',
       'refiereApp.login',
       'refiereApp.register',
+      'refiereApp.services',
       'ui.router']);
 })();

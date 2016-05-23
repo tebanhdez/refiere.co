@@ -5,25 +5,26 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window', '$base64'];
+  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window', 'UserDataService'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv, $window, $base64) {
+  function LoginCtrl($state, LoginSrv, $window, UserDataService) {
     var vm = this;
 
     vm.loginData = {};
     vm.login = login;
 
     function login() {
-      console.log(vm.loginData);
 
       LoginSrv.verifyUser(vm.loginData)
         .then(function(data) {
-          console.log(data.status);
+
+          var userInfo = data.data;
+          userInfo.name = vm.loginData.login;
+          UserDataService.setUserInfoData(userInfo);
 
           if (data.status === 200){
-            $window.alert("Bienvenido " + vm.loginData.login + "." );
-            $state.go('app.dashboard');
+            $state.go('dashboard');
           }
           else if (data.status === 400){
             $window.alert('Por favor ingrese los datos correctos.');

@@ -2,8 +2,8 @@
     <div id="sidebar"  class="nav-collapse ">
         <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered"><img src="images/refiere_logo.png" class="img-circle" width="60"></p>
-            <h5 class="centered">Jorge L&oacute;pez</h5>
-            <li ng-repeat="tab in sidebar.tabs" class="sub-menu">
+            <h5 class="centered" id="userName">{{vm.userData.name}}</h5>
+            <li ng-repeat="tab in tabs" class="sub-menu" ng-class="{active: $state.includes('{{tab.state}}')}">
                 <a ui-sref="{{tab.state}}">
                     <i class="fa {{tab.icon}}"></i>
                     <span>{{tab.title}}</span>
