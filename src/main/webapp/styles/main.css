@@ -105,19 +105,42 @@ body {
   }
 }
 
-.dashboard-container{
-	position: relative;
-    top: 50px;
-    left: 230px;
-    height: 600px;
-	
+#wrapper {
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: inline-block;
 }
+
+#sidebar-wrapper {
+    height: 100%;
+    padding: 50px 0 0px 0;
+    position: fixed;
+}
+
+#main-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 50px 0 0px 0;
+}
+
+#sidebar-wrapper {
+    height: 100%;
+    padding: 50px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+}
+
+body {
+    padding-top: 50px;
+    overflow: hidden;
+}
+
+/**/
 /* header dashboard */
-.headerNav{
-	position: relative;
-    min-height: 0px;
-    margin-bottom: 20px;
-}
 .header-dashboard {
     min-height: 60px;
     padding: 0 15px;
@@ -135,7 +158,7 @@ body {
     border-bottom: 1px solid #c9aa5f;
 }
 
-
+/*Panels in Metrics*/
 .panel-primary{
 	border-color:#337ab7;
 }
@@ -148,7 +171,7 @@ body {
 	border-color:#f0ad4e;
 }
 
-
+/*End Panels Metrics*/
 
 /*sidebar navigation*/
 .sidebarNav{
@@ -156,7 +179,7 @@ body {
     min-height: 0px;
 }
 #sidebar {
-    width: 210px;
+    width: 20%;
     height: 100%;
     position: fixed;
     background: #1c3445;
@@ -417,8 +440,23 @@ ul.top-menu > li > .logout:hover {
 #panelPosition{
     position: relative;
     top: 100px;
-}
+    left: 100px;
+    margin-right: -15px;
+    margin-left: -15px;
 
+}
+#tablePosition{
+	position: relative;
+    top: 100px;
+    left: 250px;
+    font-size: 90%;
+	
+}
+#panelDatabase{
+	position: relative;
+    top: 100px;
+    left: 100px;
+}
 .content {
     padding-top: 80px;
 }
@@ -431,17 +469,6 @@ ul.top-menu > li > .logout:hover {
     background: blue;
     color: white;
 }
-.dashboard-stat .visual {
-    width: 80px;
-    height: 80px;
-    display: block;
-    float: left;
-    padding-top: 10px;
-    padding-left: 15px;
-    margin-bottom: 15px;
-    font-size: 35px;
-    line-height: 35px;
-}
 .dashboard-stat.blue {
     background-color: #3598dc;
 }
@@ -452,11 +479,10 @@ ul.top-menu > li > .logout:hover {
     position: relative;
     top: 100px;
     left: 250px;
-    width: 1300px;
     
 }
 #PanelMetricsContainer {
-    width: 25%;
+    width: 20%;
 }
 .dashboard-stat {
     display: block;
@@ -472,7 +498,7 @@ ul.top-menu > li > .logout:hover {
     padding-top: 10px;
     padding-left: 15px;
     margin-bottom: 15px;
-    font-size: 35px;
+    font-size: 20px;
     line-height: 35px;
 }
 .dashboard-stat.blue .visual>i {
@@ -481,7 +507,7 @@ ul.top-menu > li > .logout:hover {
 }
 .dashboard-stat .visual>i {
     margin-left: -35px;
-    font-size: 110px;
+    font-size: 90px;
     line-height: 110px;
 }
 .dashboard-stat .details {
@@ -490,26 +516,28 @@ ul.top-menu > li > .logout:hover {
     padding-right: 15px;
 }
 .dashboard-stat.blue .details .number {
-    color: #FFF;
+    color: #fff;
 }
 .dashboard-stat .details .number {
     padding-top: 25px;
     text-align: right;
-    font-size: 34px;
+    font-size: 20px;
     line-height: 36px;
     letter-spacing: -1px;
     margin-bottom: 0;
     font-weight: 300;
+    color: #fff;
+    
 }
 .dashboard-stat.blue .details .desc {
-    color: #FFF;
-    opacity: 0.3;
+    color: #fff;
 }
 .dashboard-stat .details .desc {
     text-align: right;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 0;
     font-weight: 300;
+    color: #fff;
 }
 .dashboard-stat.blue .more {
     color: #FFF;
@@ -608,13 +636,7 @@ ul.top-menu > li > .logout:hover {
     color: #fff;
     background-color: #868A08;
 }
-#nameMetrics{
-	color: #fff;
-    opacity: 1;
-}
-#statistics{
-	color: #fff;
-}
+
 /* datepicker in Metrics */
  
  .full button span {
