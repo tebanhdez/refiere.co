@@ -14,21 +14,25 @@
       title: 'Campaña',
       state: 'dashboard.campaign',
       icon: 'fa-dashboard'
-    },{
+    },
+    {
       title: 'Métricas',
       state: 'dashboard.metrics',
       icon: 'fa-bar-chart-o'
-    },{
+    },
+    {
       title: 'Base de datos',
       state: 'dashboard.database',
       icon: 'fa-tasks'
-    },{
+    },
+    {
       title: 'Noticias',
       state: 'dashboard.news',
       icon: 'fa-book'
-    },{
+    },
+    {
       title: 'Reportes',
-      state: 'home',
+      state: 'dashboard.reports',
       icon: 'fa-cogs'
     }];
 

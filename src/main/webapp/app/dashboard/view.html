@@ -1,4 +1,7 @@
-<header class="navbar shadow"></header>
-<sidebar></sidebar>
-<!-- <div ui-sref="dashboard.database"></div> -->
-<div class="dashboard-container" ui-view></div>
+<header class="navbar navbar-default navbar-fixed-top"></header>
+<div id="wrapper">
+	<div class="col-md-1" id="sidebar-wrapper">
+		<sidebar class="sidebarNav"></sidebar>
+	</div>
+	<div class="col-md-11 pull-right" id="main-wrapper" ui-view></div>	
+</div>
