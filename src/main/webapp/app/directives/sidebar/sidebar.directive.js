@@ -8,7 +8,7 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'app/directives/sidebar/view.html',
-      controller: 'SidebarCtrl'
+      controller: 'SidebarCtrl as vm'
     };
 
     return directive;
