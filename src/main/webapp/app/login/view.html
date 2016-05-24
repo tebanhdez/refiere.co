@@ -1,12 +1,36 @@
 <section id="top" class="header_ladingpage">
     <div class="text-vertical-center">
-        <div class="col-sm-2 col-md-offset-5">
-            <img src="images/refiere_logo.png" alt="Refiere logo">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            <br>
-            <a ng-click="vm.login()" type="button" class="btn btn-primary btn-block">Iniciar Sesi&oacute;n</a>
-        </div>
+      <div class="col-xs-1 col-sm-3 col-md-3"></div>
+      <div class="col-xs-10 col-sm-6 col-md-6">
+        <form name="loginInputs">
+          <img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">
+          <input type="text" class="form-control"
+                              name="userName"
+                              id="exampleInputEmail1"
+                              ng-model="vm.loginData.login"
+                              placeholder="Nombre de Usuario"
+                              required>
+          <h1>{{myForm.myInput.$valid}}</h1>
+          <input type="password" class="form-control"
+                                 name="password"
+                                 id="exampleInputPassword1"
+                                 ng-model="vm.loginData.password"
+                                 placeholder="Password"
+                                 required>
+          <h3 ng-hide="loginInputs.password.$valid
+                       && loginInputs.userName.$valid"
+                       class="text-center">
+          Por favor ingrese sus credenciales
+          </h3>
+          <br>
+          <button ng-click="vm.login()" type="btn btn-primary btn-block button-block"
+                                   class="btn btn-primary btn-block"
+                                   ng-disabled="loginInputs.$invalid">
+            Iniciar Sesi&oacute;n
+          </button>
+        </form>
+      </div>
+      <div class="col-xs-1 col-sm-3 col-md-3"></div>
     </div>
 </section>
 <!-- Footer -->

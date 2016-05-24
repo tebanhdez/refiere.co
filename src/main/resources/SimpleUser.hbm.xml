@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <many-to-one name="userRoles" class="co.refiere.models.UserRoles" fetch="select">
+        <many-to-one name="userRoles" class="co.refiere.models.UserRoles" fetch="join" lazy="false">
             <column name="user_role_id" />
         </many-to-one>
         <property name="login" type="string">
@@ -17,7 +17,7 @@
         <property name="password" type="string">
             <column name="password" length="20" not-null="true" />
         </property>
-        <set name="userCompanies" table="user_company" inverse="true" lazy="true" fetch="select">
+        <set name="userCompanies" table="user_company" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" />
             </key>

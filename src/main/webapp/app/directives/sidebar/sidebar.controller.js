@@ -5,12 +5,14 @@
     .module('refiereApp.dashboard')
     .controller('SidebarCtrl', SidebarCtrl);
 
-  SidebarCtrl.$inject = ['$scope'];
+  SidebarCtrl.$inject = ['UserDataService'];
 
-  function SidebarCtrl($scope) {
+  function SidebarCtrl(UserDataService) {
+    var vm = this;
+    vm.userData = UserDataService.getAllUserData();
 
-    $scope.selectedOption = "";
-    $scope.tabs = [{
+    vm.selectedOption = "";
+    vm.tabs = [{
       title: 'Campaña',
       state: 'dashboard.campaign',
       icon: 'fa-dashboard'
@@ -32,10 +34,9 @@
       icon: 'fa-cogs'
     }];
 
+    vm.getOptionSelected = function(selected){
+      vm.seletedOption = selected;
+    };
 
-  $scope.getOptionSelected = function(selected){
-    $scope.seletedOption = selected;
-    console.log(selected);
-  };
   }
 })();

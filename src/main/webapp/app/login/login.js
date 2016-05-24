@@ -3,6 +3,7 @@
 
   angular
     .module('refiereApp.login', [
-      'refiereApp.chore'
+      'refiereApp.chore',
+      'base64'
     ]);
 })();

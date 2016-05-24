@@ -1,5 +1,8 @@
 package co.refiere.resources.base;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="UserRequest")
 public class UserRequest {
     private int id;
     private String login;

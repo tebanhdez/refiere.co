@@ -9,6 +9,33 @@ body {
   padding: 0;
 }
 
+.btn-plan {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.btn-margin {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.data-base-string {
+  text-align: center;
+}
+
+.div-block {
+  display: inline-block;
+  /*width: 20%;*/
+  word-wrap: break-word;
+}
+
+table, th, td {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+}
 
 .header_ladingpage {
     display: table;
@@ -105,6 +132,35 @@ body {
   }
 }
 
+/* Input layout */
+
+.text-center {
+  text-align: center;
+}
+
+.form-control {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 2em;
+}
+
+.image-display {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttom-block {
+  display: block;
+  margin: 2em;
+  padding: 2em;
+}
+
+.button-submit {
+  text-align: center;
+  display: block;
+}
 
 /* header dashboard */
 
@@ -125,7 +181,6 @@ body {
     border-bottom: 1px solid #c9aa5f;
 }
 
-
 .panel-primary{
 	border-color:#337ab7;
 }
@@ -137,8 +192,6 @@ body {
 .panel-yellow{
 	border-color:#f0ad4e;
 }
-
-
 
 /*sidebar navigation*/
 
@@ -441,7 +494,7 @@ ul.top-menu > li > .logout:hover {
     top: 100px;
     left: 250px;
     width: 1300px;
-    
+
 }
 #PanelMetricsContainer {
     width: 25%;

@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <many-to-one name="lapseByCampaignLapseRef" class="co.refiere.models.Lapse" fetch="select">
+        <many-to-one name="lapseByCampaignLapseRef" class="co.refiere.models.Lapse" fetch="join">
             <column name="campaign_lapse_ref" />
         </many-to-one>
-        <many-to-one name="lapseByReportLapseId" class="co.refiere.models.Lapse" fetch="select">
+        <many-to-one name="lapseByReportLapseId" class="co.refiere.models.Lapse" fetch="join">
             <column name="report_lapse_id" />
         </many-to-one>
         <property name="campaignAmount" type="int">

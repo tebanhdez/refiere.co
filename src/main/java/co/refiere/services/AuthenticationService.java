@@ -34,16 +34,21 @@ public class AuthenticationService {
 
         if(StringUtil.isBlank(username) || StringUtil.isBlank(password))
             return false;
-        RefiereUserDao userDao = new RefiereUserDao();
-        SimpleUser userObject = userDao.findByLogin(username);
+        SimpleUser userObject = findUserByLogin(username);
+        System.out.println(userObject);
 
         boolean authenticationStatus = false;
 
         if(userObject != null){
-            System.out.println("User found!");
             return checkPassword(userObject.getPassword(), password);
         }
         return authenticationStatus;
+    }
+
+    public SimpleUser findUserByLogin(final String username) {
+      RefiereUserDao userDao = new RefiereUserDao();
+      SimpleUser userObject = userDao.findByLogin(username);
+      return userObject;
     }
 
     private boolean checkPassword(String password, String password2) {

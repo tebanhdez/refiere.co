@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <many-to-one name="company" class="co.refiere.models.Company" fetch="select">
+        <many-to-one name="company" class="co.refiere.models.Company" fetch="join">
             <column name="company_id" />
         </many-to-one>
-        <many-to-one name="simpleUser" class="co.refiere.models.SimpleUser" fetch="select">
+        <many-to-one name="simpleUser" class="co.refiere.models.SimpleUser" fetch="join">
             <column name="user_id" />
         </many-to-one>
     </class>
