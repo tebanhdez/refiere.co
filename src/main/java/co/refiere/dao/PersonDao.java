@@ -40,7 +40,7 @@ public class PersonDao extends PersonHome {
     public void save(Person person){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        persist(person);
+        merge(person);
         trans.commit();
     }
     

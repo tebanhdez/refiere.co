@@ -27,11 +27,11 @@
         <filter-class>co.refiere.resources.filter.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>excludedPaths</param-name>
-            <param-value>/rest/v1/company/register,/rest/v1/plan/all,/rest/database/import</param-value>
+            <param-value>/rest/v1/company/register,/rest/v1/plan/all</param-value>
         </init-param>
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/rest/*</url-pattern>
+        
     </filter-mapping>
 </web-app>
