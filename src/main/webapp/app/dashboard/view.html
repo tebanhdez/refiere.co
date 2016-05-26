@@ -1,7 +1,10 @@
-<header></header>
-<div class=container-fluid>
-	<div id="rowContainer" class="row" >
-		<sidebar class="sidebarNav" class=></sidebar>
-		<div class="dashboard-container" ui-view></div>	
+<header class="navbar navbar-default navbar-fixed-top"></header>
+<div id="wrapper">
+	<div id="sidebar-wrapper" class="col-md-1">
+		<sidebar class="sidebarNav"></sidebar>
 	</div>
+	<div class="col-md-11 pull-right" id="main-wrapper">
+		<div id="main" ui-view>			
+		</div>
+	</div>	
 </div>
