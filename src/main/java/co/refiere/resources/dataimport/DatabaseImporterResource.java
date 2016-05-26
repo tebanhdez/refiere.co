@@ -31,10 +31,7 @@ public class DatabaseImporterResource {
     public void insertDataInDB2(
         @FormDataParam("file") InputStream uploadedInputStream,
         @FormDataParam("file") FormDataContentDisposition fileDetail) {
-        System.out.println(fileDetail.getFileName());
-        
         try {
-
             XSSFWorkbook workbook = new XSSFWorkbook(uploadedInputStream);
             excelReader(workbook);
 
@@ -44,28 +41,52 @@ public class DatabaseImporterResource {
     }
     
     private void excelReader(XSSFWorkbook workbook){
-      PersonDao personDao = new PersonDao();
-      Person personToIntroduce = new Person();
-      Sheet firstSheet = workbook.getSheetAt(0);
-      Iterator<Row> iterator = firstSheet.iterator();
+      
+      Sheet sheet = workbook.getSheetAt(0);
+      Iterator<Row> sheetRows = sheet.iterator();
        
-      while (iterator.hasNext()) {
-          Row nextRow = iterator.next();          
-          personToIntroduce.setName(nextRow.getCell(0).getStringCellValue());
-          personToIntroduce.setLastName(nextRow.getCell(1).getStringCellValue());
-          personToIntroduce.setEmail(nextRow.getCell(2).getStringCellValue());
-          nextRow.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
-          personToIntroduce.setPhoneNumber(nextRow.getCell(3).getStringCellValue());
-          nextRow.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
-          personToIntroduce.setIdentificationCardNumber(nextRow.getCell(4).getStringCellValue());          
-          personDao.save(personToIntroduce);
+      while (sheetRows.hasNext()) {
+          Row nextRow = sheetRows.next();          
+          setValuesForPerson(nextRow);
       }
        
       try {
         workbook.close();
       } catch (IOException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
+    }
+
+    private void setValuesForPerson( Row nextRow) {
+      PersonDao personDao = new PersonDao();
+      Person personToIntroduce = new Person();
+      personToIntroduce.setName(getNameToIntroduce(nextRow));
+      personToIntroduce.setLastName(getLastNameToIntroduce(nextRow));
+      personToIntroduce.setEmail(getEmailToIntroduce(nextRow));
+      personToIntroduce.setPhoneNumber(getPhoneNumberToIntroduce(nextRow));
+      personToIntroduce.setIdentificationCardNumber(getIdentificationCardNumberToIntroduce(nextRow));
+      personDao.save(personToIntroduce);
+    }
+
+    private String getIdentificationCardNumberToIntroduce(Row nextRow) {
+      nextRow.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
+      return nextRow.getCell(4).getStringCellValue();
+    }
+
+    private String getPhoneNumberToIntroduce(Row nextRow) {
+      nextRow.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
+      return nextRow.getCell(3).getStringCellValue();
+    }
+
+    private String getEmailToIntroduce(Row nextRow) {
+      return nextRow.getCell(2).getStringCellValue();
+    }
+
+    private String getLastNameToIntroduce(Row nextRow) {
+      return nextRow.getCell(1).getStringCellValue();
+    }
+
+    private String getNameToIntroduce(Row nextRow) {
+      return nextRow.getCell(0).getStringCellValue();
     }
 }
