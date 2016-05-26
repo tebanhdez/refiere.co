@@ -45,7 +45,6 @@ public class DatabaseImporterResource {
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   public void insertDataInDB2(@FormDataParam("file") InputStream uploadedInputStream,
       @FormDataParam("file") FormDataContentDisposition fileDetail) {
-    System.out.println(fileDetail.getFileName());
     try {
       if (isExcelFormat(fileDetail)) {
         excelTranslationType(uploadedInputStream);
