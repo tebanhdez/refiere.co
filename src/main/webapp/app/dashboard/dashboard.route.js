@@ -15,6 +15,7 @@
       .state('dashboard.campaign', {
         url: '/campaign',
         templateUrl: 'app/dashboard/views/campaign/view.html',
+        controller: 'CampaignCtrl as vm'
       })
       .state('dashboard.metrics', {
         url: '/metrics',

@@ -3,6 +3,7 @@
 
   angular
     .module('refiereApp.dashboard', [
-      'refiereApp.chore'
+      'refiereApp.chore',
+      'refiereApp.campaign'
     ]);
 })();

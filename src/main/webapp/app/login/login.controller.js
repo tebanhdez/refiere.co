@@ -26,18 +26,10 @@
           if (data.status === 200){
             $state.go('dashboard');
           }
-          else if (data.status === 400){
-            $window.alert('Por favor ingrese los datos correctos.');
-          }
-          else if (data.status === 500){
-            $window.alert('El usuario y/o la contraseña no son correctos.');
-          }
-          else{
-            $window.alert('Ocurrió un error con la conexión');
-          }
+
         })
         .catch(function(error) {
-          console.log(error);
+          $window.alert('Por favor ingrese los datos correctos.');
         });
     }
   }
