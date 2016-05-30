@@ -13,7 +13,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
+import co.refiere.dao.CompanyDatabaseDao;
 import co.refiere.dao.PersonDao;
+import co.refiere.dao.RefiereUserCompanyRelationDao;
+import co.refiere.models.CompanyDatabase;
 import co.refiere.models.Person;
 
 public class DataImporterService {
@@ -31,9 +34,13 @@ public class DataImporterService {
   private static final int LASTNAME_ROW_NUMBER = 1;
   private static final int NAME_ROW_NUMBER = 0;
   private static final int FIRST_SHEET = 0;
+  private CompanyDatabase companyDatabase;
   
-  
-  public void importDatabase(InputStream uploadedInputStream, FormDataContentDisposition fileDetail) {
+  public void importDatabase(InputStream uploadedInputStream, FormDataContentDisposition fileDetail,int companyDatabaseId) {
+    CompanyDatabaseDao companyDatabaseDao= new CompanyDatabaseDao();
+    System.out.println(companyDatabaseId);
+    companyDatabase=companyDatabaseDao.findDatabaseById(companyDatabaseId);
+    System.out.println(companyDatabase==null);
     try {
       if (isExcelFormat(fileDetail)) {
         excelTranslationType(uploadedInputStream);
@@ -63,6 +70,7 @@ public class DataImporterService {
     personToIntroduce.setEmail(getEmailFromCSV(personData));
     personToIntroduce.setPhoneNumber(getPhoneNumberFromCSV(personData));
     personToIntroduce.setIdentificationCardNumber(getIdentificationCardNumberFromCSV(personData));
+    personToIntroduce.setCompanyDatabase(companyDatabase);
     personDao.save(personToIntroduce);
   }
 
@@ -116,6 +124,7 @@ public class DataImporterService {
     personToIntroduce.setEmail(getEmailFromExcel(nextRow));
     personToIntroduce.setPhoneNumber(getPhoneNumberFromExcel(nextRow));
     personToIntroduce.setIdentificationCardNumber(getIdentificationCardNumberFromExcel(nextRow));
+    personToIntroduce.setCompanyDatabase(companyDatabase);
     personDao.save(personToIntroduce);
   }
 

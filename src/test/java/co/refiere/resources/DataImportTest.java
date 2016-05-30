@@ -10,10 +10,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
@@ -52,7 +50,7 @@ public class DataImportTest extends JerseyTest {
     FormDataMultiPart formDataMultiPart = new FormDataMultiPart();
     FormDataMultiPart multipart = (FormDataMultiPart) formDataMultiPart.field("foo", "bar").bodyPart(filePart);
 
-    WebTarget target = client.target("http://localhost:8080/rest/database/import");
+    WebTarget target = client.target("http://localhost:8080/rest/database/2/import");
     Response response = target.request().post(Entity.entity(multipart, multipart.getMediaType()));
     return response;
   }

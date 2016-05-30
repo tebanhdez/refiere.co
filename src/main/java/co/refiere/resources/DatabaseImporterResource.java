@@ -5,6 +5,7 @@ import java.io.InputStream;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,12 +20,13 @@ public class DatabaseImporterResource {
  
 
   @POST
-  @Path("/import")
+  @Path("/{databaseId}/import")
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   public Response insertDataInDB2(@FormDataParam("file") InputStream uploadedInputStream,
-      @FormDataParam("file") FormDataContentDisposition fileDetail) {
+      @FormDataParam("file") FormDataContentDisposition fileDetail,
+      @PathParam("databaseId") int databaseId) {
     DataImporterService dataImporterService = new DataImporterService();
-    dataImporterService.importDatabase(uploadedInputStream, fileDetail);
+    dataImporterService.importDatabase(uploadedInputStream, fileDetail,databaseId);
     return Response.ok().build(); 
     }
 
