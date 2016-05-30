@@ -1,7 +1,9 @@
 {
   "name": "refiere",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "ng-datepicker": "^1.0.2"
+  },
   "repository": {},
   "devDependencies": {
     "grunt": "^0.4.5",

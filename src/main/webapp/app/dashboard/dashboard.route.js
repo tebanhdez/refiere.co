@@ -19,10 +19,11 @@
       .state('dashboard.metrics', {
         url: '/metrics',
         templateUrl: 'app/dashboard/views/metrics/view.html',
+        controller: 'MetricsCtrl as vm'
       })
       .state('dashboard.news', {
         url: '/news',
-        templateUrl: 'app/dashboard/views/metrics/view.html',
+        templateUrl: 'app/dashboard/views/news/view.html',
       })
       .state('dashboard.reports', {
         url: '/reports',

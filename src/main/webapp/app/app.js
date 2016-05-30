@@ -6,5 +6,6 @@
       'refiereApp.chore',
       'refiereApp.dashboard',
       'refiereApp.login',
+      'jkuri.datepicker',
       'ui.bootstrap']);
 })();

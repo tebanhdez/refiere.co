@@ -31,6 +31,8 @@ module.exports = function(config) {
       'webapp/bower_components/angular-touch/angular-touch.js',
       'webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
       'webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'webapp/bower_components/moment/moment.js',
+      'webapp/bower_components/ngDatepicker/src/js/ngDatepicker.js',
       'webapp/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
