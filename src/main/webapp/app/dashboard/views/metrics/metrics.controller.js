@@ -5,9 +5,10 @@
     .module('refiereApp.dashboard')
     .controller('MetricsCtrl', MetricsCtrl);
 
-    MetricsCtrl.$inject = ['jkuri.datepicker'];
+    MetricsCtrl.$inject = ['$scope'];
 
-  function MetricsCtrl(ngDatepicker) {
+  function MetricsCtrl($scope) {
     var vm = this;
   }
 })();
+
