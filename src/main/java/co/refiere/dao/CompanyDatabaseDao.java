@@ -70,4 +70,26 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
         delete(dataBase);
         trans.commit();
     }
+    
+    public List<CompanyDatabase> findAllDatabases(){
+        log.debug("getting Company_database's instances");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans = session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close");
+            Query query = session.createQuery("from CompanyDatabase");
+            java.util.List results = query.list();
+            trans.commit();
+            if (results !=  null && !results.isEmpty()) {
+                log.debug("get successful, instance found");
+            } else {
+                log.debug("get successful, no instance found");
+            }
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
 }

@@ -6,7 +6,10 @@
         <form class="form-inline">
           <div class="form-group">
             <label id="Texto">Nombre </label>
-            <input id="inputText" type="text" class="form-control" id="exampleInputName2" placeholder="">
+            <input id="inputText" type="text" class="form-control"
+                                              id="exampleInputName2"
+                                              placeholder=""
+                                              ng-model="vm.newCampaign.user">
           </div>
         </form>
         <br>
@@ -30,7 +33,8 @@
           <div class="form-group">
             <label id="Texto" >Base de Datos</label>
             <select id="inputText" class="form-control">
-              <option>ver datos</option>
+              <option ng-repeat="database in vm.databases"
+                	    value="{{database.databaseId}}">{{database.databaseName}}</option>
             </select>
           </div>
         </form>

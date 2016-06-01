@@ -10,21 +10,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
 
-import co.refiere.resources.base.PrizeObjectData;
-import co.refiere.services.PrizeService;
+import co.refiere.resources.base.DatabaseObjectData;
+import co.refiere.services.DatabaseService;
 
-@Path("v1/prize")
-public class PrizeResource {
-
+@Path("v1/database")
+public class DatabaseResource {
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getAllPrizes() {
+    public Response getAllDatabase() {
         String response = "{\"status\": \"%s\", %s}";
         try {
-            PrizeService prizeService = new PrizeService();
-            List<co.refiere.resources.base.PrizeObjectData> prizes = prizeService.getAllPrizes();
-            GenericEntity<List<PrizeObjectData>> list = new GenericEntity<List<PrizeObjectData>>(prizes) {};
+            DatabaseService databaseService = new DatabaseService();
+            List<co.refiere.resources.base.DatabaseObjectData> databases = databaseService.getAllDatabases();
+            GenericEntity<List<DatabaseObjectData>> list = new GenericEntity<List<DatabaseObjectData>>(databases) {};
             return Response.ok(list).build();
         } catch (NoContentException e) {
             response = String.format(response, "FAIL", e.getMessage());
