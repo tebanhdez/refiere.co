@@ -12,4 +12,3 @@
       'refiereApp.campaign',
       'ui.router']);
 })();
-

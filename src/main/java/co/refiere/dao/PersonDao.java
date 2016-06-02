@@ -6,13 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.StatelessSession;
 
-import co.refiere.models.Currency;
-import co.refiere.models.Person;
-import co.refiere.models.PersonHome;
-import co.refiere.models.Prize;
-import co.refiere.resources.util.HibernateUtil;
-import org.hibernate.resource.transaction.spi.TransactionStatus;
-
 import co.refiere.models.Person;
 import co.refiere.models.PersonHome;
 import co.refiere.resources.util.HibernateUtil;

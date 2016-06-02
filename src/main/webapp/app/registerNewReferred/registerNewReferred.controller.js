@@ -24,12 +24,12 @@
                         $window.alert('¡El usuario ya existe!');
                     }
                     else{
-                        $window.alert('Ocurrió un error');
+                        $window.alert('Usuario registrado con exito');
                     }
                 })
                 .catch(function(error) {
                     console.log(error);
-                    $window.alert('¡El usuario ya existe!');
+                    $window.alert('¡Ocurrio un error!');
                 });
         }
     }
