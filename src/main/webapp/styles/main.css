@@ -508,6 +508,14 @@ ul.top-menu > li > .logout:hover {
 #PanelMetricsContainer {
     width: 20%;
 }
+#panelReporteCampana{
+	color: white;
+    text-align: center;
+    background: #b86e28;
+    font-size: 16px;
+    margin-top: 30px;
+    left: 200px;
+}
 .dashboard-stat {
     display: block;
     margin-bottom: 25px;
