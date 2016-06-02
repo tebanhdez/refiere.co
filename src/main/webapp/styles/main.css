@@ -69,10 +69,6 @@ body {
   padding: 14px 24px;
 }
 
-.row{
-	left:250px;
-}
-
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
@@ -84,6 +80,7 @@ body {
 .container {
     width: 100%;
 }
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -125,13 +122,14 @@ body {
     position: fixed;
 }
 
+/*
 @media (max-width: 992px)
 #sidebar-wrapper {
     position: static;
     height: auto;
     max-height: 300px;
     border-right: 0;
-}
+}*/
 
 #main-wrapper {
     height: 100%;
@@ -139,10 +137,11 @@ body {
     padding: 50px 0 0px 0;
 }
 
+/*
 @media (max-width: 992px)
 #main-wrapper {
     padding-top: 0px;
-}
+}*/
 
 
 #sidebar-wrapper {
@@ -163,6 +162,14 @@ body {
 body {
     padding-top: 50px;
     overflow: hidden;
+}
+
+#main {
+	position: inherit;
+    height: 100%;
+    padding-top: 4%;
+    padding-left: 40%;
+    padding-right: 12%;
 }
 
 /**/
