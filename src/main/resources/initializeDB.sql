@@ -4,6 +4,10 @@ insert into user_roles(id, name, role_identifier, description) values (11,'Admin
 insert into user_roles(id, name, role_identifier, description) values (12,'endUser', 'USER', 'User generated')
 insert into user_roles(id, name, role_identifier, description) values (13,'AccAdmin', 'ACCAD', 'Accounting')
 
+insert into simple_user(id, login, password, user_role_id) values (11, 'sys', '5y5@dm15tr@t0r', 10)
+insert into simple_user(id, login, password, user_role_id) values (12, 'root', 'r00t@dm15tr@t0r', 10)
+insert into simple_user(id, login, password, user_role_id) values (13, 'admin', '@dm15tr@t0r', 10)
+
 -- Insert default lapse
 INSERT INTO lapse(id, name, days) VALUES (10, 'Diario', 1)
 INSERT INTO lapse(id, name, days) VALUES (11, 'Semanal', 7)

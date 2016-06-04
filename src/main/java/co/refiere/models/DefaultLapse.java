@@ -3,7 +3,7 @@ package co.refiere.models;
 /**
  * Created by teban on 6/3/16.
  */
-public enum RefiereLapse {
+public enum DefaultLapse {
     DAILY       (10, "Diario"),
     WEEKLY      (11, "Semanal"),
     FORTNIGHTLY (12, "Quincenal"),
@@ -17,7 +17,7 @@ public enum RefiereLapse {
     private final int id;
     private final String name;
 
-    RefiereLapse(int id, String name){
+    DefaultLapse(int id, String name){
         this.id = id;
         this.name = name;
     }
