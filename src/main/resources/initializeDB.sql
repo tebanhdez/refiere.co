@@ -16,9 +16,9 @@ INSERT INTO lapse(id, name, days) VALUES (17, 'Semestral', 180)
 INSERT INTO lapse(id, name, days) VALUES (18, 'Anual', 365)
 
 -- Insert default plans
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (10, 'Plan Basico', true, 100, 0.5, 1)
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (11, 'Enterprice',  true, 300, 0.5, 2)
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (12, 'Corporacion', true, 500, 0.5, 2)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (10, 'Plan Basico', true, 100, 0.5, 1, 14, 13)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (11, 'Enterprice',  true, 300, 0.5, 2, 14, 12)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (12, 'Corporacion', true, 500, 0.5, 2, 13, 11)
 
 -- Insert default order status
 INSERT INTO order_status(id, name, description) VALUES (10, 'NEW', 'Created')
