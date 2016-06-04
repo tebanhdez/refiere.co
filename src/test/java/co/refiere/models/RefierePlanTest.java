@@ -3,7 +3,6 @@ package co.refiere.models;
 import org.junit.Assert;
 import org.junit.Test;
 
-import co.refiere.dao.RefiereLapseDao;
 import co.refiere.dao.RefierePlanDao;
 
 public class RefierePlanTest {
@@ -21,13 +20,13 @@ public class RefierePlanTest {
         Assert.assertNotNull("Enterprice plan not found", enterprice);
         Assert.assertNotNull("Corporate plan not found", corporate);
 
-        Assert.assertEquals("Basic plan expect to have bimonthly campaigns lapse", basic.getLapseByCampaignLapseRef().getName(), RefiereLapse.BIMONTHLY.getLapseName());
-        Assert.assertEquals("Enterprice plan expect to have bimonthly campaigns lapse", enterprice.getLapseByCampaignLapseRef().getName(), RefiereLapse.BIMONTHLY.getLapseName());
-        Assert.assertEquals("Corporate plan expect to have monthly campaigns lapse", corporate.getLapseByCampaignLapseRef().getName(), RefiereLapse.MONTHLY.getLapseName());
+        Assert.assertEquals("Basic plan expect to have bimonthly campaigns lapse", basic.getLapseByCampaignLapseRef().getName(), DefaultLapse.BIMONTHLY.getLapseName());
+        Assert.assertEquals("Enterprice plan expect to have bimonthly campaigns lapse", enterprice.getLapseByCampaignLapseRef().getName(), DefaultLapse.BIMONTHLY.getLapseName());
+        Assert.assertEquals("Corporate plan expect to have monthly campaigns lapse", corporate.getLapseByCampaignLapseRef().getName(), DefaultLapse.MONTHLY.getLapseName());
 
-        Assert.assertEquals("Basic plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), RefiereLapse.MONTHLY.getLapseName());
-        Assert.assertEquals("Enterprice plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), RefiereLapse.MONTHLY.getLapseName());
-        Assert.assertEquals("Corporate plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), RefiereLapse.MONTHLY.getLapseName());
+        Assert.assertEquals("Basic plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), DefaultLapse.MONTHLY.getLapseName());
+        Assert.assertEquals("Enterprice plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), DefaultLapse.MONTHLY.getLapseName());
+        Assert.assertEquals("Corporate plan expect to have monthly report lapse", basic.getLapseByReportLapseId().getName(), DefaultLapse.MONTHLY.getLapseName());
 
     }
 }
