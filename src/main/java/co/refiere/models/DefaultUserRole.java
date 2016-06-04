@@ -9,8 +9,8 @@ public enum DefaultUserRole {
     USER    (12, "USER"),
     ACCAD   (13, "ACCAD");
 
-    private int id;
-    private String roleIdentifier;
+    private final int id;
+    private final String roleIdentifier;
 
     DefaultUserRole(int id, String identifier){
         this.id = id;
