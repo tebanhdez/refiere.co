@@ -10,6 +10,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
+import co.refiere.models.*;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
@@ -21,10 +22,6 @@ import co.refiere.dao.CampaignDao;
 import co.refiere.dao.CompanyDatabaseDao;
 import co.refiere.dao.PersonDao;
 import co.refiere.dao.RefiereCompanyDao;
-import co.refiere.models.Campaign;
-import co.refiere.models.Company;
-import co.refiere.models.CompanyDatabase;
-import co.refiere.models.Person;
 import co.refiere.resources.base.CampaignRequest;
 
 public class CampaignResourceTest extends JerseyTest {
@@ -45,10 +42,13 @@ public class CampaignResourceTest extends JerseyTest {
     
     @Before
     public void settingTestData(){
-        
-        List<Company> testCompanies = companyDao.findAll();
-        Assert.assertTrue("No Companies found!", testCompanies.size() > 0);
-        testCompany = testCompanies.get(0);
+
+        testCompany = new Company();
+        testCompany.setName("CampaignResourceTest::settingTestData");
+        testCompany.setEmail("test@email.com");
+        testCompany.setAddress("Address");
+        testCompany.setPhone("+506 8989 8989");
+        companyDao.save(testCompany);
         
         CompanyDatabase dataBase = new CompanyDatabase();
         dataBase.setName("CampaignResourceTest::settingTestData");
@@ -75,8 +75,8 @@ public class CampaignResourceTest extends JerseyTest {
         campaign.setPrizeForRefieree("Free first month");
         campaign.setCompanyId(testCompany.getId());
         campaign.setCompanyDataBase(testCompanyDataBaseId);
-        campaign.setPrizeForRefiereeId(12); // Bonus
-        campaign.setPrizeForRefiereId(11);  // Discount
+        campaign.setPrizeForRefiereeId(DefaultPrize.BONUS.getPrizeId());
+        campaign.setPrizeForRefiereId(DefaultPrize.DISCOUNT.getPrizeId());
         final Response companyResponse = target().path("v1/campaign").request().post(Entity.json(campaign));
         Assert.assertEquals(200, companyResponse.getStatus());
         Assert.assertTrue(companyResponse.hasEntity());

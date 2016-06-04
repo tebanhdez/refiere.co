@@ -1,13 +1,13 @@
 package co.refiere.models;
 
 /**
- * Created by teban on 6/3/16.
+ * Created by Esteban H.
  */
 public enum DefaultUserRole {
-    SYS(10, "SYS"),
-    ADMIN(11, "ADMIN"),
-    USER(12, "USER"),
-    ACCAD(13, "ACCAD");
+    SYS     (10, "SYS"),
+    ADMIN   (11, "ADMIN"),
+    USER    (12, "USER"),
+    ACCAD   (13, "ACCAD");
 
     private int id;
     private String roleIdentifier;

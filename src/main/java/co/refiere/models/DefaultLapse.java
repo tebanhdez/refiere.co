@@ -1,7 +1,7 @@
 package co.refiere.models;
 
 /**
- * Created by teban on 6/3/16.
+ * Created by Esteban H.
  */
 public enum DefaultLapse {
     DAILY       (10, "Diario"),
