@@ -2,7 +2,8 @@ package co.refiere.resources.util;
 
 import java.util.List;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
@@ -16,14 +17,16 @@ import co.refiere.services.DatabaseService;
 @Path("v1/database")
 public class DatabaseResource {
     
-    @GET
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getAllDatabase() {
+    public Response getAllDatabase(String userName) {
+        System.out.println("The user that is being logged in is: " + userName);
         String response = "{\"status\": \"%s\", %s}";
         try {
             DatabaseService databaseService = new DatabaseService();
-            List<co.refiere.resources.base.DatabaseObjectData> databases = databaseService.getAllDatabases();
+            List<co.refiere.resources.base.DatabaseObjectData> databases = databaseService.getAllDatabases(userName);
             GenericEntity<List<DatabaseObjectData>> list = new GenericEntity<List<DatabaseObjectData>>(databases) {};
             return Response.ok(list).build();
         } catch (NoContentException e) {

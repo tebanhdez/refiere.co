@@ -15,9 +15,9 @@ import co.refiere.resources.base.DatabaseObjectData;
 public class DatabaseService {
     private static final Log LOGGER = LogFactory.getLog(DatabaseService.class);
     
-    public java.util.List<DatabaseObjectData> getAllDatabases() throws NoContentException{
+    public java.util.List<DatabaseObjectData> getAllDatabases(String userName) throws NoContentException{
         CompanyDatabaseDao companyDatabaseDao = new CompanyDatabaseDao();
-        List<DatabaseObjectData> databases = getSimplifiedDatabases(companyDatabaseDao.findAllDatabases());
+        List<DatabaseObjectData> databases = getSimplifiedDatabases(companyDatabaseDao.findAllDatabasesByCompany(userName));
         if(databases == null){
             LOGGER.error("Databases not found");
             throw new NoContentException("\"Error \": \"Prizes not found\"");

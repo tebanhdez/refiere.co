@@ -1,10 +1,5 @@
 package co.refiere.resources;
-import javax.json.JsonObject;
-import javax.json.JsonString;
 
-import java.io.StringReader;
-
-import javax.json.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

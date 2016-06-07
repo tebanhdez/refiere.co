@@ -18,7 +18,9 @@
       getCompanyEmail: getCompanyEmail,
       getCompanyName: getCompanyName,
       getCompanyTelephone: getCompanyTelephone,
-      getAllUserData: getAllUserData
+      getAllUserData: getAllUserData,
+      setAuthData: setAuthData,
+      getAuthData: getAuthData
     };
     return service;
 
@@ -28,6 +30,10 @@
 
     function setUserName(login) {
       userInfo.name = login;
+    }
+
+    function setAuthData(basicAuth) {
+      userInfo.authData = basicAuth;
     }
 
     function getAllUserData() {
@@ -60,6 +66,10 @@
 
     function resetUserData() {
       userInfo = {};
+    }
+
+    function getAuthData() {
+      return userInfo.authData;
     }
 
   }
