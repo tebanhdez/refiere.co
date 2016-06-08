@@ -1,15 +1,16 @@
 package co.refiere.dao;
 
+import co.refiere.models.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import co.refiere.models.PaymentType;
-import co.refiere.models.PlanOrder;
-import co.refiere.models.PlanOrderHome;
 import co.refiere.resources.util.HibernateUtil;
+
+import java.util.List;
 
 public class PlanOrderDao extends PlanOrderHome {
     private static final Log log = LogFactory.getLog(PlanOrderDao.class);
@@ -45,5 +46,28 @@ public class PlanOrderDao extends PlanOrderHome {
         PlanOrder instance = session.get(PlanOrder.class, id);
         trans.commit();
         return instance;
+    }
+
+    public List<PlanOrder> findPlanOrdersByCompanyId(int companyId){
+        log.debug("getting PlanOrder instances by companyId: " + companyId);
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            Query query = session.createQuery("from PlanOrder where company_id = :companyId");
+            query.setParameter("companyId", companyId);
+            java.util.List results = query.list();
+            trans.commit();
+            if (results != null && results.size() > 0) {
+                log.debug("get successful, instance found");
+            } else {
+                log.debug("get successful, no instance found");
+            }
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
     }
 }

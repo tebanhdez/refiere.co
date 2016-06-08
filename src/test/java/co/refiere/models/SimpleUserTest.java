@@ -2,40 +2,75 @@ package co.refiere.models;
 
 import java.util.UUID;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import co.refiere.dao.RefiereUserDao;
 import co.refiere.dao.RoleDao;
 
 public class SimpleUserTest {
 
-    String SYS_LOGIN = "root";//UUID.randomUUID().toString().substring(0, 18);
-    String SYS_PASS  = "@dm1n15tra@t0r";
-    
-    @Test
-    public void testCreateCompanyAdminUser() {
+    RefiereUserDao userDao = new RefiereUserDao();
+
+    SimpleUser testSysUser = new SimpleUser();
+    SimpleUser testAdminUser = new SimpleUser();
+    SimpleUser testSimpleUser = new SimpleUser();
+    SimpleUser testAccUser = new SimpleUser();
+
+    @Before
+    public void createTestUser(){
 
         RoleDao role = new RoleDao();
-        UserRoles userRole = role.findByRoleId(11);
-        Assert.assertNotNull("Role not found",userRole);
-        
-        SimpleUser adminUser = new SimpleUser();
-        //TODO: Provide Random integer - modify RefiereUser.dbm.xml to assign
-        //newUser.setId();
-        adminUser.setLogin(SYS_LOGIN);
-        adminUser.setPassword(SYS_PASS);
-        adminUser.setUserRoles(userRole);
-        
-        RefiereUserDao userDao = new RefiereUserDao();
-        System.out.println(String.format(">>> Saving AdminUser: %s", SYS_LOGIN));
-        userDao.save(adminUser);
 
-        SimpleUser user = userDao.findByLogin(SYS_LOGIN);
-        Assert.assertNotNull("User not found",user);
-        Assert.assertTrue(user.getLogin().equals(SYS_LOGIN));
-        Assert.assertTrue(user.getPassword().equals(SYS_PASS));
+        UserRoles sysUserRole = role.findByRoleId(DefaultUserRole.SYS.getId());
+        UserRoles adminUserRole = role.findByRoleId(DefaultUserRole.ADMIN.getId());
+        UserRoles simpleUserRole = role.findByRoleId(DefaultUserRole.USER.getId());
+        UserRoles accountingUserRole = role.findByRoleId(DefaultUserRole.ACCAD.getId());
+
+        Assert.assertNotNull("Admin role not found", sysUserRole);
+        Assert.assertNotNull("Admin role not found", adminUserRole);
+        Assert.assertNotNull("Admin role not found", simpleUserRole);
+        Assert.assertNotNull("Admin role not found", accountingUserRole);
+
+        testSysUser.setLogin("testSys");
+        testSysUser.setPassword("testPass");
+        testSysUser.setUserRoles(sysUserRole);
+
+        testAdminUser.setLogin("testAdmin");
+        testAdminUser.setPassword("testPass");
+        testAdminUser.setUserRoles(adminUserRole);
+
+        testSimpleUser.setLogin("testSimple");
+        testSimpleUser.setPassword("testPass");
+        testSimpleUser.setUserRoles(simpleUserRole);
+
+        testAccUser.setLogin("testAcc");
+        testAccUser.setPassword("testPass");
+        testAccUser.setUserRoles(accountingUserRole);
+
+        userDao.save(testSysUser);
+        userDao.save(testAdminUser);
+        userDao.save(testSimpleUser);
+        userDao.save(testAccUser);
     }
 
+    @Test
+    public void testCreateCompanyAdminUser() {
+        Assert.assertNotNull("Admin user not created", testSysUser);
+        Assert.assertNotNull("Admin user not created", testAdminUser);
+        Assert.assertNotNull("Admin user not created", testSimpleUser);
+        Assert.assertNotNull("Admin user not created", testAccUser);
+
+        Assert.assertTrue("Admin user role invalid", testSysUser.getUserRoles().getRoleIdentifier().compareToIgnoreCase(DefaultUserRole.SYS.getIdentifier()) == 0);
+        Assert.assertTrue("Admin user role invalid", testAdminUser.getUserRoles().getRoleIdentifier().compareToIgnoreCase(DefaultUserRole.ADMIN.getIdentifier()) == 0);
+        Assert.assertTrue("Admin user role invalid", testSimpleUser.getUserRoles().getRoleIdentifier().compareToIgnoreCase(DefaultUserRole.USER.getIdentifier()) == 0);
+        Assert.assertTrue("Admin user role invalid", testAccUser.getUserRoles().getRoleIdentifier().compareToIgnoreCase(DefaultUserRole.ACCAD.getIdentifier()) == 0);
+    }
+
+    @After
+    public void deleteTestUsers(){
+        userDao.deleteUser(testSysUser);
+        userDao.deleteUser(testAdminUser);
+        userDao.deleteUser(testSimpleUser);
+        userDao.deleteUser(testAccUser);
+    }
 }

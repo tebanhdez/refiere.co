@@ -1,28 +1,26 @@
 package co.refiere.resources;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import javax.json.JsonObject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.NoContentException;
-import javax.ws.rs.core.Response;
 
+import co.refiere.dao.PlanOrderDao;
+import co.refiere.models.*;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import co.refiere.dao.PaymentDao;
 import co.refiere.dao.RefiereCompanyDao;
 import co.refiere.dao.RefiereUserDao;
-import co.refiere.models.Company;
-import co.refiere.models.Payment;
-import co.refiere.models.SimpleUser;
 import co.refiere.resources.base.CompanyRequest;
 import co.refiere.resources.base.PaymentRequest;
 import co.refiere.resources.base.PlanRequest;
@@ -35,6 +33,7 @@ public class PlanOrderResourceTest extends JerseyTest {
 
     CompanyRequest newCompany;
     private int companyId;
+    private int orderId;
     private int userId;
     private int paymentId;
 
@@ -60,7 +59,7 @@ public class PlanOrderResourceTest extends JerseyTest {
         
         //Plan details
         PlanRequest plan = new PlanRequest();
-        plan.setId(10); // 10 - Basic Plan
+        plan.setId(DefaultPlan.BASIC.getPlanId());
         plan.setPersonalizedEmail("company@custom.email");
         //Setting up properties
         newCompany.setUser(companyUser);
@@ -73,18 +72,21 @@ public class PlanOrderResourceTest extends JerseyTest {
         Assert.assertTrue("Key not found", jsonResponse.containsKey("companyId"));
         userId = jsonResponse.getInt("userId");
         companyId = jsonResponse.getInt("companyId");
+        PlanOrderDao orderDao = new PlanOrderDao();
+        List <PlanOrder> planOrders = orderDao.findPlanOrdersByCompanyId(companyId);
+        Assert.assertTrue("No plan order found", planOrders != null && planOrders.size() > 0);
+        orderId = planOrders.get(0).getId();
     }
 
     @Test
     public void testAcceptPlanOrderPayment(){
         PaymentRequest paymentRequest = new PaymentRequest();
-        //paymentRequest.setId(orderId);
-        paymentRequest.setOrderId(1);
-        paymentRequest.setCurrencyId(10); // 0 - Colones
+        paymentRequest.setOrderId(orderId);
+        paymentRequest.setCurrencyId(DefaultCurrency.CRC.getCurrencyId());
         paymentRequest.setDiscount(BigDecimal.valueOf(0.10));
         paymentRequest.setPrice(BigDecimal.valueOf(99.99));
         paymentRequest.setPaymentDescription("Payment of Testing Company");
-        paymentRequest.setPaymentTypeId(10); //Bank deposit
+        paymentRequest.setPaymentTypeId(DefaultPayment.BANK_DEPOSIT.getId());
         paymentRequest.setTotalPrice(BigDecimal.valueOf(98.99));
         paymentRequest.setAccountingTrackRef("BANCO NACIONAL: 0832028384");
         paymentRequest.setUserName("ehernandez");
