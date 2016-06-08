@@ -1,22 +1,21 @@
 package co.refiere.models;
 
-import org.junit.Ignore;
+import org.junit.Assert;
 import org.junit.Test;
 
 import co.refiere.dao.RefiereLapseDao;
 
+import java.util.List;
+
 public class RefiereLapseTest {
 
-    @Ignore
     @Test
     public void testCreateRefiereLapse() {
 
         RefiereLapseDao refiereDao = new RefiereLapseDao();
-        Lapse newLapse = new Lapse();
-        newLapse.setName("Testing lapse");
-        newLapse.setDays(1);
-        
-        refiereDao.save(newLapse);
+        List<Lapse> systemLapses = refiereDao.getAllLapses();
+        Assert.assertTrue("Lapses not found", systemLapses.size() == 9);
+        Assert.assertEquals("Lapses not retrieved", DefaultLapse.values().length, systemLapses.size());
 
     }
 }
