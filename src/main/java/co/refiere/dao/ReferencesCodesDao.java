@@ -4,16 +4,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.StatelessSession;
 
-import co.refiere.models.Person;
-import co.refiere.models.PersonHome;
+import co.refiere.models.ReferencesCodes;
+import co.refiere.models.ReferencesCodesHome;
 import co.refiere.resources.util.HibernateUtil;
 
-
-public class PersonDao extends PersonHome {
-    
-    private static final Log log = LogFactory.getLog(PersonDao.class);
+public class ReferencesCodesDao extends ReferencesCodesHome{
+    private static final Log log = LogFactory.getLog(ReferencesCodesDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     @Override
@@ -26,26 +23,18 @@ public class PersonDao extends PersonHome {
         }
     }
 
-    public StatelessSession getStatelessSession(){
-        return sessionFactory.openStatelessSession();
-    }
-    
-    public void save(Person person){
+    public void save(ReferencesCodes referencesCodes){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        if(person.getId() == 0){
-            persist(person); 
-        }else{
-            merge(person);
-        }
+        persist(referencesCodes);
         trans.commit();
     }
-    
-    public Person findPersonsById(int id) {
+
+    public void deleteReferencesCodes(ReferencesCodes referencesCodes) {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        Person instance = findById(id);
+        delete(referencesCodes);
         trans.commit();
-        return instance;
     }
+
 }

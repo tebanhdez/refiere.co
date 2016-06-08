@@ -1,14 +1,18 @@
 package co.refiere.resources.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.io.FileUtils;
+
 import org.hibernate.CallbackException;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.ScrollMode;
@@ -22,6 +26,7 @@ import co.refiere.models.Company;
 import co.refiere.models.Person;
 import co.refiere.resources.base.EmailRequest;
 import co.refiere.services.mailer.RefiereServiceFactory;
+import co.refiere.services.mailer.ResourceManager;
 
 public class RefiereInterceptor extends EmptyInterceptor {
 
@@ -33,9 +38,29 @@ public class RefiereInterceptor extends EmptyInterceptor {
      * postFlush – Called after the saved, updated or deleted objects are committed to database.
      */
     private static final long serialVersionUID = 1L;
-    private static final Log log = LogFactory.getLog(RefiereInterceptor.class);
+    private static final Log LOGGER = LogFactory.getLog(RefiereInterceptor.class);
+    private static Properties properties = null;
 
-    public RefiereInterceptor() {
+    static{
+        properties = new Properties();
+        try {
+            properties.load(ResourceManager.getResourceAsInputStream("mailservice.properties"));
+        } catch (IOException exception) {
+            LOGGER.error("Error loading properties file", exception);
+        }
+    }
+
+    public String getStringfontTemplate(String fileName){
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classloader.getResource(fileName).getFile());
+
+        String stringFile = "";
+        try {
+            stringFile = FileUtils.readFileToString(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringFile;
     }
 
     public boolean onSave(Object entity,Serializable id,
@@ -45,20 +70,35 @@ public class RefiereInterceptor extends EmptyInterceptor {
         if (entity instanceof Company){
             Company company = (Company) entity;
             if("".equals(company.getEmail())){
-                log.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
+                LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
             }else{
                 String [] recipients = {company.getEmail()};
                 String [] attachments = {};
                 try {
                     RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
                             "Bienvenido a Refiere.co",
-                            "<h1> Hey Bienvenido!</h1>", attachments);
+                            getStringfontTemplate("RefiereTemplateInvoice.html"), attachments);
                 } catch (MessagingException e) {
-                    log.error("ERROR: RefiereInterceptor::Sending email", e);
+                    LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
                 }
             }
         }
+        if (entity instanceof Person){
+            Person person = (Person) entity;
+            if("".equals(person.getEmail())){
+                LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
+            }else{
+                String [] recipients = {person.getEmail()};
+                String [] attachments = {};
+                try {
+                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients, 
+                            properties.get("refiere.email.subject").toString(), getStringfontTemplate("RefiereTemplateCode.html"), attachments);
+                }catch (MessagingException e){
+                    LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
+                }
+            }
 
+        }
         if(entity instanceof Campaign){
             Campaign campaign = (Campaign) entity;
             int dataBase = campaign.getCompanyDatabase().getId();
@@ -84,25 +124,25 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
                     if(campaignTargets.size() == CHUNK_SIZE){
-                        log.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
+                        LOGGER.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
                         RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
                         campaignTargets.clear();
                     }
                 }
                 if(campaignTargets.size() > 0){
-                    log.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
+                    LOGGER.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
                     RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
                 }
-            statelessSession.getTransaction().commit();
-        } finally {
-            try{
-                statelessSession.close();
-            }catch (org.hibernate.SessionException exception) {
-                log.error(exception.getMessage());
+                statelessSession.getTransaction().commit();
+            } finally {
+                try{
+                    statelessSession.close();
+                }catch (org.hibernate.SessionException exception) {
+                    LOGGER.error(exception.getMessage());
+                }
             }
         }
-    }
-    return false;
+        return false;
 
-}
+    }
 }

@@ -8,16 +8,16 @@ public class ReferencesCodes implements java.io.Serializable {
 
     private ReferencesCodesId id;
     private Person person;
-
+    
     public ReferencesCodes() {
     }
-
-    public ReferencesCodes(ReferencesCodesId id) {
-        this.id = id;
-    }
-
+    
     public ReferencesCodes(ReferencesCodesId id, Person person) {
         this.id = id;
+        this.person = person;
+    }
+
+    public ReferencesCodes(Person person) {
         this.person = person;
     }
 
