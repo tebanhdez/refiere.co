@@ -1,7 +1,7 @@
 <aside>
     <div id="sidebar"  class="nav-collapse ">
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><img src="images/refiere_logo.png" class="img-circle" width="60"></p>
+            <p class="centered"><img src="images/user.png" class="img-circle" width="100"></p>
             <h5 class="centered" id="userName">{{vm.userData.name}}</h5>
             <li ng-repeat="tab in vm.tabs" class="sub-menu" ng-class="{active: $state.includes('{{tab.state}}')}">
                 <a ui-sref="{{tab.state}}">
