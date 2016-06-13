@@ -10,31 +10,44 @@ import com.google.zxing.qrcode.QRCodeReader;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import co.refiere.resources.base.QRCodeRequest;
+import co.refiere.services.mailer.MailService;
+import co.refiere.services.mailer.ResourceManager;
 
 import javax.imageio.ImageIO;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class QRCodeService {
-
+    private static final Log LOGGER = LogFactory.getLog(MailService.class);
+    static Properties QRCodeProperties;
+    static File QRFile;
+    
+    public QRCodeService(){
+        QRCodeProperties = new Properties();
+        QRFile = new File("qrRefiere.png");
+        try {
+            QRCodeService.QRCodeProperties.load(ResourceManager.getResourceAsInputStream("qrcodeservice.properties"));
+        } catch (IOException e) {
+            LOGGER.error(e);
+        }
+    }
+    
+    
     public void generateQRCode(QRCodeRequest qrRequest) {
-
-        QRCodeService qr = new QRCodeService();
-        File f = new File("qrRefiere.png");
-        String text = "http://www.refiere.co/id/%s/cam/%s";
+        String text = QRCodeProperties.getProperty("qr.code.text");
         text = String.format(text, qrRequest.getIdPerson(), qrRequest.getIdCampaign());
         try {
-
-            qr.generateQR(f, text, 300, 300);
-            System.out.println("QRCode Generated: " + f.getAbsolutePath());
-
-            String qrString = qr.decoder(f);
-            System.out.println("Text QRCode: " + qrString);
-
+            generateQR(QRFile, text, 300, 300);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
     }
