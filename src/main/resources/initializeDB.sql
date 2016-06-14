@@ -4,6 +4,10 @@ insert into user_roles(id, name, role_identifier, description) values (11,'Admin
 insert into user_roles(id, name, role_identifier, description) values (12,'endUser', 'USER', 'User generated')
 insert into user_roles(id, name, role_identifier, description) values (13,'AccAdmin', 'ACCAD', 'Accounting')
 
+insert into simple_user(id, login, password, user_role_id) values (11, 'sys', '5y5@dm15tr@t0r', 10)
+insert into simple_user(id, login, password, user_role_id) values (12, 'root', 'r00t@dm15tr@t0r', 10)
+insert into simple_user(id, login, password, user_role_id) values (13, 'admin', '@dm15tr@t0r', 10)
+
 -- Insert default lapse
 INSERT INTO lapse(id, name, days) VALUES (10, 'Diario', 1)
 INSERT INTO lapse(id, name, days) VALUES (11, 'Semanal', 7)
@@ -16,9 +20,9 @@ INSERT INTO lapse(id, name, days) VALUES (17, 'Semestral', 180)
 INSERT INTO lapse(id, name, days) VALUES (18, 'Anual', 365)
 
 -- Insert default plans
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (10, 'Plan Basico', true, 100, 0.5, 1)
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (11, 'Enterprice',  true, 300, 0.5, 2)
-INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount) VALUES (12, 'Corporacion', true, 500, 0.5, 2)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (10, 'Plan Basico', true, 100, 0.5, 1, 14, 13)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (11, 'Enterprice',  true, 300, 0.5, 2, 14, 12)
+INSERT INTO plan(id, name, is_active, referrer_amount, sales_percentaje, campaign_amount, campaign_lapse_ref, report_lapse_id) VALUES (12, 'Corporacion', true, 500, 0.5, 2, 13, 11)
 
 -- Insert default order status
 INSERT INTO order_status(id, name, description) VALUES (10, 'NEW', 'Created')

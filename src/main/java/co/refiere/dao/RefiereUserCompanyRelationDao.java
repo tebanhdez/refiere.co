@@ -36,7 +36,14 @@ public class RefiereUserCompanyRelationDao extends UserCompanyHome {
         persist(company);
         trans.commit();
     }
-    
+
+    public void deleteRelation(UserCompany company){
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans= session.beginTransaction();
+        delete(company);
+        trans.commit();
+    }
+
     public UserCompany findUserCompanyRelByUserIdAndCompanyId(int userId, int companyId) {
         log.debug("getting UserCompanyRelation instance with UserId: " + userId + " and CompanyId: " + companyId);
         try {

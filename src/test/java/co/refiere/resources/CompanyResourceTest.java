@@ -6,6 +6,7 @@ import javax.json.JsonObject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 
+import co.refiere.models.DefaultPlan;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
@@ -49,7 +50,7 @@ public class CompanyResourceTest extends JerseyTest {
         
         //Plan details
         PlanRequest plan = new PlanRequest();
-        plan.setId(10); // 10 - Basic Plan
+        plan.setId(DefaultPlan.BASIC.getPlanId());
         plan.setPersonalizedEmail("company@custom.email");
         //Setting up properties
         newCompany.setUser(companyUser);
