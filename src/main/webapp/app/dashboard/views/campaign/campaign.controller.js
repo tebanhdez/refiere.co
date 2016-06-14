@@ -26,10 +26,10 @@
     }
 
     function getDatabases() {
-      CampaignService.getDatabaseFromServer();
-        // .then(function(databasesData){
-        //   vm.databases = databasesData.data;
-        // })
+      CampaignService.getDatabaseFromServer()
+        .then(function(databasesData){
+          vm.databases = databasesData.data;
+        })
     }
 
   }

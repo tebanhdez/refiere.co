@@ -100,7 +100,7 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
             org.hibernate.Transaction trans = session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close");
-            Query query = session.createQuery("from CompanyDatabase where name =" + userName);
+            Query query = session.createQuery("from CompanyDatabase");
             java.util.List results = query.list();
             trans.commit();
             if (results !=  null && !results.isEmpty()) {

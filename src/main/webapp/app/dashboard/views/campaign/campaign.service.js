@@ -19,11 +19,8 @@
     }
 
     function getDatabaseFromServer() {
-      // return $http.post('http://localhost:5000/rest/v1/database/all', data);
-      // console.log(data);
 
-      var actualUser = UserDataService.getUserName();
-      console.log(SessionModel.password);
+      var currentUser = UserDataService.getUserName();
       var encodedBasic = SessionModel.password;
 
       var request = {
@@ -33,8 +30,9 @@
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
         },
-        data: actualUser
+        data: currentUser
       };
+
       return $http(request);
     }
 
