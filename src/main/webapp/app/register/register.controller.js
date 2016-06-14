@@ -27,10 +27,9 @@
     function saveNewCompany() {
       RegisterSrv.postCompanyInfo(vm.newCompanyData)
         .then(function(data) {
-          // console.log(data.status);
           if (data.status === 200){
             $window.alert('Bienvenido ' + vm.newCompanyData.UserRequest.login + '.' );
-            $state.go('dashboard');
+            $state.go('home');
           }
           else if (data.status === 400){
             $window.alert('Por favor ingrese los datos correctos.');

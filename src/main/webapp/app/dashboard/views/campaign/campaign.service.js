@@ -13,15 +13,24 @@
     this.getPrizeFromServer = getPrizeFromServer;
     this.getDatabaseFromServer = getDatabaseFromServer;
     this.setNewCampaign = setNewCampaign;
+    var currentUser = UserDataService.getUserName();
+    var encodedBasic = SessionModel.password;
 
-    function getPrizeFromServer(data) {
-      return $http.get('http://localhost:5000/rest/v1/prize/all', data);
+    function getPrizeFromServer() {
+
+      var request = {
+        method: 'GET',
+        url: 'http://localhost:5000/rest/v1/prize/all',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        }
+      };
+
+      return $http(request);
     }
 
     function getDatabaseFromServer() {
-
-      var currentUser = UserDataService.getUserName();
-      var encodedBasic = SessionModel.password;
 
       var request = {
         method: 'POST',

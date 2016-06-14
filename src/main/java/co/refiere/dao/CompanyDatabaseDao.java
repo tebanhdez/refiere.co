@@ -100,7 +100,9 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
             org.hibernate.Transaction trans = session.beginTransaction();
             if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
                 log.debug(" >>> Transaction close");
-            Query query = session.createQuery("from CompanyDatabase");
+            Query query = session.createSQLQuery("select company_database.id as id, company_database.name as name, company_database.company_id as company_id from simple_user INNER JOIN user_company ON simple_user.id = user_company.user_id INNER JOIN company ON user_company.company_id = company.id INNER JOIN company_database ON company.id = company_database.company_id AND simple_user.login = :userName")
+                    .addEntity(CompanyDatabase.class)
+                    .setParameter("userName", userName);
             java.util.List results = query.list();
             trans.commit();
             if (results !=  null && !results.isEmpty()) {

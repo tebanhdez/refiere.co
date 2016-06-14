@@ -13,7 +13,8 @@ public class RefiereCompanyDatabaseTest {
         
         CompanyDatabase companyDatabase = new CompanyDatabase();
         
-        companyDatabase.setName("New Test Database");
+        companyDatabase.setName("Test2 Database");
+        companyDatabase.setCompany_id(2);
         
         companyDatabaseDao.save(companyDatabase);
     }
