@@ -33,11 +33,7 @@ public class PersonDao extends PersonHome {
     public void save(Person person){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
-        if(person.getId() == 0){
-            persist(person); 
-        }else{
-            merge(person);
-        }
+        session.saveOrUpdate(person);
         trans.commit();
     }
     

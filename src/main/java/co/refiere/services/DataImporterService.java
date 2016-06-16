@@ -38,9 +38,7 @@ public class DataImporterService {
   
   public void importDatabase(InputStream uploadedInputStream, FormDataContentDisposition fileDetail,int companyDatabaseId) {
     CompanyDatabaseDao companyDatabaseDao= new CompanyDatabaseDao();
-    System.out.println(companyDatabaseId);
     companyDatabase=companyDatabaseDao.findDatabaseById(companyDatabaseId);
-    System.out.println(companyDatabase==null);
     try {
       if (isExcelFormat(fileDetail)) {
         excelTranslationType(uploadedInputStream);

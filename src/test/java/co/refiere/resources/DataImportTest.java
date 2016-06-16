@@ -26,7 +26,7 @@
         return new ResourceConfig(DatabaseImporterResource.class).register(MultiPartFeature.class);
     }
 
-    @Ignore
+    
     @Test
     public void excelImportTest() {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -36,7 +36,7 @@
         assertEquals(200, response.getStatus());
     }
 
-    @Ignore
+    
     @Test
     public void csvImportTest() {
         ClassLoader classLoader = getClass().getClassLoader();
