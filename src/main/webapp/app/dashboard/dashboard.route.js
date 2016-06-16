@@ -21,17 +21,17 @@
         url: '/metrics',
         templateUrl: 'app/dashboard/views/metrics/view.html',
       })
+      .state('dashboard.database', {
+        url: '/database',
+        templateUrl:'app/dashboard/views/database/view.html',
+      })
       .state('dashboard.news', {
         url: '/news',
         templateUrl: 'app/dashboard/views/news/view.html',
       })
       .state('dashboard.reports', {
-        url: '/news',
+        url: '/reports',
         templateUrl: 'app/dashboard/views/reports/view.html',
       })
-      .state('dashboard.database', {
-        url: '/database',
-        templateUrl:'app/dashboard/views/database/view.html',
-      });
   }
 })();

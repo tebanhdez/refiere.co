@@ -33,10 +33,6 @@ table, th, td {
     width: 100%;
 }
 
-button {
-    width: 100%;
-}
-
 .header_ladingpage {
     display: table;
     position: relative;
@@ -541,16 +537,15 @@ ul.top-menu > li > .logout:hover {
     letter-spacing: -1px;
     margin-bottom: 0;
     font-weight: 300;
+    color:#FFF;
 }
-.dashboard-stat.blue .details .desc {
-    color: #FFF;
-    opacity: 0.3;
-}
+
 .dashboard-stat .details .desc {
     text-align: right;
-    font-size: 20px;
+    font-size: 17px;
     letter-spacing: 0;
     font-weight: 300;
+    color: #FFF;
 }
 .dashboard-stat.blue .more {
     color: #FFF;
@@ -650,9 +645,16 @@ ul.top-menu > li > .logout:hover {
     background-color: #868A08;
 }
 #nameMetrics{
-	color: #fff;
+	  color: #fff;
     opacity: 1;
 }
 #statistics{
-	color: #fff;
+	  color: #fff;
+}
+
+.img_dashboard{
+  position: absolute;
+	max-width: 58%;
+	top: 5%;
+	left: 33%;
 }

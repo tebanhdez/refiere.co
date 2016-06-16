@@ -70,4 +70,50 @@ public class CompanyDatabaseDao extends CompanyDatabaseHome {
         delete(dataBase);
         trans.commit();
     }
+    
+    public List<CompanyDatabase> findAllDatabases(){
+        log.debug("getting Company_database's instances");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans = session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close");
+            Query query = session.createQuery("from CompanyDatabase");
+            java.util.List results = query.list();
+            trans.commit();
+            if (results !=  null && !results.isEmpty()) {
+                log.debug("get successful, instance found");
+            } else {
+                log.debug("get successful, no instance found");
+            }
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+    
+    public List<CompanyDatabase> findAllDatabasesByCompany(String userName){
+        log.debug("getting Company_database's instances");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans = session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close");
+            Query query = session.createSQLQuery("select company_database.id as id, company_database.name as name, company_database.company_id as company_id from simple_user INNER JOIN user_company ON simple_user.id = user_company.user_id INNER JOIN company ON user_company.company_id = company.id INNER JOIN company_database ON company.id = company_database.company_id AND simple_user.login = :userName")
+                    .addEntity(CompanyDatabase.class)
+                    .setParameter("userName", userName);
+            java.util.List results = query.list();
+            trans.commit();
+            if (results !=  null && !results.isEmpty()) {
+                log.debug("get successful, instance found");
+            } else {
+                log.debug("get successful, no instance found");
+            }
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
 }
