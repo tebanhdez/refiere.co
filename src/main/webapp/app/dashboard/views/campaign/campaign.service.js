@@ -46,7 +46,17 @@
     }
 
     function setNewCampaign(campaignData) {
-      return $http.post('http://localhost:5000/rest/v1/campaign', campaignData);
+      var postRequest = {
+        method: 'POST',
+        url: 'http://localhost:5000/rest/v1/campaign',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        },
+        data: campaignData
+      };
+
+      return $http(postRequest);
     }
 
   }

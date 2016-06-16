@@ -14,6 +14,7 @@
       resetUserData: resetUserData,
       getRoleIdentifier: getRoleIdentifier,
       getUserName: getUserName,
+      getCompanyID: getCompanyID,
       getCompanyAddress: getCompanyAddress,
       getCompanyEmail: getCompanyEmail,
       getCompanyName: getCompanyName,
@@ -46,6 +47,10 @@
 
     function getRoleIdentifier() {
       return userInfo.RoleIdentifier;
+    }
+
+    function getCompanyID() {
+      return userInfo.company.id;
     }
 
     function getCompanyAddress() {

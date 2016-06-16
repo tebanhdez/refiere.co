@@ -20,7 +20,7 @@ public class DatabaseService {
         List<DatabaseObjectData> databases = getSimplifiedDatabases(companyDatabaseDao.findAllDatabasesByCompany(userName));
         if(databases == null){
             LOGGER.error("Databases not found");
-            throw new NoContentException("\"Error \": \"Prizes not found\"");
+            throw new NoContentException("\"Error \": \"The reference to the database not found\"");
         }
         return databases;
     }
