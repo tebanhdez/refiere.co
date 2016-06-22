@@ -30,7 +30,7 @@
       icon: 'fa-book'
     },{
       title: 'Reportes',
-      state: 'home',
+      state: 'dashboard.reports',
       icon: 'fa-cogs'
     }];
 
