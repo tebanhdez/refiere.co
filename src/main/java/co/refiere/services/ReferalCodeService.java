@@ -12,7 +12,6 @@ import co.refiere.resources.base.NewUserRequest;
 
 public class ReferalCodeService {
 
-    
     public String registerNewPerson(NewUserRequest newUser) throws NoContentException {
         String response = "{\"msg\" : \"%s\"}";
 
@@ -27,7 +26,7 @@ public class ReferalCodeService {
         personDao.save(person);
 
         Person referalPerson = personDao.findPersonsById(newUser.getReferalPersonId());
-        if(referalPerson == null)
+        if (referalPerson == null)
             throw new NoContentException("\"Error \": \" Referal person not found \"");
         ReferencesCodesId referencesCodesId = new ReferencesCodesId();
         referencesCodesId.setCampaignId(newUser.getCampaignId());
@@ -39,10 +38,9 @@ public class ReferalCodeService {
         referencesCodes.setPerson(person);
 
         referencesCodesDao.save(referencesCodes);
-        response = String.format(response,"User Registered");
+        response = String.format(response, "User Registered");
 
         return response;
-
 
     }
 

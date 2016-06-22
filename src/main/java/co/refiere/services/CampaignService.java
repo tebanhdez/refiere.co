@@ -18,7 +18,7 @@ public class CampaignService {
 
     public Response createCampaign(CampaignRequest campaign) {
         String jsonResponse = "{\"status\":\"OK\", \"campaignId\": %d}";
-        CampaignDao campaignDao= new CampaignDao();
+        CampaignDao campaignDao = new CampaignDao();
         CompanyDatabaseDao dataBaseDao = new CompanyDatabaseDao();
         PrizeDao prizeDao = new PrizeDao();
         

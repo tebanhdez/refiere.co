@@ -5,10 +5,10 @@
     .module('refiereApp.login')
     .service('LoginSrv', LoginSrv);
 
-  LoginSrv.$inject = ['$http', '$base64'];
+  LoginSrv.$inject = ['$http', '$base64', 'SessionModel'];
 
   /* @ngInject */
-  function LoginSrv($http, $base64) {
+  function LoginSrv($http, $base64, SessionModel) {
 
     this.verifyUser = verifyUser;
 
@@ -18,6 +18,8 @@
       var userDataString = userData.login + ':' + userData.password;
       var encodedData = $base64.encode(userDataString);
       var encodedBasic = 'Basic ' + encodedData + '';
+
+      SessionModel.password = encodedBasic;
 
       var request = {
         method: 'POST',

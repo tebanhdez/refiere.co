@@ -1,12 +1,15 @@
-<div id="panelPosition" class="row">
-  <div class="col-md-4 col-md-offset-3">
+<div class="panel_campaign" id="" class="row">
+  <div class="col-xs-7 col-sm-4 col-lg-4 campignMargin">
     <div class="panel panel-primary">
       <div id="Panel" class="panel-heading">Crear Campaña</div>
       <div class="panel-body">
         <form class="form-inline">
           <div class="form-group">
             <label id="Texto">Nombre </label>
-            <input id="inputText" type="text" class="form-control" id="exampleInputName2" placeholder="">
+            <input id="inputText" type="text" class="form-control"
+            id="exampleInputName2"
+            placeholder=""
+            ng-model="vm.newCampaign.campaignName">
           </div>
         </form>
         <br>
@@ -14,37 +17,49 @@
           <div class="form-group">
             <label for="repeatSelect"> Recompensa para Referidor: </label>
             <br>
-            <select id="inputText" class="form-control">
-              <option ng-repeat="prize in vm.prizes" value="{{prize.prizeId}}">{{prize.description}}</option>
-            </select>
-            <br>
-            <label for="repeatSelect"> Recompensa para Referido: </label>
-            <br>
-            <select id="inputText" class="form-control">
-                <option ng-repeat="prize in vm.prizes" value="{{prize.prizeId}}">{{prize.description}}</option>
-            </select>
-          </div>
-        </form>
-        <br>
-        <form class="form-inline">
-          <div class="form-group">
-            <label id="Texto" >Base de Datos</label>
-            <select id="inputText" class="form-control">
-              <option>ver datos</option>
-            </select>
-          </div>
-        </form>
-        <br>
-        <form class="form-inline">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-4 col-md-offset-8">
-                <button type="button" class="btn btn-primary btn-sm">Generación de Código</button>
-              </div>
-            </div>
-          </div>
-        </form>
+            <select id="inputText" class="form-control"
+            ng-model = "vm.newCampaign.prizeForRefiereId"
+            ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
+            <option ng-repeat = "prize in vm.prizes"
+            ng-value = "prize.prizeId"
+            >{{prize.description}}</option>
+          </select>
+          <br>
+          <label for="repeatSelect"> Recompensa para Referido: </label>
+          <br>
+          <select id="inputText" class="form-control"
+          ng-model = "vm.newCampaign.prizeForRefiereeId"
+          ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
+          <option ng-repeat = "prize in vm.prizes"
+          ng-value = "prize.prizeId"
+          >{{prize.description}}</option>
+        </select>
       </div>
-    </div>
+    </form>
+    <br>
+    <form class="form-inline">
+      <div class="form-group">
+        <label id="Texto" >Base de Datos</label>
+        <select id="inputText" class="form-control" ng-model = "vm.newCampaign.companyDataBase">
+          <option ng-repeat = "database in vm.databases"
+          ng-value = "database.databaseId"
+          >{{database.databaseName}}</option>
+        </select>
+      </div>
+    </form>
+    <br>
+    <form class="form-inline">
+      <div class="form-group">
+        <div class="row">
+          <div class="">
+            <button type="button"
+            class="btn btn-primary btn-sm panel_campaign_button"
+            ng-click="vm.createNewCampaign()">Generación de Código</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
+</div>
 </div>

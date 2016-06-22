@@ -31,17 +31,19 @@ import co.refiere.services.mailer.ResourceManager;
 public class RefiereInterceptor extends EmptyInterceptor {
 
     /**
-     * onSave – Called when you save an object, the object is not save into database yet.
-     * onFlushDirty – Called when you update an object, the object is not update into database yet.
-     * onDelete – Called when you delete an object, the object is not delete into database yet.
-     * preFlush – Called before the saved, updated or deleted objects are committed to database (usually before postFlush).
-     * postFlush – Called after the saved, updated or deleted objects are committed to database.
+     * onSave – Called when you save an object, the object is not save into
+     * database yet. onFlushDirty – Called when you update an object, the object
+     * is not update into database yet. onDelete – Called when you delete an
+     * object, the object is not delete into database yet. preFlush – Called
+     * before the saved, updated or deleted objects are committed to database
+     * (usually before postFlush). postFlush – Called after the saved, updated
+     * or deleted objects are committed to database.
      */
     private static final long serialVersionUID = 1L;
     private static final Log LOGGER = LogFactory.getLog(RefiereInterceptor.class);
     private static Properties properties = null;
 
-    static{
+    static {
         properties = new Properties();
         try {
             properties.load(ResourceManager.getResourceAsInputStream("mailservice.properties"));
@@ -50,7 +52,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
         }
     }
 
-    public String getStringfontTemplate(String fileName){
+    public String getStringfontTemplate(String fileName) {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         File file = new File(classloader.getResource(fileName).getFile());
 
@@ -63,43 +65,42 @@ public class RefiereInterceptor extends EmptyInterceptor {
         return stringFile;
     }
 
-    public boolean onSave(Object entity,Serializable id,
-            Object[] state,String[] propertyNames,Type[] types)
-                    throws CallbackException {
+    public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types)
+            throws CallbackException {
 
-        if (entity instanceof Company){
+        if (entity instanceof Company) {
             Company company = (Company) entity;
-            if("".equals(company.getEmail())){
+            if ("".equals(company.getEmail())) {
                 LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
-            }else{
-                String [] recipients = {company.getEmail()};
-                String [] attachments = {};
+            } else {
+                String[] recipients = { company.getEmail() };
+                String[] attachments = {};
                 try {
-                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
-                            "Bienvenido a Refiere.co",
+                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients, "Bienvenido a Refiere.co",
                             getStringfontTemplate("RefiereTemplateInvoice.html"), attachments);
                 } catch (MessagingException e) {
                     LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
                 }
             }
         }
-        if (entity instanceof Person){
+        if (entity instanceof Person) {
             Person person = (Person) entity;
-            if("".equals(person.getEmail())){
+            if ("".equals(person.getEmail())) {
                 LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
-            }else{
-                String [] recipients = {person.getEmail()};
-                String [] attachments = {};
+            } else {
+                String[] recipients = { person.getEmail() };
+                String[] attachments = {};
                 try {
-                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients, 
-                            properties.get("refiere.email.subject").toString(), getStringfontTemplate("RefiereTemplateCode.html"), attachments);
-                }catch (MessagingException e){
+                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
+                            properties.get("refiere.email.subject").toString(),
+                            getStringfontTemplate("RefiereTemplateCode.html"), attachments);
+                } catch (MessagingException e) {
                     LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
                 }
             }
 
         }
-        if(entity instanceof Campaign){
+        if (entity instanceof Campaign) {
             Campaign campaign = (Campaign) entity;
             int dataBase = campaign.getCompanyDatabase().getId();
             String query = "from Person where company_database_id = %d";
@@ -107,10 +108,11 @@ public class RefiereInterceptor extends EmptyInterceptor {
             StatelessSession statelessSession = personDao.getStatelessSession();
             statelessSession.beginTransaction();
             try {
-                ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase)).scroll(ScrollMode.FORWARD_ONLY);
+                ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase))
+                        .scroll(ScrollMode.FORWARD_ONLY);
 
                 int CHUNK_SIZE = 100;
-                List<EmailRequest> campaignTargets = new ArrayList<>(); 
+                List<EmailRequest> campaignTargets = new ArrayList<>();
                 while (scrollableResults.next()) {
                     Object personObj = scrollableResults.get()[0];
                     Person person = (Person) personObj;
@@ -123,26 +125,25 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     request.setBody("<h1>-- INSERT CODE HERE!! --</h1>");
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
-                    if(campaignTargets.size() == CHUNK_SIZE){
+                    if (campaignTargets.size() == CHUNK_SIZE) {
                         LOGGER.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
                         RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
                         campaignTargets.clear();
                     }
                 }
-                if(campaignTargets.size() > 0){
+                if (campaignTargets.size() > 0) {
                     LOGGER.info("processing EmailQueue::Queue Size: " + campaignTargets.size());
                     RefiereServiceFactory.getMailService().emailWorker(campaignTargets);
                 }
                 statelessSession.getTransaction().commit();
             } finally {
-                try{
+                try {
                     statelessSession.close();
-                }catch (org.hibernate.SessionException exception) {
+                } catch (org.hibernate.SessionException exception) {
                     LOGGER.error(exception.getMessage());
                 }
             }
         }
         return false;
-
     }
 }
