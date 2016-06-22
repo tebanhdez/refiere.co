@@ -11,11 +11,12 @@ public class NewUserRequest {
 	    private String name;
 	    private String lastName;
 	    private String email;
+	    private String phoneNumber;
 	    
 	    public int getCampaignId() {
 			return campaignId;
 		}
-		public void setCampaignId(int i) {
+		public void setCampaignId(int campaignId) {
 			this.campaignId = campaignId;
 		}
 		public int getReferalPersonId() {
@@ -54,5 +55,5 @@ public class NewUserRequest {
 		public void setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
-		private String phoneNumber;
+		
 }
