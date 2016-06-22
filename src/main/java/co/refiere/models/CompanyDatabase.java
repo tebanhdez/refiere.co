@@ -11,22 +11,33 @@ public class CompanyDatabase implements java.io.Serializable {
 
     private int id;
     private String name;
+    private int company_id;
     private Set campaigns = new HashSet(0);
     private Set persons = new HashSet(0);
 
     public CompanyDatabase() {
     }
 
-    public CompanyDatabase(int id, String name) {
+    public CompanyDatabase(int id, String name, int company_id) {
         this.id = id;
         this.name = name;
+        this.company_id = company_id;
     }
 
-    public CompanyDatabase(int id, String name, Set campaigns, Set persons) {
+    public CompanyDatabase(int id, String name, int company_id, Set campaigns, Set persons) {
         this.id = id;
         this.name = name;
+        this.company_id = company_id;
         this.campaigns = campaigns;
         this.persons = persons;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public int getId() {

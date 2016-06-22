@@ -14,11 +14,14 @@
       resetUserData: resetUserData,
       getRoleIdentifier: getRoleIdentifier,
       getUserName: getUserName,
+      getCompanyID: getCompanyID,
       getCompanyAddress: getCompanyAddress,
       getCompanyEmail: getCompanyEmail,
       getCompanyName: getCompanyName,
       getCompanyTelephone: getCompanyTelephone,
-      getAllUserData: getAllUserData
+      getAllUserData: getAllUserData,
+      setAuthData: setAuthData,
+      getAuthData: getAuthData
     };
     return service;
 
@@ -28,6 +31,10 @@
 
     function setUserName(login) {
       userInfo.name = login;
+    }
+
+    function setAuthData(basicAuth) {
+      userInfo.authData = basicAuth;
     }
 
     function getAllUserData() {
@@ -40,6 +47,10 @@
 
     function getRoleIdentifier() {
       return userInfo.RoleIdentifier;
+    }
+
+    function getCompanyID() {
+      return userInfo.company.id;
     }
 
     function getCompanyAddress() {
@@ -60,6 +71,10 @@
 
     function resetUserData() {
       userInfo = {};
+    }
+
+    function getAuthData() {
+      return userInfo.authData;
     }
 
   }
