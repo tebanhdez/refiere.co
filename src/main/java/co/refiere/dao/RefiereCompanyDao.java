@@ -11,7 +11,6 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.Company;
 import co.refiere.models.CompanyHome;
-import co.refiere.models.SimpleUser;
 import co.refiere.resources.util.HibernateUtil;
 
 public class RefiereCompanyDao extends CompanyHome {
