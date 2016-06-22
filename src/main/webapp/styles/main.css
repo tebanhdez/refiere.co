@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  overflow-x: hidden;
 }
 
 .btn-plan {
@@ -194,7 +195,7 @@ table, th, td {
 #sidebar {
     width: 210px;
     height: 100%;
-    position: fixed;
+    position: absolute;;
     background: #1c3445;
 }
 
@@ -482,18 +483,14 @@ ul.top-menu > li > .logout:hover {
 .dashboard-stat.blue {
     background-color: #3598dc;
 }
-
 #containerMetrics {
-    margin-right: -15px;
-    margin-left: -15px;
     position: relative;
-    top: 100px;
-    left: 250px;
+    top: 80px;
+    left: 400px;
     width: 1300px;
-
 }
 #PanelMetricsContainer {
-    width: 25%;
+    width: 28%;
 }
 .dashboard-stat {
     display: block;
@@ -657,4 +654,39 @@ ul.top-menu > li > .logout:hover {
 	max-width: 58%;
 	top: 5%;
 	left: 33%;
+}
+
+.campignMargin{
+  margin: 3em;
+  top: 100px;
+}
+
+.panel_campaign {
+    position: relative;
+    top: -80px;
+    left: 35%;
+}
+
+.panel_campaign_button{
+  margin: 2em;
+}
+
+.blog_Margin{
+  position: relative;
+  margin: 3em;
+  top: 25px;
+}
+
+.report_Margin{
+  position: absolute;
+  left: 200px;
+  margin: 3em;
+  top: 100px;
+}
+
+#containerCampign {
+    position: relative;
+    top: 80px;
+    left: 400px;
+    width: 1300px;
 }
