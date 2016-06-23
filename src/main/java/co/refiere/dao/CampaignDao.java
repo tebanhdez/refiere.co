@@ -28,7 +28,7 @@ public class CampaignDao extends CampaignHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-    
+
     public void save(Campaign campaign){
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.Transaction trans= session.beginTransaction();
@@ -50,6 +50,7 @@ public class CampaignDao extends CampaignHome {
         delete(campaign);
         trans.commit();
     }
+    
     public List<Campaign> getCampaignsByUserId(int companyId) {
         log.debug("getting references_codes instances");
         try {
@@ -67,4 +68,5 @@ public class CampaignDao extends CampaignHome {
             throw re;
         }
     }
+
 }

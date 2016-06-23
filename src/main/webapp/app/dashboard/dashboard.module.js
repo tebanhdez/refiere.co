@@ -4,6 +4,7 @@
   angular
     .module('refiereApp.dashboard', [
       'refiereApp.chore',
-      'refiereApp.campaign'
+      'refiereApp.campaign',
+      'refiereApp.metrics'
     ]);
 })();
