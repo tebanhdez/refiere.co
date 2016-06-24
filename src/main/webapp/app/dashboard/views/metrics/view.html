@@ -6,7 +6,7 @@
           <i class="fa fa-users"></i>
         </div>
         <div class="details">
-          <div class="number">1349</div>
+          <div  class="number" ng-model="vm.referred.referredAmount">{{vm.referred.referredAmount}}</div>
           <div class="desc">Cantidad de Referidores</div>
         </div>
       </div>
@@ -17,8 +17,8 @@
           <i class="fa fa-arrow-up"></i>
         </div>
         <div class="details">
-          <div  class="number">12.5</div>
-          <div class="desc">Referencias Efectivas</div>
+          <div  class="number" ng-model="vm.campaign.campaignsAmount">{{vm.campaign.campaignsAmount}}</div>
+          <div class="desc">Numero de Campañas</div>
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@
           <i class="fa fa-globe"></i>
         </div>
         <div class="details">
-          <div  class="number">89%</div>
-          <div  class="desc">Referencias Pagadas</div>
+          <div  class="number" ng-model="vm.companyPrize.campaignsAmountPrize">{{vm.companyPrize.campaignsAmountPrize}}</div>
+          <div  class="desc">Cantidad de premios por campaña</div>
         </div>
       </div>
     </div>
