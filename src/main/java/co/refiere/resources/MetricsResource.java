@@ -49,15 +49,5 @@ public class MetricsResource {
         response= String.format(response, referralsAmount);
         return Response.status(200).entity(response).build();
     }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/person/{personId}/amountByCampaign")
-    public Response getPersonsAmountByCampaign(@PathParam("personId") int personId){
-        String response = "{\"amountByCampaign\": \"%s\"}";
-        MetricsService metricsService = new MetricsService();
-        int referralsAmount = metricsService.getPersonsAmountByCampaign(personId);
-        response= String.format(response, referralsAmount);
-        return Response.status(200).entity(response).build();
-    }
 
 }

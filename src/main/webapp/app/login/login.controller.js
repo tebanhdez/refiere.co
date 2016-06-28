@@ -13,6 +13,7 @@
 
     vm.loginData = {};
     vm.login = login;
+    vm.register = register;
 
     function login() {
 
@@ -31,6 +32,9 @@
         .catch(function(error) {
           $window.alert('Por favor ingrese los datos correctos.');
         });
+    }
+    function register(){
+      $state.go('register');
     }
   }
 
