@@ -19,7 +19,7 @@
                                  required>
           <h3 ng-hide="loginInputs.password.$valid
                        && loginInputs.userName.$valid"
-                       class="text-center">
+                       class="text-color">
           Por favor ingrese sus credenciales
           </h3>
           <br>
@@ -27,6 +27,11 @@
                                    class="btn btn-primary btn-block"
                                    ng-disabled="loginInputs.$invalid">
             Iniciar Sesi&oacute;n
+          </button>
+          <h3 class="text-color">¿Aún no estás registrado?</h3>
+          <button type="btn btn-primary btn-block button-block" ng-click="vm.register()"
+                                   class="btn btn-primary btn-block">
+            Registrar
           </button>
         </form>
       </div>

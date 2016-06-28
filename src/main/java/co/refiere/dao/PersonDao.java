@@ -45,21 +45,4 @@ public class PersonDao extends PersonHome {
         return instance;
     }
     
-    public int getPersonsAmountByCampaign(int idCampaign) {
-        log.debug("getting references_codes instances");
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            org.hibernate.Transaction trans= session.beginTransaction();
-            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-                log.debug(" >>> Transaction close.");
-            Query query = session.createQuery("from Person where company_database_id=:idCampaign");
-            query.setParameter("idCampaign", idCampaign);
-            java.util.List<Person> results = query.list();
-            trans.commit();
-            return results.size();
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
-    }
 }
