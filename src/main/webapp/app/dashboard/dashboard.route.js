@@ -24,6 +24,7 @@
       .state('dashboard.database', {
         url: '/database',
         templateUrl:'app/dashboard/views/database/view.html',
+        controller: 'DatabaseCtrl as vm'
       })
       .state('dashboard.news', {
         url: '/news',

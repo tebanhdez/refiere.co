@@ -48,3 +48,6 @@ INSERT INTO prize (id, description) VALUES (11, 'Discount')
 INSERT INTO prize (id, description) VALUES (12, 'Bonus')
 INSERT INTO prize (id, description) VALUES (13, 'Prize')
 INSERT INTO prize (id, description) VALUES (14, 'Improve service/product')
+
+--INSERT DEFAULT Database's Referece
+INSERT INTO CompanyDatabase (id, name) VALUES (0, 'NewDatabase')

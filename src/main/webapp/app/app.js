@@ -5,10 +5,11 @@
     .module('refiereApp', [
       'refiereApp.chore',
       'refiereApp.dashboard',
-	  'refiereApp.registerNewReferred',
+	    'refiereApp.registerNewReferred',
       'refiereApp.login',
       'refiereApp.register',
       'refiereApp.services',
       'refiereApp.campaign',
+      'refiereApp.database',
       'ui.router']);
 })();

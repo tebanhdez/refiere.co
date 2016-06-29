@@ -1,34 +1,29 @@
 <div id="panelPosition" class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-primary">
-      <div id="PanelBases" class="panel-heading">
-        <form class="form-inline">
-          <div class="form-group">
-            <select id="selector" class="form-control">
-              <option>Campaña</option>
-            </select>
-            <button type="button" class="btn btn-warning">Importar</button>
-          </div>
-        </form>
-      </div>
-      <div class="panel-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Nombre">
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Tel">
-          </div>
-        </form>
-        <br>
-        <form class="form-inline">
-          <div  class="form-group">
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Ced">
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Info">
-            <button id="icon" type="button" class="btn btn-default btn-lg">
-              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    <div class="col-md-6 col-md-offset-3 databaseMargin">
+        <div class="panel panel-primary databaseMargin">
+            <div id="PanelBases" class="panel-heading">
+            <h4>Subir un archivo excel de base de datos</h4>
+            <button ngf-select="uploadFiles($files, $invalidFiles)"
+                    style = "color: #000"
+                    multiple
+                    accept = ".csv">
+                    Seleccione un archivo excel
             </button>
-          </div>
-        </form>
-      </div>
+            <br><br>
+            Archivo:
+            <ul>
+             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+               <span class="progress" ng-show="f.progress >= 0">
+                 <div style="width:{{f.progress}}%"
+                     ng-bind="f.progress + '%'"></div>
+               </span>
+             </li>
+             <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+             </li>
+            </ul>
+            <!-- {{errorMsg}} -->
+            <!-- <button type="button" class="btn btn-warning" ng-click="vm.createNewDatabase()">Importar</button> -->
+            </div>
+        </div>
     </div>
-  </div>
 </div>

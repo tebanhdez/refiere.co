@@ -39,7 +39,8 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <!-- <script src="bower_components/angular/angular.js"></script> -->
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -49,6 +50,9 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- bootsrap -->
@@ -86,6 +90,11 @@
     <script src="app/dashboard/views/campaign/campaign.route.js"></script>
     <script src="app/dashboard/views/campaign/campaign.service.js"></script>
     <script src="app/dashboard/views/campaign/campaign.controller.js"></script>
+
+    <script src="app/dashboard/views/database/database.js"></script>
+    <script src="app/dashboard/views/database/database.route.js"></script>
+    <script src="app/dashboard/views/database/database.service.js"></script>
+    <script src="app/dashboard/views/database/database.controller.js"></script>
 
     <script src="app/services/services.js"></script>
     <script src="app/services/userData.service.js"></script>
