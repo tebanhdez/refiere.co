@@ -15,11 +15,8 @@
         vm.saveNewReferred = saveNewReferred;
 
         function saveNewReferred() {
-            console.log(vm.newReferredData);
-
             RegisterNewReferredSrv.postNewUserInfo(vm.newReferredData)
                 .then(function(data) {
-                    console.log(data.status);
                     if (data.status === -1){
                         $window.alert('¡El usuario ya existe!');
                     }
@@ -28,7 +25,6 @@
                     }
                 })
                 .catch(function(error) {
-                    console.log(error);
                     $window.alert('¡Ocurrio un error!');
                 });
         }
