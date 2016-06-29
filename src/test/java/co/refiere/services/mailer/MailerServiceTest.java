@@ -13,8 +13,8 @@ import org.junit.Test;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
-private final String [] EMAIL_ADDRESS_TEST = {"jehehe1@gmail.com"};
-    @Ignore
+private final String [] EMAIL_ADDRESS_TEST = {"jpblo.3105@gmail.com"};
+    
 	@Test
     public void testGetMailService() throws AddressException, MessagingException, IOException {
         

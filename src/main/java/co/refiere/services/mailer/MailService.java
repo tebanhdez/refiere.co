@@ -1,6 +1,5 @@
 package co.refiere.services.mailer;
 
-
 import java.io.File;
 import java.util.List;
 import java.util.Properties;
