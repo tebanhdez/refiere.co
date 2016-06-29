@@ -11,5 +11,6 @@
       'refiereApp.services',
       'refiereApp.campaign',
       'refiereApp.database',
+      'refiereApp.metrics',
       'ui.router']);
 })();
