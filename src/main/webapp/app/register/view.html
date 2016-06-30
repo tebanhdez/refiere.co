@@ -30,26 +30,25 @@
                              placeholder="Teléfono"
                              required>
           <div class="button-submit btn-margin">
-            <h3>Seleccione un plan: </h3>
-            <div class="col-md-4" ng-repeat="plan in vm.plans">
-              <button ng-click="vm.newCompanyData.PlanRequest.id=plan.planId">
+            <h3>Plan: </h3>
+            <div class="col-md-12">
+              <div class="plan_background">
                 <table>
                   <tr>
-                    <td><b>- {{plan.name}}</b></td>
+                    <td><b>- {{vm.plan.name}}</b></td>
                   </tr>
                   <tr>
-                    <td>- {{plan.campaignPeriodicity}}</td>
+                    <td>- {{vm.plan.campaignPeriodicity}}</td>
                   </tr>
                   <tr>
-                    <td>- {{plan.planPrice}}</td>
+                    <td>- {{vm.plan.planPrice}}</td>
                   </tr>
                   <tr>
-                    <td>- {{plan.reportsPeriodicity}}</td>
+                    <td>- {{vm.plan.reportsPeriodicity}}</td>
                   </tr>
                 </table>
-              </button>
+              </div>
             </div>
-            <h3>.</h3>
           </div>
 
           <button type="button" class="btn btn-primary btn-block button-block btn-margin"
