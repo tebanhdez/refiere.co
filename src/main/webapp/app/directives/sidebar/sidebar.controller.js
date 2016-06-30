@@ -21,10 +21,6 @@
       state: 'dashboard.metrics',
       icon: 'fa-bar-chart-o'
     },{
-      title: 'Base de datos',
-      state: 'dashboard.database',
-      icon: 'fa-tasks'
-    },{
       title: 'Noticias',
       state: 'dashboard.news',
       icon: 'fa-book'
