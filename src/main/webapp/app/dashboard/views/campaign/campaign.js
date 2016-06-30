@@ -3,6 +3,7 @@
 
   angular
     .module('refiereApp.campaign', [
-      'refiereApp.chore'
+      'refiereApp.chore',
+      'ngFileUpload'
     ]);
 })();

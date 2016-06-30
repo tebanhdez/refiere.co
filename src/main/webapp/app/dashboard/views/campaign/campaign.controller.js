@@ -5,15 +5,18 @@
     .module('refiereApp.campaign')
     .controller('CampaignCtrl', CampaignCtrl);
 
-  CampaignCtrl.$inject = ['CampaignService', 'UserDataService', '$window'];
+  CampaignCtrl.$inject = ['DatabaseService', 'CampaignService', 'UserDataService', '$window',
+                          'SessionModel', '$scope', 'Upload', '$timeout'];
 
   /* @ngInject */
-  function CampaignCtrl(CampaignService, UserDataService, $window) {
+  function CampaignCtrl(DatabaseService, CampaignService, UserDataService, $window,
+                        SessionModel, $scope, Upload, $timeout) {
     var vm = this;
 
     vm.prizes = {};
     vm.databases = {};
     vm.newCampaign = {};
+    vm.newDatabase = {};
 
     vm.createNewCampaign = createNewCampaign;
 
@@ -33,6 +36,41 @@
           vm.databases = databasesData.data;
         })
     }
+
+    $scope.uploadFiles = function(files, errFiles) {
+      $scope.files = files;
+      $scope.errFiles = errFiles;
+      angular.forEach(files, function(file) {
+          var actualURL = DatabaseService.newURL();
+          var encodedBasic = SessionModel.password;
+
+          file.upload = Upload.upload({
+            url: actualURL,
+            method: 'POST',
+            data: {
+              filename: file.name, // this is needed for Flash polyfill IE8-9
+              file: file
+            },
+            headers: {
+              'Content-Type': file.type != '' ? file.type : 'application/octet-stream',
+              'Authorization': encodedBasic
+            }
+        });
+
+        file.upload.then(function (response) {
+            $timeout(function () {
+                file.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+            file.progress = Math.min(100, parseInt(100.0 *
+                                     evt.loaded / evt.total));
+        });
+
+      });
+  }
 
     function createNewCampaign() {
       vm.newCampaign.companyId = UserDataService.getCompanyID();

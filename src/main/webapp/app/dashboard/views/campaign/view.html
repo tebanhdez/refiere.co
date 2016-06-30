@@ -38,13 +38,27 @@
     </form>
     <br>
     <form class="form-inline">
-      <div class="form-group">
-        <label id="Texto" >Base de Datos</label>
-        <select id="inputText" class="form-control" ng-model = "vm.newCampaign.companyDataBase">
-          <option ng-repeat = "database in vm.databases"
-          ng-value = "database.databaseId"
-          >{{database.databaseName}}</option>
-        </select>
+      <div id="PanelBases" class="panel-heading">
+      <h4 style="color: #fff">Subir un archivo excel de base de datos</h4>
+      <button ngf-select="uploadFiles($files, $invalidFiles)"
+      class="btn btn-primary btn-sm panel_campaign_button"
+              style = "color: #fff"
+              multiple
+              accept = ".csv">
+              Seleccione un archivo excel
+      </button>
+      <br><br>
+      <h4 style="color: #fff">Archivo:</h4>
+      <ul>
+       <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+         <span class="progress" ng-show="f.progress >= 0">
+           <div style="width:{{f.progress}}%"
+               ng-bind="f.progress + '%'"></div>
+         </span>
+       </li>
+       <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+       </li>
+      </ul>
       </div>
     </form>
     <br>
@@ -54,7 +68,7 @@
           <div class="">
             <button type="button"
             class="btn btn-primary btn-sm panel_campaign_button"
-            ng-click="vm.createNewCampaign()">Generación de Código</button>
+            ng-click="vm.createNewCampaign()">Crear campaña</button>
           </div>
         </div>
       </div>
