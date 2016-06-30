@@ -13,11 +13,13 @@ import org.junit.Test;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
-private final String [] EMAIL_ADDRESS_TEST = {"jpblo.3105@gmail.com"};
-    
+
+private final String [] EMAIL_ADDRESS_TEST = {"info@refiere.co"};
+
+  @Ignore
 	@Test
     public void testGetMailService() throws AddressException, MessagingException, IOException {
-        
+
         //create a temporal files for testing.
         File temp1 = File.createTempFile("temp-file-name1", ".pdf");
         File temp2 = File.createTempFile("temp-file-name2", ".pdf");
@@ -25,12 +27,14 @@ private final String [] EMAIL_ADDRESS_TEST = {"jpblo.3105@gmail.com"};
         String [] attachments = {temp1.getAbsolutePath(), temp2.getAbsolutePath()};
         RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test 2 Attachments", "<h1>Testing mail</h1>", attachments);
     }
+
     @Ignore
     @Test
     public void testGetMailServiceNoAttachments() throws AddressException, MessagingException, IOException {
         String [] attachments = {};
         RefiereServiceFactory.getMailService().generateAndSendEmail(EMAIL_ADDRESS_TEST, "Email Test No Attachments", "<h1>Testing mail</h1>", attachments);
     }
+
     @Ignore
     @Test
     public void testGetMailServiceFileNotFound() throws AddressException, MessagingException, IOException {
