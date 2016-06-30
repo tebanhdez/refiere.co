@@ -13,14 +13,19 @@
 
     vm.newCompanyData = {};
     vm.saveNewCompany = saveNewCompany;
-    vm.plans = {};
+    vm.plan = {};
 
     getPlans();
 
     function getPlans() {
       RegisterSrv.getPlansFromServer()
         .then(function(plansData){
-          vm.plans = plansData.data;
+          vm.plan = plansData.data[1];
+          vm.newCompanyData = {
+            PlanRequest: {
+              id:  vm.plan.planId
+            }
+          };
         })
     }
 
@@ -42,7 +47,6 @@
           }
         })
         .catch(function(error) {
-          console.log(error);
           $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
         });
     }
