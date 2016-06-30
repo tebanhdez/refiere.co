@@ -13,6 +13,7 @@ import org.junit.Test;
 import co.refiere.services.mailer.RefiereServiceFactory;
 
 public class MailerServiceTest {
+
 private final String [] EMAIL_ADDRESS_TEST = {"info@refiere.co"};
 
   @Ignore
