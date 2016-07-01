@@ -5,18 +5,23 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window', 'UserDataService'];
+  LoginCtrl.$inject = ['ngProgressFactory', '$state',
+                       'LoginSrv', '$window', 'UserDataService'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv, $window, UserDataService) {
+  function LoginCtrl(ngProgressFactory, $state,
+                     LoginSrv, $window, UserDataService) {
     var vm = this;
 
     vm.loginData = {};
     vm.login = login;
     vm.register = register;
+    vm.progressbar = ngProgressFactory.createInstance();
 
     function login() {
-
+      vm.progressbar.setHeight('0.5em');
+      vm.progressbar.setColor('blue');
+      vm.progressbar.start();
       LoginSrv.verifyUser(vm.loginData)
         .then(function(data) {
 
@@ -25,6 +30,7 @@
           UserDataService.setUserInfoData(userInfo);
 
           if (data.status === 200){
+            vm.progressbar.complete();
             $state.go('dashboard');
           }
 
