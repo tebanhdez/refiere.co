@@ -1,14 +1,10 @@
 {
   "name": "refiere",
   "version": "0.0.0",
-  "dependencies": {
-    "angular-utf8-base64": "0.0.2"
-  },
   "repository": {},
   "dependencies": {
-  "bower": "^1.5.2"
-  },
-  "devDependencies": {
+    "angular-utf8-base64": "0.0.2",
+    "bower": "^1.5.2",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.0.0",
     "grunt-concurrent": "^1.0.0",
