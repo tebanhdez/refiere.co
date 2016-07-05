@@ -3,6 +3,7 @@
 
   angular
     .module('refiereApp.register', [
-      'refiereApp.chore'
+      'refiereApp.chore',
+      'ngProgress'
     ]);
 })();
