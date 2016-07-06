@@ -5,7 +5,7 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.password">sXLNoc-Yoe4mFyqbg_L27U9jhV</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://cpnasefyepgvpq:sXLNoc-Yoe4mFyqbg_L27U9jhV@ec2-54-243-249-159.compute-1.amazonaws.com:5432/dbnkf3iam443bt</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-243-249-159.compute-1.amazonaws.com:5432/dbnkf3iam443bt</property>
         <property name="hibernate.connection.username">cpnasefyepgvpq</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
@@ -13,7 +13,6 @@
         <property name="hibernate.validator.apply_to_ddl">false</property>
         <property name="hibernate.transaction.auto_close_session">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
         <!-- Possible values: -->
         <!-- 'create'       -> creates the schema, destroying previous data
              'create-drop'  -> drop the schema at the end of the session
