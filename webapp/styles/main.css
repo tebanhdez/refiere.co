@@ -520,8 +520,8 @@ ul.top-menu > li > .logout:hover {
 #containerMetrics {
     position: relative;
     top: 80px;
-    left: 400px;
-    width: 1300px;
+    left: 250px;
+    width: 1200px;
 }
 #PanelMetricsContainer {
     width: 28%;
