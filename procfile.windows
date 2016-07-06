@@ -1,1 +1,1 @@
-web:    java -cp target\classes;target\dependency\* co.refiere.heroku.Main
+web:    java -cp target\classes;target\dependency\* co.refiere.heroku.Main 
