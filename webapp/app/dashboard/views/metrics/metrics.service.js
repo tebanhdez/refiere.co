@@ -21,7 +21,7 @@
 
       var request = {
         method: 'GET',
-        url: 'http://localhost:5000/rest/v1/metrics/referredAmount',
+        url: 'http://refiere.net/rest/v1/metrics/referredAmount',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
@@ -32,7 +32,7 @@
     }
 
     function getCampaignFromServer() {
-      var urlCompany = 'http://localhost:5000/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
+      var urlCompany = 'http://refiere.net/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
 
       var request = {
         method: 'GET',
@@ -47,7 +47,7 @@
     }
 
     function getCompanyPrizeFromServer() {
-       var urlCompanyPrize = 'http://localhost:5000/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
+       var urlCompanyPrize = 'http://refiere.net/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
       var request = {
         method: 'GET',
         url: urlCompanyPrize,

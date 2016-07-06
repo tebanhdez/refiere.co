@@ -13,7 +13,7 @@
         this.postNewUserInfo = postNewUserInfo;
 
         function postNewUserInfo(data) {
-            return $http.post('http://localhost:5000/rest/v1/redeemCode/registerUser', data);
+            return $http.post('http://refiere.net/rest/v1/redeemCode/registerUser', data);
         }
     }
 })();

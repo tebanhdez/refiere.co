@@ -19,7 +19,7 @@
     function postNewDatabase(file) {
       var fd = new FormData();
       fd.append('file', file);
-      var url = 'http://localhost:5000/rest/database/' + companyId + '/import';
+      var url = 'http://refiere.net/rest/database/' + companyId + '/import';
       console.log(file);
       console.log(url);
       return $http.post(url, fd, {
@@ -28,7 +28,7 @@
      }
 
      function newURL() {
-       var url = 'http://localhost:5000/rest/database/' + companyId + '/import';
+       var url = 'http://refiere.net/rest/database/' + companyId + '/import';
        return url;
       }
   }
