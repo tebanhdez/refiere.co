@@ -21,7 +21,7 @@
 
       var request = {
         method: 'GET',
-        url: 'http://refiere.net/rest/v1/metrics/referredAmount',
+        url: 'https://pacific-sea-18743.herokuapp.com/rest/v1/metrics/referredAmount',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
@@ -32,7 +32,7 @@
     }
 
     function getCampaignFromServer() {
-      var urlCompany = 'http://refiere.net/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
+      var urlCompany = 'https://pacific-sea-18743.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
 
       var request = {
         method: 'GET',
@@ -47,7 +47,7 @@
     }
 
     function getCompanyPrizeFromServer() {
-       var urlCompanyPrize = 'http://refiere.net/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
+       var urlCompanyPrize = 'https://pacific-sea-18743.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
       var request = {
         method: 'GET',
         url: urlCompanyPrize,
