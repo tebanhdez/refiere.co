@@ -74,6 +74,7 @@
 
     function createNewCampaign() {
       vm.newCampaign.companyId = UserDataService.getCompanyID();
+      vm.newCampaign.companyDataBase = "1";
       CampaignService.setNewCampaign(vm.newCampaign)
         .then(function(data) {
           if (data.status === 200){
