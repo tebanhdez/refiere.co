@@ -30,7 +30,7 @@ public class Main {
         // Read more here: http://wiki.eclipse.org/Jetty/Reference/Jetty_Classloading
         root.setParentLoaderPriority(true);
 
-        final String webappDirLocation = "src/main/webapp/";
+        final String webappDirLocation = "webapp/";
         root.setDescriptor(webappDirLocation + "/WEB-INF/web.xml");
         root.setResourceBase(webappDirLocation);
 
