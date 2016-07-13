@@ -50,4 +50,4 @@ INSERT INTO prize (id, description) VALUES (13, 'Prize')
 INSERT INTO prize (id, description) VALUES (14, 'Improve service/product')
 
 --INSERT DEFAULT Database's Referece
-INSERT INTO CompanyDatabase (id, name) VALUES (0, 'NewDatabase')
+INSERT INTO company_database (id, name, company_id) VALUES (1, 'NewDatabase', 0)
