@@ -21,7 +21,7 @@
 
       var request = {
         method: 'GET',
-        url: 'https://refiere.herokuapp.com/rest/v1/metrics/referredAmount',
+        url: '/rest/v1/metrics/referredAmount',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
@@ -32,7 +32,7 @@
     }
 
     function getCampaignFromServer() {
-      var urlCompany = 'https://refiere.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
+      var urlCompany = '/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
 
       var request = {
         method: 'GET',
@@ -47,7 +47,7 @@
     }
 
     function getCompanyPrizeFromServer() {
-      var urlCompanyPrize = 'https://refiere.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
+      var urlCompanyPrize = '/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
 
       var request = {
         method: 'GET',

@@ -13,7 +13,7 @@
         this.postNewUserInfo = postNewUserInfo;
 
         function postNewUserInfo(data) {
-            return $http.post('https://refiere.herokuapp.com/rest/v1/redeemCode/registerUser', data);
+            return $http.post('/rest/v1/redeemCode/registerUser', data);
         }
 
     }

@@ -19,14 +19,14 @@
     function postNewDatabase(file) {
       var fd = new FormData();
       fd.append('file', file);
-      var url = 'https://refiere.herokuapp.com/rest/database/' + companyId + '/import';
+      var url = '/rest/database/' + companyId + '/import';
       return $http.post(url, fd, {
              headers: {'Authorization': encodedBasic}
          });
      }
 
      function newURL() {
-       var url = 'https://refiere.herokuapp.com/rest/database/' + companyId + '/import';
+       var url = '/rest/database/' + companyId + '/import';
        return url;
       }
 
