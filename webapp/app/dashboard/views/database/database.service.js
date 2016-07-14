@@ -20,8 +20,6 @@
       var fd = new FormData();
       fd.append('file', file);
       var url = 'https://pacific-sea-18743.herokuapp.com/rest/database/' + companyId + '/import';
-      console.log(file);
-      console.log(url);
       return $http.post(url, fd, {
              headers: {'Authorization': encodedBasic}
          });
@@ -31,6 +29,7 @@
        var url = 'https://pacific-sea-18743.herokuapp.com/rest/database/' + companyId + '/import';
        return url;
       }
+
   }
 
 })();

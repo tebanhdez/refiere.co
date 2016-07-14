@@ -1,7 +1,6 @@
     <div class="text-vertical-center header_ladingpage">
         <div class="col-xs-1 col-sm-3 col-md-3"></div>
         <div class="col-xs-10 col-sm-6 col-md-6">
-            <!--<img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">-->
             <form submit="vm.saveNewReferred()" name="newReferredForm">
                 <input type="text" class="form-control"
                        ng-model="vm.newReferredData.identificationCardNumber"
@@ -23,11 +22,15 @@
                        ng-model="vm.newReferredData.phoneNumber"
                        placeholder="Telefóno"
                        required>
-                <button type="button" class="btn btn-primary btn-block button-block"
-                        ng-click="vm.saveNewReferred()"
-                        ng-disabled="newReferredForm.$invalid">
-                    Registrar Referido
-                </button>
+               <input type="text" class="form-control"
+                      ng-model="vm.newReferredData.winerCode"
+                      placeholder="Código Ganador"
+                      required>
+               <button type="button" class="btn btn-primary btn-block button-block"
+                      ng-click="vm.saveNewReferred()"
+                      ng-disabled="newReferredForm.$invalid">
+                      Registrar Referido
+               </button>
             </form>
         </div>
         <div class="col-xs-1 col-sm-3 col-md-3"></div>

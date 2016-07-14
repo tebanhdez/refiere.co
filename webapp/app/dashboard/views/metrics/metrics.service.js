@@ -47,7 +47,8 @@
     }
 
     function getCompanyPrizeFromServer() {
-       var urlCompanyPrize = 'https://pacific-sea-18743.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
+      var urlCompanyPrize = 'https://pacific-sea-18743.herokuapp.com/rest/v1/metrics/company/'+companyId+'/campaignsAmountPrize';
+
       var request = {
         method: 'GET',
         url: urlCompanyPrize,

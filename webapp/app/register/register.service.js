@@ -20,5 +20,6 @@
     function getPlansFromServer(data) {
       return $http.get('https://pacific-sea-18743.herokuapp.com/rest/v1/plan/all', data);
     }
+    
   }
 })();
