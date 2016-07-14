@@ -5,12 +5,14 @@
     .module('refiereApp.campaign')
     .controller('CampaignCtrl', CampaignCtrl);
 
-  CampaignCtrl.$inject = ['DatabaseService', 'CampaignService', 'UserDataService', '$window',
-                          'SessionModel', '$scope', 'Upload', '$timeout'];
+  CampaignCtrl.$inject = ['DatabaseService', 'CampaignService',
+                          'UserDataService', '$window', 'SessionModel',
+                          '$scope', 'Upload', '$timeout'];
 
   /* @ngInject */
-  function CampaignCtrl(DatabaseService, CampaignService, UserDataService, $window,
-                        SessionModel, $scope, Upload, $timeout) {
+  function CampaignCtrl(DatabaseService, CampaignService, UserDataService,
+                        $window, SessionModel, $scope, Upload, $timeout) {
+
     var vm = this;
 
     vm.prizes = {};
@@ -70,7 +72,7 @@
         });
 
       });
-  }
+    }
 
     function createNewCampaign() {
       vm.newCampaign.companyId = UserDataService.getCompanyID();
@@ -85,7 +87,6 @@
           }
         })
         .catch(function(error) {
-          console.log(error);
           $window.alert('Ocurrió un error con la conexión');
         });
     }

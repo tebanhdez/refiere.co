@@ -15,5 +15,6 @@
         function postNewUserInfo(data) {
             return $http.post('https://pacific-sea-18743.herokuapp.com/rest/v1/redeemCode/registerUser', data);
         }
+
     }
 })();
