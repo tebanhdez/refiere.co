@@ -23,7 +23,7 @@
 
       var request = {
         method: 'POST',
-        url: 'https://pacific-sea-18743.herokuapp.com/rest/v1/auth/login',
+        url: 'https://refiere.herokuapp.com/rest/v1/auth/login',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic

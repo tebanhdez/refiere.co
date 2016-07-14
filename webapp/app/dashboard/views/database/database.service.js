@@ -19,14 +19,14 @@
     function postNewDatabase(file) {
       var fd = new FormData();
       fd.append('file', file);
-      var url = 'https://pacific-sea-18743.herokuapp.com/rest/database/' + companyId + '/import';
+      var url = 'https://refiere.herokuapp.com/rest/database/' + companyId + '/import';
       return $http.post(url, fd, {
              headers: {'Authorization': encodedBasic}
          });
      }
 
      function newURL() {
-       var url = 'https://pacific-sea-18743.herokuapp.com/rest/database/' + companyId + '/import';
+       var url = 'https://refiere.herokuapp.com/rest/database/' + companyId + '/import';
        return url;
       }
 

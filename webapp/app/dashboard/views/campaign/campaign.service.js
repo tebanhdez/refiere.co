@@ -20,7 +20,7 @@
 
       var request = {
         method: 'GET',
-        url: 'https://pacific-sea-18743.herokuapp.com/rest/v1/prize/all',
+        url: 'https://refiere.herokuapp.com/rest/v1/prize/all',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
@@ -34,7 +34,7 @@
 
       var request = {
         method: 'POST',
-        url: 'https://pacific-sea-18743.herokuapp.com/rest/v1/database/all',
+        url: 'https://refiere.herokuapp.com/rest/v1/database/all',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic
@@ -48,7 +48,7 @@
     function setNewCampaign(campaignData) {
       var postRequest = {
         method: 'POST',
-        url: 'https://pacific-sea-18743.herokuapp.com/rest/v1/campaign',
+        url: 'https://refiere.herokuapp.com/rest/v1/campaign',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic

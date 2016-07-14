@@ -100,7 +100,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.4-1200-jdbc41</version>
+      <version>9.4.1208</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -143,8 +143,8 @@
         <version>2.5.1</version>
         <inherited>true</inherited>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>

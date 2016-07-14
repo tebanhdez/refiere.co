@@ -3,11 +3,11 @@
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.password">sXLNoc-Yoe4mFyqbg_L27U9jhV</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-243-249-159.compute-1.amazonaws.com:5432/dbnkf3iam443bt</property>
-        <property name="hibernate.connection.username">cpnasefyepgvpq</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.username">wjkfbbalbapkro</property>
+        <property name="hibernate.connection.password">ldiiTVK7QVY6lD43zTqR3i3UGk</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-243-243-89.compute-1.amazonaws.com:5432/d893q9l41hj40b</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
@@ -18,10 +18,10 @@
              'create-drop'  -> drop the schema at the end of the session
              'update'       -> update the schema,
              'validate'     -> validates the schema, no changes on DB -->
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.hbm2ddl.import_files">initializeDB.sql</property>
         <mapping resource="Campaign.hbm.xml" />
-        <mapping resource="Company.hbm.xml" />
+        <mapping resource="Company.hbm.xml"/>
         <mapping resource="CompanyDatabase.hbm.xml" />
         <mapping resource="Currency.hbm.xml" />
         <mapping resource="Lapse.hbm.xml" />
