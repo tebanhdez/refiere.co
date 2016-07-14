@@ -18,7 +18,6 @@
     }
 
     function getPlansFromServer(data) {
-      //https://refiere.herokuapp.com
       return $http.get('https://refiere.herokuapp.com/rest/v1/plan/all', data);
     }
     
