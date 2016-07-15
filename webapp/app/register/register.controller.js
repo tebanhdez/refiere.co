@@ -14,7 +14,7 @@
 
     vm.newCompanyData = {};
     vm.saveNewCompany = saveNewCompany;
-    vm.plan = {};
+    vm.plans = {};
     vm.progressbar = ngProgressFactory.createInstance();
 
     getPlans();
@@ -22,10 +22,10 @@
     function getPlans() {
       RegisterSrv.getPlansFromServer()
         .then(function(plansData){
-          vm.plan = plansData.data[1];
+          vm.plans = plansData.data;
           vm.newCompanyData = {
             PlanRequest: {
-              id:  vm.plan.planId
+              id:''
             }
           };
         })

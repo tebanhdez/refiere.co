@@ -1,96 +1,91 @@
 <!-- Header -->
 <section id="top" class="header_ladingpage">
     <div class="text-vertical-center">
-      <div class="col-xs-1 col-sm-3 col-md-3"></div>
-      <div class="col-xs-10 col-sm-6 col-md-6">
-        <img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">
-        <form submit="vm.saveNewCompany()" name="newCompanyForm">
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.UserRequest.login"
-                             placeholder="Nombre"
-                             required>
-          <input type="password" class="form-control"
-                                 ng-model="vm.newCompanyData.UserRequest.password"
-                                 placeholder="Contraseña"
-                                 required>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.name"
-                             placeholder="Nombre de la compañía"
-                             required>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.address"
-                             placeholder="Dirección física"
-                             required>
-          <input type="email" class="form-control"
-                              ng-model="vm.newCompanyData.email"
-                              placeholder="Correo Electrónico"
-                              required>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.telephone"
-                             placeholder="Teléfono"
-                             required>
-          <div class="button-submit btn-margin">
-            <h3>Plan: </h3>
-            <div class="col-md-12">
-              <div class="plan_background">
-                <table>
-                  <tr>
-                    <td><b>- {{vm.plan.name}}</b></td>
-                  </tr>
-                  <tr>
-                    <td>- {{vm.plan.campaignPeriodicity}}</td>
-                  </tr>
-                  <tr>
-                    <td>- {{vm.plan.planPrice}}</td>
-                  </tr>
-                  <tr>
-                    <td>- {{vm.plan.reportsPeriodicity}}</td>
-                  </tr>
-                </table>
-              </div>
-              <h3>.</h3>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-primary btn-block button-block btn-margin"
-                                ng-click="vm.saveNewCompany()"
-                                ng-disabled="newCompanyForm.$invalid">
-          Registrar Compañia
-          </button>
-        </form>
-      </div>
-      <div class="col-xs-1 col-sm-3 col-md-3"></div>
-   </div>
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+        <div class="col-xs-10 col-sm-6 col-md-6">
+            <img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">
+            <form submit="vm.saveNewCompany()" name="newCompanyForm">
+                <input type="text" class="form-control"
+                       ng-model="vm.newCompanyData.UserRequest.login"
+                       placeholder="Nombre"
+                       required>
+                <input type="password" class="form-control"
+                       ng-model="vm.newCompanyData.UserRequest.password"
+                       placeholder="Contraseña"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newCompanyData.name"
+                       placeholder="Nombre de la compañía"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newCompanyData.address"
+                       placeholder="Dirección física"
+                       required>
+                <input type="email" class="form-control"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                       ng-model="vm.newCompanyData.email"
+                       placeholder="Correo Electrónico"
+                       required>
+                <input type="text" class="form-control"
+                       ng-model="vm.newCompanyData.telephone"
+                       placeholder="Teléfono"
+                       required>
+                <h3>Planes: </h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <p>
+                                <div ng-repeat="plan in vm.plans track by plan.planId" class="plans-container">
+                                    <a href="" class="btn btn-sq-lg btn-default" ng-click="vm.newCompanyData.PlanRequest.id = plan.planId" ng-class="vm.newCompanyData.PlanRequest.id == plan.planId ? 'plan-selected' : ''">
+                                        {{plan.name}}<br/>
+                                        {{plan.campaignPeriodicity}}<br>
+                                        Precio: {{plan.planPrice}}<br>
+                                        {{plan.reportsPeriodicity}}<br>
+                                    </a>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block button-block btn-margin"
+                        ng-click="vm.saveNewCompany()"
+                        ng-disabled="newCompanyForm.$invalid || vm.newCompanyData.PlanRequest.id == ''">
+                    Registrar Compañia
+                </button>
+            </form>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+    </div>
 </section>
 
 <!-- Footer -->
-   <footer>
-       <div class="container">
-           <div class="row">
-               <div class="col-lg-10 col-lg-offset-1 text-center">
-                   <h4><strong>Refiere.co</strong>
-                   </h4>
-                   <p>San Jos&eacute; <br>Costa Rica</p>
-                   <ul class="list-unstyled">
-                       <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                       <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:info@refiere.co">info@refiere.co</a>
-                       </li>
-                   </ul>
-                   <br>
-                   <ul class="list-inline">
-                       <li>
-                           <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                       </li>
-                       <li>
-                           <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                       </li>
-                       <li>
-                           <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                       </li>
-                   </ul>
-                   <hr class="small">
-                   <p class="text-muted">Copyright &copy; Refiere.co 2016</p>
-               </div>
-           </div>
-       </div>
-   </footer>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Refiere.co</strong>
+                </h4>
+                <p>San Jos&eacute; <br>Costa Rica</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:info@refiere.co">info@refiere.co</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; Refiere.co 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>
