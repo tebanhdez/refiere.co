@@ -35,7 +35,6 @@ public class AuthenticationService {
         if(StringUtil.isBlank(username) || StringUtil.isBlank(password))
             return false;
         SimpleUser userObject = findUserByLogin(username);
-        System.out.println(userObject);
 
         boolean authenticationStatus = false;
 

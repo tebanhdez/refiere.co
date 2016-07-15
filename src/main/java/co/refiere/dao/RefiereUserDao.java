@@ -67,7 +67,7 @@ public class RefiereUserDao extends SimpleUserHome {
             System.out.println("Result list: " + results.size());
             SimpleUser instance = (results != null && results.size() == 1) ? (SimpleUser) results.get(0) : null;
             UserRoles roles = instance.getUserRoles();
-            System.out.println("UserRoles: " + roles.getDescription());
+
             trans.commit();
             if (instance == null) {
                 log.debug("get successful, no instance found");
