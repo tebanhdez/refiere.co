@@ -18,22 +18,40 @@
             <label for="repeatSelect"> Recompensa para Referidor: </label>
             <br>
             <select id="inputText" class="form-control"
-            ng-model = "vm.newCampaign.prizeForRefiereId"
-            ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
-            <option ng-repeat = "prize in vm.prizes"
-            ng-value = "prize.prizeId"
-            >{{prize.description}}</option>
-          </select>
+                    ng-model = "vm.newCampaign.prizeForRefiereId"
+                    ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
+              <option ng-repeat = "prize in vm.prizes"
+                      ng-value = "prize.prizeId">
+                {{prize.description}}
+              </option>
+            </select>
           <br>
+
+          <div class="form-group">
+            <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+            <input id="inputText" type="text" class="form-control"
+            placeholder=""
+            ng-model="vm.newCampaign.prizeForRefiere">
+          </div>
+
           <label for="repeatSelect"> Recompensa para Referido: </label>
           <br>
           <select id="inputText" class="form-control"
-          ng-model = "vm.newCampaign.prizeForRefiereeId"
-          ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
-          <option ng-repeat = "prize in vm.prizes"
-          ng-value = "prize.prizeId"
-          >{{prize.description}}</option>
-        </select>
+                  ng-model = "vm.newCampaign.prizeForRefiereeId"
+                  ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
+            <option ng-repeat = "prize in vm.prizes"
+                    ng-value = "prize.prizeId">
+              {{prize.description}}
+            </option>
+          </select>
+
+          <div class="form-group">
+            <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+            <input id="inputText" type="text" class="form-control"
+            placeholder=""
+            ng-model="vm.newCampaign.prizeForRefieree">
+          </div>
+
       </div>
     </form>
     <br>
