@@ -36,10 +36,14 @@
 
         })
         .catch(function(error) {
+          vm.progressbar.complete();
+          vm.loginData = null;
           $window.alert('Por favor ingrese los datos correctos.');
         });
     }
     function register(){
+      vm.progressbar.complete();
+      vm.loginData = null;
       $state.go('register');
     }
   }

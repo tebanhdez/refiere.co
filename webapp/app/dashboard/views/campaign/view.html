@@ -55,7 +55,7 @@
       </div>
     </form>
     <br>
-    <form class="form-inline">
+    <form class="form-inline" ng-show = "showImportDB == True">
       <div id="PanelBases" class="panel-heading">
       <h4 style="color: #000">Subir un archivo excel de base de datos</h4>
       <button ngf-select="uploadFiles($files, $invalidFiles)"
@@ -88,7 +88,8 @@
           <div class="">
             <button type="button"
             class="btn btn-primary btn-sm panel_campaign_button"
-            ng-click="vm.createNewCampaign()">Crear campaña</button>
+            ng-click="vm.createNewCampaign()"
+            ng-change="showImportDB = True">Crear campaña</button>
           </div>
         </div>
       </div>

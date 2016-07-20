@@ -50,7 +50,7 @@ public class CampaignDao extends CampaignHome {
         delete(campaign);
         trans.commit();
     }
-    
+
     public List<Campaign> getCampaignsByUserId(int companyId) {
         log.debug("getting references_codes instances");
         try {
