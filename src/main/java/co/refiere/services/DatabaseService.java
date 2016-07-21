@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.NoContentException;
+import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import co.refiere.dao.CompanyDatabaseDao;
 import co.refiere.models.CompanyDatabase;
 import co.refiere.resources.base.DatabaseObjectData;
+import co.refiere.resources.base.DatabaseRefRequest;
 
 public class DatabaseService {
     private static final Log LOGGER = LogFactory.getLog(DatabaseService.class);
@@ -35,4 +37,9 @@ public class DatabaseService {
         }
         return simpleDatabases;
     }
+    
+    public Response createDatabaseRef(DatabaseRefRequest databaseRefe) {
+        
+    }
+    
 }
