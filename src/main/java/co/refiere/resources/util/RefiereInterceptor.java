@@ -24,9 +24,11 @@ import co.refiere.dao.PersonDao;
 import co.refiere.models.Campaign;
 import co.refiere.models.Company;
 import co.refiere.models.Person;
+import co.refiere.models.Prize;
 import co.refiere.resources.base.EmailRequest;
 import co.refiere.services.mailer.RefiereServiceFactory;
 import co.refiere.services.mailer.ResourceManager;
+import co.refiere.services.qrcode.QRCodeService;
 
 public class RefiereInterceptor extends EmptyInterceptor {
 
@@ -91,9 +93,16 @@ public class RefiereInterceptor extends EmptyInterceptor {
                 String[] recipients = { person.getEmail() };
                 String[] attachments = {};
                 try {
+                    String html = getStringfontTemplate("RefiereTemplateCode.html");
+
+                    html = html.replace("XXXX", "HOLIS");
+                    html = html.replace("YYYY", "HOLIS");
+                    String newCode = QRCodeService.generateQRCode();
+                    html = html.replace("CCCC", newCode);
+                    
                     RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
                             properties.get("refiere.email.subject").toString(),
-                            getStringfontTemplate("RefiereTemplateCode.html"), attachments);
+                            html, attachments);
                 } catch (MessagingException e) {
                     LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
                 }
@@ -107,6 +116,9 @@ public class RefiereInterceptor extends EmptyInterceptor {
             PersonDao personDao = new PersonDao();
             StatelessSession statelessSession = personDao.getStatelessSession();
             statelessSession.beginTransaction();
+            
+            Prize refereeID = campaign.getPrizeByPrizeForRefereeId();
+            
             try {
                 ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase))
                         .scroll(ScrollMode.FORWARD_ONLY);
@@ -122,7 +134,11 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     EmailRequest request = new EmailRequest();
                     request.setSubject("Email PipeLine Test");
                     request.setRecipients(recipients);
-                    request.setBody("<h1>-- INSERT CODE HERE!! --</h1>");
+                    
+                    String html = getStringfontTemplate("RefiereTemplateCode.html");
+                    html = html.replace("XXXX", "HOLIS");
+                    request.setBody(html);
+                    
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
                     if (campaignTargets.size() == CHUNK_SIZE) {
