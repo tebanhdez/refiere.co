@@ -3,59 +3,61 @@
     <div class="panel panel-primary">
       <div id="Panel" class="panel-heading">Crear Campaña</div>
       <div class="panel-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <label id="Texto">Nombre </label>
-            <input id="inputText" type="text" class="form-control"
-            id="exampleInputName2"
-            placeholder=""
-            ng-model="vm.newCampaign.campaignName">
-          </div>
-        </form>
-        <br>
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="repeatSelect"> Recompensa para Referidor: </label>
+        <div  ng-hide="vm.isCampaign">
+          <form class="form-inline">
+            <div class="form-group">
+              <label id="Texto">Nombre </label>
+              <input id="inputText" type="text" class="form-control"
+              id="exampleInputName2"
+              placeholder=""
+              ng-model="vm.newCampaign.campaignName">
+            </div>
+          </form>
+          <br>
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="repeatSelect"> Recompensa para Referidor: </label>
+              <br>
+              <select id="inputText" class="form-control"
+                      ng-model = "vm.newCampaign.prizeForRefiereId"
+                      ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
+                <option ng-repeat = "prize in vm.prizes"
+                        ng-value = "prize.prizeId">
+                  {{prize.description}}
+                </option>
+              </select>
+            <br>
+
+            <div class="form-group">
+              <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+              <input id="inputText" type="text" class="form-control"
+              placeholder=""
+              ng-model="vm.newCampaign.prizeForRefiere">
+            </div>
+
+            <label for="repeatSelect"> Recompensa para Referido: </label>
             <br>
             <select id="inputText" class="form-control"
-                    ng-model = "vm.newCampaign.prizeForRefiereId"
-                    ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
+                    ng-model = "vm.newCampaign.prizeForRefiereeId"
+                    ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
               <option ng-repeat = "prize in vm.prizes"
                       ng-value = "prize.prizeId">
                 {{prize.description}}
               </option>
             </select>
-          <br>
 
-          <div class="form-group">
-            <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
-            <input id="inputText" type="text" class="form-control"
-            placeholder=""
-            ng-model="vm.newCampaign.prizeForRefiere">
-          </div>
+            <div class="form-group">
+              <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+              <input id="inputText" type="text" class="form-control"
+              placeholder=""
+              ng-model="vm.newCampaign.prizeForRefieree">
+            </div>
 
-          <label for="repeatSelect"> Recompensa para Referido: </label>
-          <br>
-          <select id="inputText" class="form-control"
-                  ng-model = "vm.newCampaign.prizeForRefiereeId"
-                  ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
-            <option ng-repeat = "prize in vm.prizes"
-                    ng-value = "prize.prizeId">
-              {{prize.description}}
-            </option>
-          </select>
-
-          <div class="form-group">
-            <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
-            <input id="inputText" type="text" class="form-control"
-            placeholder=""
-            ng-model="vm.newCampaign.prizeForRefieree">
-          </div>
-
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
     <br>
-    <form class="form-inline">
+    <form class="form-inline" ng-show = "vm.isCampaign">
       <div id="PanelBases" class="panel-heading">
       <h4 style="color: #000">Subir un archivo excel de base de datos</h4>
       <button ngf-select="uploadFiles($files, $invalidFiles)"
@@ -82,7 +84,7 @@
       </div>
     </form>
     <br>
-    <form class="form-inline">
+    <form class="form-inline" ng-hide="vm.isCampaign">
       <div class="form-group">
         <div class="row">
           <div class="">

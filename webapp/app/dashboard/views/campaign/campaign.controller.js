@@ -19,6 +19,7 @@
     vm.databases = {};
     vm.newCampaign = {};
     vm.newDatabase = {};
+    vm.isCampaign = false;
 
     vm.createNewCampaign = createNewCampaign;
 
@@ -80,6 +81,7 @@
       CampaignService.setNewCampaign(vm.newCampaign)
         .then(function(data) {
           if (data.status === 200){
+            vm.isCampaign = true;
             $window.alert('Has creado una nueva campaña con exito.' );
           }
           else{

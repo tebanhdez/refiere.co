@@ -11,7 +11,6 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.Campaign;
 import co.refiere.models.CampaignHome;
-import co.refiere.models.ReferencesCodes;
 import co.refiere.resources.util.HibernateUtil;
 
 public class CampaignDao extends CampaignHome {

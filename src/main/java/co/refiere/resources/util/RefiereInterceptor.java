@@ -95,8 +95,10 @@ public class RefiereInterceptor extends EmptyInterceptor {
                 try {
                     String html = getStringfontTemplate("RefiereTemplateCode.html");
 
-                    html = html.replace("XXXX", "HOLIS");
-                    html = html.replace("YYYY", "HOLIS");
+                    html = html.replace("XXXX","bono");
+                    
+                    html = html.replace("YYYY", "Bono");
+                    
                     String newCode = QRCodeService.generateQRCode();
                     html = html.replace("CCCC", newCode);
                     
@@ -109,6 +111,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
             }
 
         }
+        
         if (entity instanceof Campaign) {
             Campaign campaign = (Campaign) entity;
             int dataBase = campaign.getCompanyDatabase().getId();
@@ -135,9 +138,11 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     request.setSubject("Email PipeLine Test");
                     request.setRecipients(recipients);
                     
-                    String html = getStringfontTemplate("RefiereTemplateCode.html");
-                    html = html.replace("XXXX", "HOLIS");
-                    request.setBody(html);
+//                    String html = getStringfontTemplate("RefiereTemplateCode.html");
+//                    html = html.replace("XXXX", "HOLIS");
+//                    request.setBody(html);
+                    
+                    request.setBody("RefiereTemplateCode.html");
                     
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
