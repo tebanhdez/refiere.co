@@ -3,6 +3,7 @@ package co.refiere.resources.util;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -15,11 +16,17 @@ import org.apache.commons.io.FileUtils;
 
 import org.hibernate.CallbackException;
 import org.hibernate.EmptyInterceptor;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.StatelessSession;
+import org.hibernate.Transaction;
 import org.hibernate.type.Type;
 
+import co.refiere.dao.CampaignDao;
 import co.refiere.dao.PersonDao;
 import co.refiere.models.Campaign;
 import co.refiere.models.Company;
@@ -85,32 +92,39 @@ public class RefiereInterceptor extends EmptyInterceptor {
                 }
             }
         }
-        if (entity instanceof Person) {
-            Person person = (Person) entity;
-            if ("".equals(person.getEmail())) {
-                LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
-            } else {
-                String[] recipients = { person.getEmail() };
-                String[] attachments = {};
-                try {
-                    String html = getStringfontTemplate("RefiereTemplateCode.html");
-
-                    html = html.replace("XXXX","bono");
-                    
-                    html = html.replace("YYYY", "Bono");
-                    
-                    String newCode = QRCodeService.generateQRCode();
-                    html = html.replace("CCCC", newCode);
-                    
-                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
-                            properties.get("refiere.email.subject").toString(),
-                            html, attachments);
-                } catch (MessagingException e) {
-                    LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
-                }
-            }
-
-        }
+//        if (entity instanceof Person) {
+//            Person person = (Person) entity;
+//            
+//            CampaignDao campaignDao = new CampaignDao();
+//            StatelessSession statelessSession = campaignDao.getStatelessSession();
+//            statelessSession.beginTransaction();
+//            
+//            SQLQuery sqlQuery = statelessSession.createSQLQuery("select * from campaign where id in (select max(id) id from campaign);");
+//
+//            if ("".equals(person.getEmail())) {
+//                LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
+//            } else {
+//                String[] recipients = { person.getEmail() };
+//                String[] attachments = {};
+//                try {
+//                    String html = getStringfontTemplate("RefiereTemplateCode.html");
+//
+//                    html = html.replace("XXXX","bono");
+//                    
+//                    html = html.replace("YYYY", "Bono");
+//                    
+//                    String newCode = QRCodeService.generateQRCode();
+//                    html = html.replace("CCCC", newCode);
+//                    
+//                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
+//                            properties.get("refiere.email.subject").toString(),
+//                            html, attachments);
+//                } catch (MessagingException e) {
+//                    LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
+//                }
+//            }
+//
+//        }
         
         if (entity instanceof Campaign) {
             Campaign campaign = (Campaign) entity;
@@ -119,8 +133,6 @@ public class RefiereInterceptor extends EmptyInterceptor {
             PersonDao personDao = new PersonDao();
             StatelessSession statelessSession = personDao.getStatelessSession();
             statelessSession.beginTransaction();
-            
-            Prize refereeID = campaign.getPrizeByPrizeForRefereeId();
             
             try {
                 ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase))
@@ -135,15 +147,10 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     recipients.add(person.getEmail());
                     List<String> attachmentsFilesPaths = new ArrayList<>();
                     EmailRequest request = new EmailRequest();
+                    request.setSenderAddress("info@refiere.co");
                     request.setSubject("Email PipeLine Test");
-                    request.setRecipients(recipients);
-                    
-//                    String html = getStringfontTemplate("RefiereTemplateCode.html");
-//                    html = html.replace("XXXX", "HOLIS");
-//                    request.setBody(html);
-                    
+                    request.setRecipients(recipients);                    
                     request.setBody("RefiereTemplateCode.html");
-                    
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
                     if (campaignTargets.size() == CHUNK_SIZE) {

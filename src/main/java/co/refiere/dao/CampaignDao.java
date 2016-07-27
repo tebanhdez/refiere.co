@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.Campaign;
@@ -66,6 +67,10 @@ public class CampaignDao extends CampaignHome {
             log.error("get failed", re);
             throw re;
         }
+    }
+
+    public StatelessSession getStatelessSession() {
+        return sessionFactory.openStatelessSession();
     }
 
 }
