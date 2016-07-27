@@ -39,7 +39,9 @@ public class DatabaseService {
     }
     
     public Response createDatabaseRef(DatabaseRefRequest databaseRefe) {
-        
+        CompanyDatabase companyModel = new CompanyDatabase();
+        companyModel.setName("RefiereDatabase");
+        companyModel.setCompany_id();
     }
     
 }
