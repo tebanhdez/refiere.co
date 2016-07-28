@@ -17,12 +17,6 @@
     var companyId = UserDataService.getCompanyID();
 
     function postNewDatabase(databaseRef) {
-      // var fd = new FormData();
-      // fd.append('file', file);
-      // var url = '/rest/database/' + companyId + '/import';
-      // return $http.post(url, fd, {
-      //        headers: {'Authorization': encodedBasic}
-      //    });
      var databaseReference = '/rest/database/' + companyId + '/import';
      var request = {
        method: 'POST',
@@ -37,8 +31,8 @@
      return $http(request);
      }
 
-     function newURL() {
-       var url = '/rest/database/' + companyId + '/import';
+     function newURL(databaseID) {
+       var url = '/rest/database/' + databaseID + '/import';
        return url;
       }
 

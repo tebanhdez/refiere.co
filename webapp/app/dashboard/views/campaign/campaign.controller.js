@@ -49,7 +49,7 @@
             $scope.files = files;
             $scope.errFiles = errFiles;
             angular.forEach(files, function(file) {
-                var actualURL = DatabaseService.newURL();
+                var actualURL = DatabaseService.newURL(vm.newCampaign.companyDataBase);
                 var encodedBasic = SessionModel.password;
 
                 file.upload = Upload.upload({
