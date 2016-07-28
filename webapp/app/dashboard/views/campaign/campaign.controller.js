@@ -44,53 +44,53 @@
       CampaignService.setNewDatabaseReference(vm.newDatabaseRefe)
         .then(function(data) {
           if (data.status === 200){
-            $window.alert('Has creado una nueva referencia a una base de datos' );
+            vm.newCampaign.companyDataBase = data.data.companyDatabaseId;
+            $scope.files = files;
+            $scope.errFiles = errFiles;
+            angular.forEach(files, function(file) {
+                var actualURL = DatabaseService.newURL();
+                var encodedBasic = SessionModel.password;
+
+                file.upload = Upload.upload({
+                  url: actualURL,
+                  method: 'POST',
+                  data: {
+                    filename: file.name, // this is needed for Flash polyfill IE8-9
+                    file: file
+                  },
+                  headers: {
+                    'Content-Type': file.type != '' ? file.type : 'application/octet-stream',
+                    'Authorization': encodedBasic
+                  }
+              });
+
+              file.upload.then(function (response) {
+                  $timeout(function () {
+                      file.result = response.data;
+                  });
+              }, function (response) {
+                  if (response.status > 0)
+                      $scope.errorMsg = response.status + ': ' + response.data;
+              }, function (evt) {
+                  file.progress = Math.min(100, parseInt(100.0 *
+                                           evt.loaded / evt.total));
+              });
+
+            });
           }
           else{
-            $window.alert('Ocurrió un error y no se creo la referencia a la base de datos');
+            $window.alert('Ocurrió un error y no se creo la base de datos, asegurese de que posee conexion a internet');
           }
         })
         .catch(function(error) {
           $window.alert('Ocurrió un error');
         });
 
-      $scope.files = files;
-      $scope.errFiles = errFiles;
-      angular.forEach(files, function(file) {
-          var actualURL = DatabaseService.newURL();
-          var encodedBasic = SessionModel.password;
-
-          file.upload = Upload.upload({
-            url: actualURL,
-            method: 'POST',
-            data: {
-              filename: file.name, // this is needed for Flash polyfill IE8-9
-              file: file
-            },
-            headers: {
-              'Content-Type': file.type != '' ? file.type : 'application/octet-stream',
-              'Authorization': encodedBasic
-            }
-        });
-
-        file.upload.then(function (response) {
-            $timeout(function () {
-                file.result = response.data;
-            });
-        }, function (response) {
-            if (response.status > 0)
-                $scope.errorMsg = response.status + ': ' + response.data;
-        }, function (evt) {
-            file.progress = Math.min(100, parseInt(100.0 *
-                                     evt.loaded / evt.total));
-        });
-
-      });
     }
 
     function createNewCampaign() {
       vm.newCampaign.companyId = UserDataService.getCompanyID();
-      vm.newCampaign.companyDataBase = "1";
+      console.log(vm.newCampaign.companyDataBase);
       CampaignService.setNewCampaign(vm.newCampaign)
         .then(function(data) {
           if (data.status === 200){
