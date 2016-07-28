@@ -49,8 +49,8 @@ public class RefiereInterceptor extends EmptyInterceptor {
      * or deleted objects are committed to database.
      */
     private static final long serialVersionUID = 1L;
-    private static final Log LOGGER = LogFactory.getLog(RefiereInterceptor.class);
-    private static Properties properties = null;
+    private static final Log  LOGGER           = LogFactory.getLog(RefiereInterceptor.class);
+    private static Properties properties       = null;
 
     static {
         properties = new Properties();
@@ -92,40 +92,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
                 }
             }
         }
-//        if (entity instanceof Person) {
-//            Person person = (Person) entity;
-//            
-//            CampaignDao campaignDao = new CampaignDao();
-//            StatelessSession statelessSession = campaignDao.getStatelessSession();
-//            statelessSession.beginTransaction();
-//            
-//            SQLQuery sqlQuery = statelessSession.createSQLQuery("select * from campaign where id in (select max(id) id from campaign);");
-//
-//            if ("".equals(person.getEmail())) {
-//                LOGGER.error("ERROR: RefiereInterceptor::Sending email >> Company email -null-");
-//            } else {
-//                String[] recipients = { person.getEmail() };
-//                String[] attachments = {};
-//                try {
-//                    String html = getStringfontTemplate("RefiereTemplateCode.html");
-//
-//                    html = html.replace("XXXX","bono");
-//                    
-//                    html = html.replace("YYYY", "Bono");
-//                    
-//                    String newCode = QRCodeService.generateQRCode();
-//                    html = html.replace("CCCC", newCode);
-//                    
-//                    RefiereServiceFactory.getMailService().generateAndSendEmail(recipients,
-//                            properties.get("refiere.email.subject").toString(),
-//                            html, attachments);
-//                } catch (MessagingException e) {
-//                    LOGGER.error("ERROR: RefiereInterceptor::Sending email", e);
-//                }
-//            }
-//
-//        }
-        
+
         if (entity instanceof Campaign) {
             Campaign campaign = (Campaign) entity;
             int dataBase = campaign.getCompanyDatabase().getId();
@@ -133,7 +100,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
             PersonDao personDao = new PersonDao();
             StatelessSession statelessSession = personDao.getStatelessSession();
             statelessSession.beginTransaction();
-            
+
             try {
                 ScrollableResults scrollableResults = statelessSession.createQuery(String.format(query, dataBase))
                         .scroll(ScrollMode.FORWARD_ONLY);
@@ -146,11 +113,20 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     List<String> recipients = new ArrayList<>();
                     recipients.add(person.getEmail());
                     List<String> attachmentsFilesPaths = new ArrayList<>();
+
+                    String html = getStringfontTemplate("RefiereTemplateCode.html");
+                    String prizeName = campaign.getPrizeByPrizeForRefiereId().getDescription();
+                    html = html.replace("XXXX", prizeName);
+                    String prizeAmount = campaign.getPrizeForReferee();
+                    html = html.replace("YYYY", prizeAmount);
+                    String newCode = QRCodeService.generateQRCode();
+                    html = html.replace("CCCC", newCode);
+
                     EmailRequest request = new EmailRequest();
+                    request.setRecipients(recipients);
                     request.setSenderAddress("info@refiere.co");
-                    request.setSubject("Email PipeLine Test");
-                    request.setRecipients(recipients);                    
-                    request.setBody("RefiereTemplateCode.html");
+                    request.setSubject(properties.get("refiere.email.subject").toString());
+                    request.setBody(html);
                     request.setAttachments(attachmentsFilesPaths);
                     campaignTargets.add(request);
                     if (campaignTargets.size() == CHUNK_SIZE) {
