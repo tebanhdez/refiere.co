@@ -18,7 +18,7 @@
     vm.prizes = {};
     vm.databases = {};
     vm.newCampaign = {};
-    vm.newDatabase = {};
+    vm.newDatabaseRefe = {};
 
     vm.createNewCampaign = createNewCampaign;
 
@@ -40,6 +40,20 @@
     }
 
     $scope.uploadFiles = function(files, errFiles) {
+      vm.newDatabaseRefe.company_id = UserDataService.getCompanyID();
+      CampaignService.setNewDatabaseReference(vm.newDatabaseRefe)
+        .then(function(data) {
+          if (data.status === 200){
+            $window.alert('Has creado una nueva referencia a una base de datos' );
+          }
+          else{
+            $window.alert('Ocurrió un error y no se creo la referencia a la base de datos');
+          }
+        })
+        .catch(function(error) {
+          $window.alert('Ocurrió un error');
+        });
+
       $scope.files = files;
       $scope.errFiles = errFiles;
       angular.forEach(files, function(file) {
