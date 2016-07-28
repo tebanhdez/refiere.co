@@ -1,27 +1,35 @@
 <div id="panelPosition" class="row">
     <div class="col-md-6 col-md-offset-3 databaseMargin">
         <div class="panel panel-primary databaseMargin">
-            <div id="PanelBases" class="panel-heading">
-            <h4>Subir un archivo excel de base de datos</h4>
-            <button ngf-select="uploadFiles($files, $invalidFiles)"
-            class="btn btn-primary btn-sm panel_campaign_button"
-                    style = "color: #fff"
-                    multiple
-                    accept = ".csv">
-                    Seleccione un archivo excel
-            </button>
-            <br><br>
-            Archivo:
-            <ul>
-             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
-               <span class="progress" ng-show="f.progress >= 0">
-                 <div style="width:{{f.progress}}%"
-                     ng-bind="f.progress + '%'"></div>
-               </span>
-             </li>
-             <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
-             </li>
-            </ul>
+            <div id="PanelBases" class="panel-heading; color: #000;">
+              <div class="form-group">
+                <label id="Texto">Ingrese un nuevo nombre para la base de datos que va a importar: </label>
+                <input id="inputText" type="text" class="form-control"
+                placeholder=""
+                ng-model="vm.newDatabase">
+              </div>
+              <div>
+                <h4>Subir un archivo excel de base de datos</h4>
+                <button ngf-select="uploadFiles($files, $invalidFiles)"
+                class="btn btn-primary btn-sm panel_campaign_button"
+                        style = "color: #fff"
+                        multiple
+                        accept = ".csv">
+                        Seleccione un archivo excel
+                </button>
+                <br><br>
+                Archivo:
+                <ul>
+                 <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+                   <span class="progress" ng-show="f.progress >= 0">
+                     <div style="width:{{f.progress}}%"
+                         ng-bind="f.progress + '%'"></div>
+                   </span>
+                 </li>
+                 <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+                 </li>
+                </ul>
+              </div>
             </div>
         </div>
     </div>
