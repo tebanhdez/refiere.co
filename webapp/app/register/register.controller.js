@@ -43,16 +43,24 @@
             $state.go('home');
           }
           else if (data.status === 400){
+            vm.progressbar.complete();
+            vm.newCompanyData = null;
             $window.alert('Por favor ingrese los datos correctos.');
           }
           else if (data.status === -1){
+            vm.progressbar.complete();
+            vm.newCompanyData = null;
             $window.alert('¡El usuario ya existe!');
           }
           else{
+            vm.progressbar.complete();
+            vm.newCompanyData = null;
             $window.alert('Ocurrió un error con la conexión');
           }
         })
         .catch(function(error) {
+          vm.progressbar.complete();
+          vm.newCompanyData = null;
           $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
         });
     }

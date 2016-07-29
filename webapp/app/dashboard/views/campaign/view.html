@@ -3,39 +3,59 @@
     <div class="panel panel-primary">
       <div id="Panel" class="panel-heading">Crear Campaña</div>
       <div class="panel-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <label id="Texto">Nombre </label>
-            <input id="inputText" type="text" class="form-control"
-            id="exampleInputName2"
-            placeholder=""
-            ng-model="vm.newCampaign.campaignName">
-          </div>
-        </form>
-        <br>
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="repeatSelect"> Recompensa para Referidor: </label>
+        <div>
+          <form class="form-inline">
+            <div class="form-group">
+              <label id="Texto">Nombre </label>
+              <input id="inputText" type="text" class="form-control"
+              id="exampleInputName2"
+              placeholder=""
+              ng-model="vm.newCampaign.campaignName">
+            </div>
+          </form>
+          <br>
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="repeatSelect"> Recompensa para Referidor: </label>
+              <br>
+              <select id="inputText" class="form-control"
+                      ng-model = "vm.newCampaign.prizeForRefiereId"
+                      ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
+                <option ng-repeat = "prize in vm.prizes"
+                        ng-value = "prize.prizeId">
+                  {{prize.description}}
+                </option>
+              </select>
+            <br>
+
+            <div class="form-group">
+              <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+              <input id="inputText" type="text" class="form-control"
+              placeholder=""
+              ng-model="vm.newCampaign.prizeForRefiere">
+            </div>
+
+            <label for="repeatSelect"> Recompensa para Referido: </label>
             <br>
             <select id="inputText" class="form-control"
-            ng-model = "vm.newCampaign.prizeForRefiereId"
-            ng-change = "vm.newCampaign.prizeForRefiere = prize.description">
-            <option ng-repeat = "prize in vm.prizes"
-            ng-value = "prize.prizeId"
-            >{{prize.description}}</option>
-          </select>
-          <br>
-          <label for="repeatSelect"> Recompensa para Referido: </label>
-          <br>
-          <select id="inputText" class="form-control"
-          ng-model = "vm.newCampaign.prizeForRefiereeId"
-          ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
-          <option ng-repeat = "prize in vm.prizes"
-          ng-value = "prize.prizeId"
-          >{{prize.description}}</option>
-        </select>
-      </div>
-    </form>
+                    ng-model = "vm.newCampaign.prizeForRefiereeId"
+                    ng-change = "vm.newCampaign.prizeForRefieree = prize.description">
+              <option ng-repeat = "prize in vm.prizes"
+                      ng-value = "prize.prizeId">
+                {{prize.description}}
+              </option>
+            </select>
+
+            <div class="form-group">
+              <label id="Texto">Ingrese cantidad la cantidad dinero, el bono o el descuento: </label>
+              <input id="inputText" type="text" class="form-control"
+              placeholder=""
+              ng-model="vm.newCampaign.prizeForRefieree">
+            </div>
+
+        </div>
+      </form>
+    </div>
     <br>
     <form class="form-inline">
       <div id="PanelBases" class="panel-heading">
@@ -49,13 +69,15 @@
       </button>
       <br><br>
       <h4 style="color: #000">Archivo:</h4>
-      <ul>
+      <ul ng-hide="vm.isCampaign">
        <li class = "database_text"
            ng-repeat="f in files"
            style="font:smaller">{{f.name}} {{f.$errorParam}}
          <span class="progress database_text" ng-show="f.progress >= 0">
-           <div class = "database_text" style="width:{{f.progress}}%"
-               ng-bind="f.progress + '%'"></div>
+           <div class = "database_text"
+                style="width:{{f.progress}}%"
+                ng-bind="f.progress + '%'">
+           </div>
          </span>
        </li>
        <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
@@ -69,8 +91,10 @@
         <div class="row">
           <div class="">
             <button type="button"
-            class="btn btn-primary btn-sm panel_campaign_button"
-            ng-click="vm.createNewCampaign()">Crear campaña</button>
+                    class="btn btn-primary btn-sm panel_campaign_button"
+                    ng-click="vm.createNewCampaign()">
+              Crear campaña
+            </button>
           </div>
         </div>
       </div>

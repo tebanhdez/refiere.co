@@ -20,7 +20,12 @@
           <h3 ng-hide="loginInputs.password.$valid
                        && loginInputs.userName.$valid"
                        class="text-color">
-          Por favor ingrese sus credenciales
+            Por favor ingrese sus credenciales
+          </h3>
+          <h3 ng-show="loginInputs.password.$valid
+                       && loginInputs.userName.$valid"
+                       style="color: #fff; text-align: center;">
+            ¡Dé click en Iniciar Sesi&oacute;n!
           </h3>
           <br>
           <button ng-click="vm.login()" type="btn btn-primary btn-block button-block"

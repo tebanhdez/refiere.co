@@ -14,9 +14,9 @@ public class QRCodeGeneratorResource {
     @POST
     @Path("/generate")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void generateQrCode(QRCodeRequest qrCodeRequest){
-        QRCodeService qrCodeService = new QRCodeService();
-        qrCodeService.generateQRCode(qrCodeRequest); 
+    public String generateQrCode(QRCodeRequest qrCodeRequest){
+        String qrCode = QRCodeService.generateQRCode();
+        return qrCode;
     }
 
 }

@@ -7,11 +7,11 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import co.refiere.models.Campaign;
 import co.refiere.models.CampaignHome;
-import co.refiere.models.ReferencesCodes;
 import co.refiere.resources.util.HibernateUtil;
 
 public class CampaignDao extends CampaignHome {
@@ -50,7 +50,7 @@ public class CampaignDao extends CampaignHome {
         delete(campaign);
         trans.commit();
     }
-    
+
     public List<Campaign> getCampaignsByUserId(int companyId) {
         log.debug("getting references_codes instances");
         try {
@@ -67,6 +67,10 @@ public class CampaignDao extends CampaignHome {
             log.error("get failed", re);
             throw re;
         }
+    }
+
+    public StatelessSession getStatelessSession() {
+        return sessionFactory.openStatelessSession();
     }
 
 }

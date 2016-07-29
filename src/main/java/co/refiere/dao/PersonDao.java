@@ -10,14 +10,13 @@ import co.refiere.models.Person;
 import co.refiere.models.PersonHome;
 import co.refiere.resources.util.HibernateUtil;
 
-
 public class PersonDao extends PersonHome {
 
-    private static final Log log = LogFactory.getLog(PersonDao.class);
+    private static final Log     log            = LogFactory.getLog(PersonDao.class);
     private final SessionFactory sessionFactory = getSessionFactory();
 
     @Override
-    public SessionFactory getSessionFactory(){
+    public SessionFactory getSessionFactory() {
         try {
             return (SessionFactory) HibernateUtil.getSessionFactory();
         } catch (Exception e) {
@@ -26,23 +25,30 @@ public class PersonDao extends PersonHome {
         }
     }
 
-    public StatelessSession getStatelessSession(){
+    public StatelessSession getStatelessSession() {
         return sessionFactory.openStatelessSession();
     }
 
-    public void save(Person person){
+    public void save(Person person) {
         Session session = sessionFactory.getCurrentSession();
-        org.hibernate.Transaction trans= session.beginTransaction();
+        org.hibernate.Transaction trans = session.beginTransaction();
         session.saveOrUpdate(person);
+        trans.commit();
+    }
+
+    public void saveForDatabase(Person person) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans = session.beginTransaction();
+        session.save(person);
         trans.commit();
     }
 
     public Person findPersonsById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        org.hibernate.Transaction trans= session.beginTransaction();
+        org.hibernate.Transaction trans = session.beginTransaction();
         Person instance = findById(id);
         trans.commit();
         return instance;
     }
-    
+
 }

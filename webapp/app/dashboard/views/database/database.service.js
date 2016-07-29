@@ -16,17 +16,23 @@
     var encodedBasic = SessionModel.password;
     var companyId = UserDataService.getCompanyID();
 
-    function postNewDatabase(file) {
-      var fd = new FormData();
-      fd.append('file', file);
-      var url = '/rest/database/' + companyId + '/import';
-      return $http.post(url, fd, {
-             headers: {'Authorization': encodedBasic}
-         });
+    function postNewDatabase(databaseRef) {
+     var databaseReference = '/rest/database/' + companyId + '/import';
+     var request = {
+       method: 'POST',
+       url: databaseReference,
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': encodedBasic
+       },
+       data: databaseRef
+     };
+
+     return $http(request);
      }
 
-     function newURL() {
-       var url = '/rest/database/' + companyId + '/import';
+     function newURL(databaseID) {
+       var url = '/rest/database/' + databaseID + '/import';
        return url;
       }
 

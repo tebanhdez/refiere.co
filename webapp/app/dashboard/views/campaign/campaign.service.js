@@ -13,6 +13,7 @@
     this.getPrizeFromServer = getPrizeFromServer;
     this.getDatabaseFromServer = getDatabaseFromServer;
     this.setNewCampaign = setNewCampaign;
+    this.setNewDatabaseReference = setNewDatabaseReference;
     var currentUser = UserDataService.getUserName();
     var encodedBasic = SessionModel.password;
 
@@ -54,6 +55,20 @@
           'Authorization': encodedBasic
         },
         data: campaignData
+      };
+
+      return $http(postRequest);
+    }
+
+    function setNewDatabaseReference(databaseReference) {
+      var postRequest = {
+        method: 'POST',
+        url: '/rest/v1/databaseRef',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        },
+        data: databaseReference
       };
 
       return $http(postRequest);

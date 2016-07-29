@@ -17,8 +17,6 @@ import co.refiere.services.DataImporterService;
 @Path("/database")
 public class DatabaseImporterResource {
 
- 
-
   @POST
   @Path("/{databaseId}/import")
   @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -30,7 +28,4 @@ public class DatabaseImporterResource {
     return Response.ok().build(); 
     }
 
-  
-
-  
 }
