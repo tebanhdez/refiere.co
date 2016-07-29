@@ -43,11 +43,11 @@ INSERT INTO payment_type (id, type_description) VALUES (13, 'Cash')
 INSERT INTO payment_type (id, type_description) VALUES (14, 'Check')
 
 --INSERT DEFAULT Prizes
-INSERT INTO prize (id, description) VALUES (10, 'Money')
-INSERT INTO prize (id, description) VALUES (11, 'Discount')
-INSERT INTO prize (id, description) VALUES (12, 'Bonus')
-INSERT INTO prize (id, description) VALUES (13, 'Prize')
-INSERT INTO prize (id, description) VALUES (14, 'Improve service/product')
+INSERT INTO prize (id, description) VALUES (10, 'Dinero')
+INSERT INTO prize (id, description) VALUES (11, 'Descuento')
+INSERT INTO prize (id, description) VALUES (12, 'Bono')
+INSERT INTO prize (id, description) VALUES (13, 'Premio')
+INSERT INTO prize (id, description) VALUES (14, 'Upgrade')
 
 --INSERT DEFAULT Database's Referece
 INSERT INTO company_database (id, name, company_id) VALUES (1, 'NewDatabase', 0)

@@ -45,6 +45,7 @@
       CampaignService.setNewDatabaseReference(vm.newDatabaseRefe)
         .then(function(data) {
           if (data.status === 200){
+            vm.isCampaign = false;
             vm.newCampaign.companyDataBase = data.data.companyDatabaseId;
             $scope.files = files;
             $scope.errFiles = errFiles;
@@ -94,11 +95,12 @@
       CampaignService.setNewCampaign(vm.newCampaign)
         .then(function(data) {
           if (data.status === 200){
-            vm.isCampaign = true;
             $window.alert('Has creado una nueva campaña con exito.' );
+            vm.isCampaign = true;
+            vm.newCampaign = null;
           }
           else{
-            $window.alert('Ocurrió un error con la conexión');
+            $window.alert('Ha ocurrido un error.');
           }
         })
         .catch(function(error) {

@@ -69,13 +69,15 @@
       </button>
       <br><br>
       <h4 style="color: #000">Archivo:</h4>
-      <ul>
+      <ul ng-hide="vm.isCampaign">
        <li class = "database_text"
            ng-repeat="f in files"
            style="font:smaller">{{f.name}} {{f.$errorParam}}
          <span class="progress database_text" ng-show="f.progress >= 0">
-           <div class = "database_text" style="width:{{f.progress}}%"
-               ng-bind="f.progress + '%'"></div>
+           <div class = "database_text"
+                style="width:{{f.progress}}%"
+                ng-bind="f.progress + '%'">
+           </div>
          </span>
        </li>
        <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
@@ -89,8 +91,8 @@
         <div class="row">
           <div class="">
             <button type="button"
-            class="btn btn-primary btn-sm panel_campaign_button"
-            ng-click="vm.createNewCampaign()">
+                    class="btn btn-primary btn-sm panel_campaign_button"
+                    ng-click="vm.createNewCampaign()">
               Crear campaña
             </button>
           </div>
