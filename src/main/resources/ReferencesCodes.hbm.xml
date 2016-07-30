@@ -17,5 +17,8 @@
                 <!--comment>Who referred me?</comment-->
             </column>
         </many-to-one>
+        <property name="code" type="string">
+            <column name="code" length="10" not-null="true" unique="true"/>
+        </property>
     </class>
 </hibernate-mapping>

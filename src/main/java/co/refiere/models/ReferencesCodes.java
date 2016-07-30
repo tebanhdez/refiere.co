@@ -8,13 +8,15 @@ public class ReferencesCodes implements java.io.Serializable {
 
     private ReferencesCodesId id;
     private Person person;
+    private String code;
     
     public ReferencesCodes() {
     }
     
-    public ReferencesCodes(ReferencesCodesId id, Person person) {
+    public ReferencesCodes(ReferencesCodesId id, Person person, String code) {
         this.id = id;
         this.person = person;
+        this.code = code;
     }
 
     public ReferencesCodes(Person person) {
@@ -37,4 +39,11 @@ public class ReferencesCodes implements java.io.Serializable {
         this.person = person;
     }
 
+    public String getCode(){
+        return this.code;
+    }
+
+    public void setCode(String code){
+        this.code = code;
+    }
 }

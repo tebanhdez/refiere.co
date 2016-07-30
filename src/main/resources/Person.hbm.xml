@@ -29,7 +29,7 @@
         <property name="metaphoneName" type="string">
             <column name="metaphone_name" length="100" />
         </property>
-        <set name="referencesCodeses" table="references_codes" inverse="true" lazy="true" fetch="select">
+        <set name="referencesCodeses" table="references_codes" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="referrer_id">
                     <comment>Who referred me?</comment>
