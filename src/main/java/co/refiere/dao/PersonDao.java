@@ -51,4 +51,10 @@ public class PersonDao extends PersonHome {
         return instance;
     }
 
+    public void deletePerson(Person person) {
+        Session session = sessionFactory.getCurrentSession();
+        org.hibernate.Transaction trans = session.beginTransaction();
+        session.delete(person);
+        trans.commit();
+    }
 }

@@ -64,7 +64,6 @@ public class RefiereUserDao extends SimpleUserHome {
             Query query = session.createQuery("from SimpleUser su join fetch su.userRoles where login = :login");
             query.setParameter("login", login);
             java.util.List results = query.list();
-            System.out.println("Result list: " + results.size());
             SimpleUser instance = (results != null && results.size() == 1) ? (SimpleUser) results.get(0) : null;
             UserRoles roles = instance.getUserRoles();
 
