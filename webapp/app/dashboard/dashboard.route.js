@@ -22,6 +22,11 @@
         templateUrl: 'app/dashboard/views/metrics/view.html',
         controller: 'MetricsCtrl as vm'
       })
+      .state('dashboard.pendingOrders', {
+        url: '/pendingOrders',
+        templateUrl: 'app/dashboard/views/pendingOrders/view.html',
+        controller: 'OrdersCtrl as vm'
+      })
       .state('dashboard.database', {
         url: '/database',
         templateUrl:'app/dashboard/views/database/view.html',

@@ -21,6 +21,10 @@
       state: 'dashboard.metrics',
       icon: 'fa-bar-chart-o'
     },{
+      title: 'Ordenes Pendientes',
+      state: 'dashboard.pendingOrders',
+      icon: 'fa-calendar-o'
+    },{
       title: 'Noticias',
       state: 'dashboard.news',
       icon: 'fa-book'

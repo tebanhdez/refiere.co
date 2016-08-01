@@ -70,4 +70,26 @@ public class PlanOrderDao extends PlanOrderHome {
             throw re;
         }
     }
+    
+    public List<PlanOrder> findAllPlanOrders(){
+        log.debug("getting all PlanOrder instances");
+        try {
+            Session session = sessionFactory.openSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            Query query = session.createQuery("from PlanOrder");
+            java.util.List results = query.list();
+            trans.commit();
+            if (results != null && results.size() > 0) {
+                log.debug("get successful, instance found");
+            } else {
+                log.debug("get successful, no instance found");
+            }
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
 }

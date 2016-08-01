@@ -11,10 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import co.refiere.dao.CompanyDatabaseDao;
-import co.refiere.dao.RefiereCompanyDao;
-import co.refiere.models.Company;
 import co.refiere.models.CompanyDatabase;
-import co.refiere.models.CompanyDatabaseHome;
 import co.refiere.resources.base.DatabaseObjectData;
 import co.refiere.resources.base.DatabaseRefRequest;
 
