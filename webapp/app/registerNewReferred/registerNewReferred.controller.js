@@ -16,11 +16,8 @@
         vm.saveNewReferred = saveNewReferred;
 
         function saveNewReferred() {
-          console.log(vm.newReferredData);
           RegisterNewReferredSrv.postNewUserInfo(vm.newReferredData)
             .then(function(data) {
-              console.log(data);
-              console.log(data.status);
               if (data.data.status === "OK"){
                 vm.newReferredData = {};
                 $window.alert('Código cangeado con exito');
