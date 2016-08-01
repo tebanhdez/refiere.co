@@ -16,18 +16,21 @@
         vm.saveNewReferred = saveNewReferred;
 
         function saveNewReferred() {
+          console.log(vm.newReferredData);
           RegisterNewReferredSrv.postNewUserInfo(vm.newReferredData)
             .then(function(data) {
-              if (data.status === -1){
-                $window.alert('¡El usuario ya existe!');
+              console.log(data);
+              console.log(data.status);
+              if (data.data.status === "OK"){
+                vm.newReferredData = {};
+                $window.alert('Código cangeado con exito');
               }
               else{
-                  vm.newReferredData = {};
-                  $window.alert('Usuario registrado con exito');
+                $window.alert('¡Ocurrio un error! Por favor revise los datos ingresados');
               }
             })
             .catch(function(error) {
-              $window.alert('¡Ocurrio un error!');
+              $window.alert('¡Ocurrio un error! Por favor asegurese de estar conectado a internet');
             });
         }
     }
