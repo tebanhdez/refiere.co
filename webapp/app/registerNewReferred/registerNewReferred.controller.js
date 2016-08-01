@@ -22,13 +22,13 @@
                 $window.alert('¡El usuario ya existe!');
               }
               else{
-                $window.alert('Usuario registrado con exito');
+                  vm.newReferredData = {};
+                  $window.alert('Usuario registrado con exito');
               }
             })
             .catch(function(error) {
               $window.alert('¡Ocurrio un error!');
             });
         }
-
     }
 })();
