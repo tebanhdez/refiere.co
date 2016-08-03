@@ -13,6 +13,8 @@
     this.getReferredFromServer = getReferredFromServer;
     this.getCampaignFromServer = getCampaignFromServer;
     this.getCompanyPrizeFromServer = getCompanyPrizeFromServer;
+    this.getReferencesCodesNull = getReferencesCodesNull;
+    this.getReferencesCodesNotNull = getReferencesCodesNotNull;
     var currentUser = UserDataService.getUserName();
     var encodedBasic = SessionModel.password;
     var companyId = UserDataService.getCompanyID();
@@ -33,6 +35,36 @@
 
     function getCampaignFromServer() {
       var urlCompany = '/rest/v1/metrics/company/'+companyId+'/campaignsAmount';
+
+      var request = {
+        method: 'GET',
+        url: urlCompany,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        }
+      };
+
+      return $http(request);
+    }
+
+    function getReferencesCodesNull() {
+      var urlCompany = '/rest/v1/metrics/company/'+companyId+'/campaignsAmountNull';
+
+      var request = {
+        method: 'GET',
+        url: urlCompany,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        }
+      };
+
+      return $http(request);
+    }
+
+    function getReferencesCodesNotNull() {
+      var urlCompany = '/rest/v1/metrics/company/'+companyId+'/campaignsAmountNotNull';
 
       var request = {
         method: 'GET',

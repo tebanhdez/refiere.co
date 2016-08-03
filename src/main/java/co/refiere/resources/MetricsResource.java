@@ -38,6 +38,28 @@ public class MetricsResource {
         response= String.format(response, referralsAmount);
         return Response.status(200).entity(response).build();
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/company/{companyId}/campaignsAmountNull")
+    public Response getCampaignsAmountNull(@PathParam("companyId") int companyId){
+        String response = "{\"campaignsAmount\": \"%s\"}";
+        MetricsService metricsService = new MetricsService();
+        int referralsAmount = metricsService.getCompanyAmountNull(companyId);
+        response= String.format(response, referralsAmount);
+        return Response.status(200).entity(response).build();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/company/{companyId}/campaignsAmountNotNull")
+    public Response getCampaignsAmountNotNull(@PathParam("companyId") int companyId){
+        String response = "{\"campaignsAmount\": \"%s\"}";
+        MetricsService metricsService = new MetricsService();
+        int referralsAmount = metricsService.getCompanyAmountNotNull(companyId);
+        response= String.format(response, referralsAmount);
+        return Response.status(200).entity(response).build();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

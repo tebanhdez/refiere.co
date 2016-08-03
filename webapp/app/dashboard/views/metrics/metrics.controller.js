@@ -13,11 +13,15 @@
 
     vm.referred = {};
     vm.campaign = {};
+    vm.notNullReferences = {};
+    vm.nullReferences = {};
     vm.companyPrize = {};
 
     getReferred();
     getCampaign();
     getCompanyPrize();
+    getNullReferences();
+    getNotNullReferences();
 
     function getReferred() {
       MetricService.getReferredFromServer()
@@ -30,6 +34,22 @@
       MetricService.getCampaignFromServer()
       .then(function(campaignData){
         vm.campaign = campaignData.data;
+      })
+    }
+
+    function getNullReferences() {
+      MetricService.getReferencesCodesNull()
+      .then(function(referencesNull){
+        vm.nullReferences = referencesNull.data;
+        console.log(vm.nullReferences);
+      })
+    }
+
+    function getNotNullReferences() {
+      MetricService.getReferencesCodesNotNull()
+      .then(function(referencesNotNull){
+        vm.notNullReferences = referencesNotNull.data;
+        console.log(vm.notNullReferences);
       })
     }
 

@@ -33,6 +33,14 @@ public class MetricsService {
     public int getCompanyAmount(int companyId) {
         return campaignDao.getCampaignsByUserId(companyId).size();
     }
+    
+    public int getCompanyAmountNull(int companyId) {
+        return campaignDao.getReferencesCodesNull(companyId).size();
+    }
+    
+    public int getCompanyAmountNotNull(int companyId) {
+        return campaignDao.getReferencesCodesNotNull(companyId).size();
+    }
 
     public int getCompanyAmountPrize(int companyId) {
         return 2*campaignDao.getCampaignsByUserId(companyId).size();
