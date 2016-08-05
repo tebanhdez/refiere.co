@@ -13,15 +13,15 @@
 
     vm.referred = {};
     vm.campaign = {};
-    vm.notNullReferences = {};
-    vm.nullReferences = {};
+    vm.notRedeemedCodesAmount = {};
+    vm.redeemedCodesAmount = {};
     vm.companyPrize = {};
 
     getReferred();
     getCampaign();
     getCompanyPrize();
-    getNullReferences();
-    getNotNullReferences();
+    getRedeemedCodesAmount();
+    getNotRedeemedCodesAmount();
 
     function getReferred() {
       MetricService.getReferredFromServer()
@@ -37,19 +37,17 @@
       })
     }
 
-    function getNullReferences() {
-      MetricService.getReferencesCodesNull()
-      .then(function(referencesNull){
-        vm.nullReferences = referencesNull.data;
-        console.log(vm.nullReferences);
+    function getRedeemedCodesAmount() {
+      MetricService.redeemedCodes()
+      .then(function(redeemedCodes){
+        vm.redeemedCodesAmount = redeemedCodes.data;
       })
     }
 
-    function getNotNullReferences() {
-      MetricService.getReferencesCodesNotNull()
-      .then(function(referencesNotNull){
-        vm.notNullReferences = referencesNotNull.data;
-        console.log(vm.notNullReferences);
+    function getNotRedeemedCodesAmount() {
+      MetricService.getNotRedeemedCodes()
+      .then(function(notRedeemedCodes){
+        vm.notRedeemedCodesAmount = notRedeemedCodes.data;
       })
     }
 

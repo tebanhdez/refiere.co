@@ -69,7 +69,7 @@ public class CampaignDao extends CampaignHome {
         }
     }
     
-    public List<Campaign> getReferencesCodesNull(int companyId) {
+    public List<Campaign> getReferres(int companyId) {
         log.debug("getting references_codes instances");
         try {
             Session session = sessionFactory.getCurrentSession();
@@ -87,7 +87,7 @@ public class CampaignDao extends CampaignHome {
         }
     }
     
-    public List<Campaign> getReferencesCodesNotNull(int companyId) {
+    public List<Campaign> getRedeemedCodes(int companyId) {
         log.debug("getting references_codes instances");
         try {
             Session session = sessionFactory.getCurrentSession();
