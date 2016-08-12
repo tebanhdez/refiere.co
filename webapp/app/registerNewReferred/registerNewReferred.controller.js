@@ -18,17 +18,17 @@
         function saveNewReferred() {
           RegisterNewReferredSrv.postNewUserInfo(vm.newReferredData)
             .then(function(data) {
-              if (data.status === -1){
-                $window.alert('¡El usuario ya existe!');
+              if (data.data.status === "OK"){
+                vm.newReferredData = {};
+                $window.alert('Código cangeado con exito');
               }
               else{
-                $window.alert('Usuario registrado con exito');
+                $window.alert('¡Ocurrio un error! Por favor revise los datos ingresados');
               }
             })
             .catch(function(error) {
-              $window.alert('¡Ocurrio un error!');
+              $window.alert('¡Ocurrio un error! Por favor asegurese de estar conectado a internet');
             });
         }
-
     }
 })();

@@ -10,6 +10,8 @@ import java.util.Properties;
 
 import javax.mail.MessagingException;
 
+import co.refiere.dao.ReferencesCodesDao;
+import co.refiere.models.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.io.FileUtils;
@@ -28,10 +30,6 @@ import org.hibernate.type.Type;
 
 import co.refiere.dao.CampaignDao;
 import co.refiere.dao.PersonDao;
-import co.refiere.models.Campaign;
-import co.refiere.models.Company;
-import co.refiere.models.Person;
-import co.refiere.models.Prize;
 import co.refiere.resources.base.EmailRequest;
 import co.refiere.services.mailer.RefiereServiceFactory;
 import co.refiere.services.mailer.ResourceManager;
@@ -98,6 +96,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
             int dataBase = campaign.getCompanyDatabase().getId();
             String query = "from Person where company_database_id = %d";
             PersonDao personDao = new PersonDao();
+            ReferencesCodesDao referencesCodesDao = new ReferencesCodesDao();
             StatelessSession statelessSession = personDao.getStatelessSession();
             statelessSession.beginTransaction();
 
@@ -123,6 +122,10 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     html = html.replace("YYYY", prizeAmount);
                     String newCode = QRCodeService.generateQRCode();
                     html = html.replace("CCCC", newCode);
+
+                    ReferencesCodesId referencesCodesId = new ReferencesCodesId(campaign.getId(), person.getId());
+                    ReferencesCodes referencesCode = new ReferencesCodes(referencesCodesId, null, newCode);
+                    referencesCodesDao.persist(referencesCode);
 
                     EmailRequest request = new EmailRequest();
                     request.setRecipients(recipients);

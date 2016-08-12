@@ -5,25 +5,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class NewUserRequest {
 
-	 	private int campaignId;
-	 	private int referalPersonId;
+	 	private String referalCode;
 	    private String identificationCardNumber;
 	    private String name;
 	    private String lastName;
 	    private String email;
 	    private String phoneNumber;
-	    
-	    public int getCampaignId() {
-			return campaignId;
+
+	    public String getReferalCode() {
+			return referalCode;
 		}
-		public void setCampaignId(int campaignId) {
-			this.campaignId = campaignId;
-		}
-		public int getReferalPersonId() {
-			return referalPersonId;
-		}
-		public void setReferalPersonId(int referalPersonId) {
-			this.referalPersonId = referalPersonId;
+		public void setReferalCode(String referalCode) {
+			this.referalCode = referalCode;
 		}
 		public String getIdentificationCardNumber() {
 			return identificationCardNumber;
@@ -55,5 +48,5 @@ public class NewUserRequest {
 		public void setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
-		
+
 }

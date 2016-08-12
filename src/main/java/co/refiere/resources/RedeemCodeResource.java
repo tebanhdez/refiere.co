@@ -1,8 +1,5 @@
 package co.refiere.resources;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
@@ -23,7 +20,7 @@ public class RedeemCodeResource {
         String response = "{\"status\": \"%s\", %s}";
         try {
             response = String.format(response, "OK", "\"result\":" + referalService.registerNewPerson(newUser));
-        } catch (NoContentException e) {
+        } catch (NoContentException | ForbiddenException e) {
             response = String.format(response, "FAIL",e.getMessage());
         } catch (NullPointerException exception) {
             return Response.status(Response.Status.BAD_REQUEST).build();

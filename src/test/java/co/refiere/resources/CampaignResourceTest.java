@@ -45,7 +45,7 @@ public class CampaignResourceTest extends JerseyTest {
 
         testCompany = new Company();
         testCompany.setName("CampaignResourceTest::settingTestData");
-        testCompany.setEmail("test@email.com");
+        testCompany.setEmail("ehernandez@pernix-solutions.com");
         testCompany.setAddress("Address");
         testCompany.setPhone("+506 8989 8989");
         companyDao.save(testCompany);
