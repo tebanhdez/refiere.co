@@ -68,6 +68,42 @@ public class CampaignDao extends CampaignHome {
             throw re;
         }
     }
+    
+    public List<Campaign> getReferres(int companyId) {
+        log.debug("getting references_codes instances");
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            Query query = session.createSQLQuery("select rf.campaign_id, rf.person_id, rf.referrer_id, rf.code from campaign c join references_codes rf on c.id = rf.campaign_id where rf.referrer_id IS NULL and c.company_id =:companyId");
+            query.setParameter("companyId", companyId);
+            java.util.List<Campaign> results = query.list();
+            trans.commit();
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+    
+    public List<Campaign> getRedeemedCodes(int companyId) {
+        log.debug("getting references_codes instances");
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            org.hibernate.Transaction trans= session.beginTransaction();
+            if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+                log.debug(" >>> Transaction close.");
+            Query query = session.createSQLQuery("select rf.campaign_id, rf.person_id, rf.referrer_id, rf.code from campaign c join references_codes rf on c.id = rf.campaign_id where rf.referrer_id IS NOT NULL and c.company_id =:companyId");
+            query.setParameter("companyId", companyId);
+            java.util.List<Campaign> results = query.list();
+            trans.commit();
+            return results;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
 
     public StatelessSession getStatelessSession() {
         return sessionFactory.openStatelessSession();
