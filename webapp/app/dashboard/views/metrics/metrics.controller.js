@@ -13,11 +13,15 @@
 
     vm.referred = {};
     vm.campaign = {};
+    vm.notRedeemedCodesAmount = {};
+    vm.redeemedCodesAmount = {};
     vm.companyPrize = {};
 
     getReferred();
     getCampaign();
     getCompanyPrize();
+    getRedeemedCodesAmount();
+    getNotRedeemedCodesAmount();
 
     function getReferred() {
       MetricService.getReferredFromServer()
@@ -30,6 +34,20 @@
       MetricService.getCampaignFromServer()
       .then(function(campaignData){
         vm.campaign = campaignData.data;
+      })
+    }
+
+    function getRedeemedCodesAmount() {
+      MetricService.redeemedCodes()
+      .then(function(redeemedCodes){
+        vm.redeemedCodesAmount = redeemedCodes.data;
+      })
+    }
+
+    function getNotRedeemedCodesAmount() {
+      MetricService.getNotRedeemedCodes()
+      .then(function(notRedeemedCodes){
+        vm.notRedeemedCodesAmount = notRedeemedCodes.data;
       })
     }
 

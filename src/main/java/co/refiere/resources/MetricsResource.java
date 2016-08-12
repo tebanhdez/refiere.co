@@ -38,6 +38,28 @@ public class MetricsResource {
         response= String.format(response, referralsAmount);
         return Response.status(200).entity(response).build();
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/company/{companyId}/referresAmount")
+    public Response getReferresAmount(@PathParam("companyId") int companyId){
+        String response = "{\"campaignsAmount\": \"%s\"}";
+        MetricsService metricsService = new MetricsService();
+        int referralsAmount = metricsService.getCompanyRedeemedCodes(companyId);
+        response= String.format(response, referralsAmount);
+        return Response.status(200).entity(response).build();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/company/{companyId}/notReferredAmount")
+    public Response getNotReferredAmount(@PathParam("companyId") int companyId){
+        String response = "{\"campaignsAmount\": \"%s\"}";
+        MetricsService metricsService = new MetricsService();
+        int referralsAmount = metricsService.getCompanyNotRedeemedCodes(companyId);
+        response= String.format(response, referralsAmount);
+        return Response.status(200).entity(response).build();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

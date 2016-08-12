@@ -33,6 +33,14 @@ public class MetricsService {
     public int getCompanyAmount(int companyId) {
         return campaignDao.getCampaignsByUserId(companyId).size();
     }
+    
+    public int getCompanyRedeemedCodes(int companyId) {
+        return campaignDao.getReferres(companyId).size();
+    }
+    
+    public int getCompanyNotRedeemedCodes(int companyId) {
+        return campaignDao.getRedeemedCodes(companyId).size();
+    }
 
     public int getCompanyAmountPrize(int companyId) {
         return 2*campaignDao.getCampaignsByUserId(companyId).size();

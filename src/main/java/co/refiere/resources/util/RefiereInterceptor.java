@@ -116,6 +116,8 @@ public class RefiereInterceptor extends EmptyInterceptor {
                     String html = getStringfontTemplate("RefiereTemplateCode.html");
                     String prizeName = campaign.getPrizeByPrizeForRefiereId().getDescription();
                     html = html.replace("XXXX", prizeName);
+                    String prizeforReferrerAmount = campaign.getPrizeForRefiere();
+                    html = html.replace("ZZZZ", prizeforReferrerAmount);
                     String prizeAmount = campaign.getPrizeForReferee();
                     html = html.replace("YYYY", prizeAmount);
                     String newCode = QRCodeService.generateQRCode();

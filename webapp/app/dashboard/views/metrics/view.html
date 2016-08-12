@@ -6,8 +6,8 @@
           <i class="fa fa-users"></i>
         </div>
         <div class="details">
-          <div  class="number" ng-model="vm.referred.referredAmount">{{vm.referred.referredAmount}}</div>
-          <div class="desc">Cantidad de Referidores</div>
+          <div  class="number" ng-model="vm.referred.referredAmount">{{vm.redeemedCodesAmount.campaignsAmount}}</div>
+          <div class="desc">Cantidad de códigos no reclamados</div>
         </div>
       </div>
     </div>
@@ -41,8 +41,8 @@
           <i class="fa fa-thumbs-o-down"></i>
         </div>
         <div class="details">
-          <div  class="number">0</div>
-          <div  class="desc">Referencias Rechazadas por mala Aplicacion</div>
+          <div  class="number">{{vm.notRedeemedCodesAmount.campaignsAmount}}</div>
+          <div  class="desc">Cantidad de códigos canjeados</div>
         </div>
       </div>
     </div>
