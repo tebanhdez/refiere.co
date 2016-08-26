@@ -39,7 +39,7 @@ Build the project
 > for "create", run the project once and change it again to "validate".*  
 > 
 > `<property name="hibernate.hbm2ddl.auto">create</property>`  
-Then change it again for:
+Then change it again for:  
 > 
 > `<property name="hibernate.hbm2ddl.auto">validate</property>`  
 > *If you don't do this last step, every time you will run the app the database will be erased.*
