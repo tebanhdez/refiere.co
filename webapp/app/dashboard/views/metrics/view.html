@@ -6,7 +6,7 @@
           <i class="fa fa-users"></i>
         </div>
         <div class="details">
-          <div  class="number" ng-model="vm.referred.referredAmount">{{vm.redeemedCodesAmount.campaignsAmount}}</div>
+          <div  class="number" ng-model="vm.referred.referredAmount">{{vm.redeemedCodesAmount.campaignsAmount - vm.notRedeemedCodesAmount.campaignsAmount}}</div>
           <div class="desc">Cantidad de códigos no reclamados</div>
         </div>
       </div>
@@ -67,6 +67,42 @@
           <div class="desc">Referencias Pendientes de Pago</div>
         </div>
       </div>
+    </div>
+  </div>
+  <div id="containerMetrics" class="row">
+    <div class="dropdown">
+      <form>
+        <span class="input-label">Seleccionar una campaña: </span>
+        <select class="btn btn-default dropdown-toggle" ng-model="vm.campaignId" ng-change="vm.getRedeemCodeReport()">
+          <option ng-repeat="campaign in vm.campaignList" value="{{campaign.id}}">{{campaign.campaignName}}</option>
+        </select>
+      </form>
+    </div>
+    <div class="table-responsive col-md-10">
+      <table class="table">
+        <thead>
+          <tr> 
+            <th class="col-sm-2">Identificación</th>
+            <th class="col-sm-2">Nombre</th>
+            <th class="col-sm-2">Apellido</th>
+            <th class="col-sm-2">Cantidad de referidos</th>
+            <th class="col-sm-2">Código</th>
+            <th class="col-sm-2">Tipo de premio</th>
+            <th class="col-sm-2">Premio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="report in vm.campaignReportList">
+            <td class="col-sm-2">{{report.identificationCardNumber}}</td>
+            <td class="col-sm-2">{{report.name}}</td>
+            <td class="col-sm-2">{{report.lastName}}</td>
+            <td class="col-sm-2">{{report.count}}</td>
+            <td class="col-sm-2">{{report.code}}</td>
+            <td class="col-sm-2">{{report.description}}</td>
+            <td class="col-sm-2">{{report.prizeForRefiere}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

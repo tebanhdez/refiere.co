@@ -1,8 +1,5 @@
 package co.refiere.resources;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.mail.MessagingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

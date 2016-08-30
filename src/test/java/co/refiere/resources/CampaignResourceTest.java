@@ -89,6 +89,12 @@ public class CampaignResourceTest extends JerseyTest {
         testCampaign = campaignDao.getCampaigById(object.getInt("campaignId"));
     }
     
+    @Test
+    public void getCampaigns(){
+        final Response response = target().path("v1/campaign/company/1/campaignList").request().get();
+        Assert.assertEquals(200, response.getStatus());
+    }
+    
     @After
     public void deleteTestData(){
         campaignDao.deleteCampaign(testCampaign);

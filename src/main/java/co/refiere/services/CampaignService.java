@@ -1,6 +1,11 @@
 package co.refiere.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -13,6 +18,8 @@ import co.refiere.models.Company;
 import co.refiere.models.CompanyDatabase;
 import co.refiere.models.Prize;
 import co.refiere.resources.base.CampaignRequest;
+import co.refiere.resources.base.ClientListObjectData;
+import co.refiere.resources.base.PrizeObjectData;
 
 public class CampaignService {
 
@@ -48,5 +55,24 @@ public class CampaignService {
         campaignDao.save(campaignModel);
         return Response.ok(String.format(String.format(jsonResponse, campaignModel.getId())), MediaType.APPLICATION_JSON).build();
 	}
+    
+    public Response getCampaigns(int companyId) {
+        CampaignDao campaignDao = new CampaignDao();
+        List<CampaignRequest> clientList = getSimplifiedCampaigns(campaignDao.getCampaignsByUserId(companyId));
+        GenericEntity<List<CampaignRequest>> list = new GenericEntity<List<CampaignRequest>>(clientList) {};
+        return Response.ok(list).build();
+    }
+
+    private List<CampaignRequest> getSimplifiedCampaigns(List<Campaign> allCampaigns) {
+        List<CampaignRequest> simpleCampaigns = new ArrayList<>();
+        for(Campaign instance : allCampaigns){
+            CampaignRequest campaign = new CampaignRequest();
+            campaign.setId(instance.getId());
+            campaign.setCampaignName(instance.getName());
+            campaign.setCompanyId(instance.getCompany().getId());
+            simpleCampaigns.add(campaign);
+        }
+        return simpleCampaigns;
+    }
 
 }

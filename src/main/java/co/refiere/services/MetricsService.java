@@ -1,5 +1,6 @@
 package co.refiere.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.NoContentException;
@@ -10,8 +11,13 @@ import org.hibernate.tool.schema.internal.exec.GenerationTargetToScript;
 
 import co.refiere.dao.CampaignDao;
 import co.refiere.dao.PersonDao;
+import co.refiere.dao.PrizeDao;
 import co.refiere.dao.ReferencesCodesDao;
+import co.refiere.models.Campaign;
+import co.refiere.models.Prize;
 import co.refiere.models.ReferencesCodes;
+import co.refiere.resources.base.ClientListObjectData;
+import co.refiere.resources.base.PrizeObjectData;
 import co.refiere.resources.base.ReferredObjectData;
 
 public class MetricsService {
@@ -44,6 +50,10 @@ public class MetricsService {
 
     public int getCompanyAmountPrize(int companyId) {
         return 2*campaignDao.getCampaignsByUserId(companyId).size();
+    }
+    
+    public List<ClientListObjectData> getCompanyClientList(int campaignId) {
+        return campaignDao.getSimplifiedClientList(campaignDao.getCompanyClientList(campaignId));
     }
 
 }
