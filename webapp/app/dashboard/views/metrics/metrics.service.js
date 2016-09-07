@@ -15,6 +15,8 @@
     this.getCompanyPrizeFromServer = getCompanyPrizeFromServer;
     this.redeemedCodes = redeemedCodes;
     this.getNotRedeemedCodes = getNotRedeemedCodes;
+    this.getCompanyCampaignsFromServer = getCompanyCampaignsFromServer;
+    this.getRedeemCodeReportFromServer = getRedeemCodeReportFromServer;
     var currentUser = UserDataService.getUserName();
     var encodedBasic = SessionModel.password;
     var companyId = UserDataService.getCompanyID();
@@ -84,6 +86,36 @@
       var request = {
         method: 'GET',
         url: urlCompanyPrize,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        }
+      };
+
+      return $http(request);
+    }
+
+    function getCompanyCampaignsFromServer() {
+      var urlCompanyCampaign = '/rest/v1/campaign/company/'+companyId+'/campaignList';
+
+      var request = {
+        method: 'GET',
+        url: urlCompanyCampaign,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': encodedBasic
+        }
+      };
+
+      return $http(request);
+    }
+
+    function getRedeemCodeReportFromServer(campaignId) {
+      var urlCompanyCampaign = '/rest/v1/metrics/company/'+campaignId+'/redeemCodeReport';
+
+      var request = {
+        method: 'GET',
+        url: urlCompanyCampaign,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': encodedBasic

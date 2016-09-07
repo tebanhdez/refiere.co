@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class CampaignRequest {
 
+    private int id;
     private int companyId;
 	private int companyDataBase;
     private int prizeForRefiereId;
@@ -12,6 +13,13 @@ public class CampaignRequest {
     private String prizeForRefiere;
     private String prizeForRefieree;
     private String campaignName;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCompanyId() {
         return companyId;

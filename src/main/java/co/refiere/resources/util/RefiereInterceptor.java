@@ -129,7 +129,7 @@ public class RefiereInterceptor extends EmptyInterceptor {
 
                     EmailRequest request = new EmailRequest();
                     request.setRecipients(recipients);
-                    request.setSenderAddress("info@refiere.co");
+                    request.setSenderAddress(properties.get("mail.smtp.user").toString());
                     request.setSubject(properties.get("refiere.email.subject").toString());
                     request.setBody(html);
                     request.setAttachments(attachmentsFilesPaths);

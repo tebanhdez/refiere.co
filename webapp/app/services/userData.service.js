@@ -21,7 +21,8 @@
       getCompanyTelephone: getCompanyTelephone,
       getAllUserData: getAllUserData,
       setAuthData: setAuthData,
-      getAuthData: getAuthData
+      getAuthData: getAuthData,
+      logout: logout
     };
     return service;
 
@@ -75,6 +76,10 @@
 
     function getAuthData() {
       return userInfo.authData;
+    }
+    
+    function logout() {
+    	userInfo = {};
     }
 
   }

@@ -11,8 +11,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+
+import co.refiere.models.Campaign;
+import co.refiere.resources.base.ClientListObjectData;
+import co.refiere.resources.base.PrizeObjectData;
 import co.refiere.resources.base.ReferredObjectData;
 import co.refiere.services.MetricsService;
+import co.refiere.services.PrizeService;
 
 @Path("v1/metrics")
 public class MetricsResource {
@@ -70,6 +76,20 @@ public class MetricsResource {
         int referralsAmount = metricsService.getCompanyAmountPrize(companyId);
         response= String.format(response, referralsAmount);
         return Response.status(200).entity(response).build();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/company/{campaignId}/redeemCodeReport")
+    public Response getCompanyClientList(@PathParam("campaignId") int campaignId){
+        try {
+            MetricsService metricsService = new MetricsService();
+            List<ClientListObjectData> clientList = metricsService.getCompanyClientList(campaignId);
+            GenericEntity<List<ClientListObjectData>> list = new GenericEntity<List<ClientListObjectData>>(clientList) {};
+            return Response.ok(list).build();
+        } catch (NullPointerException exception) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
 }

@@ -1,21 +1,17 @@
 package co.refiere.services.mailer;
 
-import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.*;
+import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.sparkpost.Client;
 
 import co.refiere.resources.base.EmailRequest;
 
@@ -36,39 +32,10 @@ public class MailService{
     public void generateAndSendEmail(String sender, String [] recipients, String subject, String body, String [] attachmentsFilesPaths) throws AddressException, MessagingException {
 
         try {
+            String API_KEY = mailServerProperties.getProperty("mail.api.key");
+            Client client = new Client(API_KEY);
 
-            MimeMessage email = new MimeMessage(getMailSession);
-
-            for (String recipient : recipients) {
-                email.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            }
-            email.setFrom(new InternetAddress(sender));
-            email.setSubject(subject);
-
-            // Create the message part
-            BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setContent(body, "text/html; charset=utf-8");
-
-            // Create a multipart message
-            Multipart multipart = new MimeMultipart();
-
-            // Set text message part
-            multipart.addBodyPart(messageBodyPart);
-
-            // Part two is attachment
-            for (String filename : attachmentsFilesPaths) {
-                File attachment = new File(filename);
-                if (attachment.exists()) {
-                    DataSource source = new FileDataSource(attachment);
-                    messageBodyPart = new MimeBodyPart();
-                    messageBodyPart.setDataHandler(new DataHandler(source));
-                    messageBodyPart.setFileName(attachment.getName());
-                    multipart.addBodyPart(messageBodyPart);
-                }
-            }
-            // Send the complete message parts
-            email.setContent(multipart);
-            Transport.send(email);
+            client.sendMessage(sender, Arrays.asList(recipients), subject, body, body);
         }
         catch (Exception mailerException)
         {

@@ -5,10 +5,12 @@
     .module('refiereApp.dashboard')
     .controller('DashboardCtrl', DashboardCtrl);
 
-  DashboardCtrl.$inject = ['$scope'];
+  DashboardCtrl.$inject = ['$scope', 'UserDataService', '$window', '$state'];
 
-  function DashboardCtrl($scope) {
-
+  function DashboardCtrl($scope, UserDataService, $window, $state) {
+	var vm = this;
+	vm.logout = logout;
+	
     $scope.selectedOption ="database";
     $scope.tabs = [{
       title: 'Campaña',
@@ -31,5 +33,11 @@
       state: 'dashboard.reports',
       icon: 'fa-cogs'
     }];
+    
+    function logout() {
+    	UserDataService.logout();
+    	$window.location.reload();
+    	$state.go('home');
+    }
   }
 })();
